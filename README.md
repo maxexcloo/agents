@@ -55,8 +55,8 @@ load updated launch functions.
 
 Standard uses the shared sandbox. Infra adds 1Password, Kubernetes and SSH
 access plus the infrastructure profile. Docker inherits infra and adds Docker
-access. Unsafe bypasses Safehouse. The `docker` command also uses infra with
-Docker access.
+access. Unsafe bypasses Safehouse. Shared launchers are `safe`, `safe-docker`
+and `safe-infra`.
 
 ## Skills
 

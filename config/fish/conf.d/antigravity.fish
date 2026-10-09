@@ -19,7 +19,7 @@ function antigravity
 end
 
 function antigravity-docker
-    safe-infra --enable=docker --add-dirs="$HOME/.gemini" antigravity $argv
+    safe-docker --add-dirs="$HOME/.gemini" antigravity $argv
 end
 
 function antigravity-infra

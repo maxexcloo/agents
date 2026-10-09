@@ -3,7 +3,7 @@ function opencode
 end
 
 function opencode-docker
-    safe-infra --enable=docker --add-dirs="$HOME/Library/Caches/opencode" opencode $argv
+    safe-docker --add-dirs="$HOME/Library/Caches/opencode" opencode $argv
 end
 
 function opencode-infra

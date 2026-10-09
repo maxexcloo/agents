@@ -3,7 +3,7 @@ function pi
 end
 
 function pi-docker
-    safe-infra --enable=docker pi $argv
+    safe-docker pi $argv
 end
 
 function pi-infra

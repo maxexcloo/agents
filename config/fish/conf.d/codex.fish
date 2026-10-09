@@ -8,7 +8,7 @@ function codex
 end
 
 function codex-docker
-    safe-infra --enable=docker codex --no-daemon \
+    safe-docker codex --no-daemon \
         -c 'sandbox_workspace_write.network_access=true' \
         -c 'sandbox_workspace_write.writable_roots=["/Users/max.schaefer/Library/Caches/prek","/Users/max.schaefer/Library/Caches/uv"]' \
         $argv
