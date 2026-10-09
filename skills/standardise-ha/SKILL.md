@@ -1,9 +1,9 @@
 ---
-name: ha-audit
+name: standardise-ha
 description: Audit Home Assistant configuration for correctness, behavioural risk, consistency, organisation and bloat. Use for HA audits, targeted diagnosis and requested cleanup.
 ---
 
-# HA Audit
+# Standardise HA
 
 Separate broken behaviour from risk, maintenance and local preferences. Audit
 first; change configuration only within the user's explicit fix authorisation.

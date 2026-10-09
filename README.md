@@ -62,9 +62,9 @@ Docker access.
 
 | Skill                                                        | Use                                                                                 |
 | ------------------------------------------------------------ | ----------------------------------------------------------------------------------- |
-| [ha-audit](skills/ha-audit/SKILL.md)                         | Audit Home Assistant and complete requested fixes.                                  |
 | [maintain-projects](skills/maintain-projects/SKILL.md)       | Finish a bounded batch of issues, PRs, CI failures, updates and conformance checks. |
 | [standardise-github](skills/standardise-github/SKILL.md)     | Review and align GitHub repository metadata and settings.                           |
+| [standardise-ha](skills/standardise-ha/SKILL.md)             | Audit Home Assistant and complete requested fixes.                                  |
 | [standardise-projects](skills/standardise-projects/SKILL.md) | Simplify project structure, tooling and instruction layers.                         |
 | [terrashark](skills/terrashark/SKILL.md)                     | Review Terraform/OpenTofu failure modes using the pinned upstream package.          |
 
