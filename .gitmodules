@@ -1,0 +1,3 @@
+[submodule "skills/terrashark"]
+	path = skills/terrashark
+	url = https://github.com/LukasNiessen/terrashark.git

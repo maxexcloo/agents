@@ -1,0 +1,14 @@
+;; OpenTofu and Terraform providers communicate with the parent process over a
+;; short-lived Unix socket in the per-user macOS temporary directory.
+(define tofu-plugin-socket
+    (path-regex #"^/private/var/folders/[^/]+/[^/]+/T/plugin[0-9]+$"))
+
+(allow network-bind
+    (local unix-socket tofu-plugin-socket))
+
+(allow network-outbound
+    (remote unix-socket tofu-plugin-socket))
+
+;; Talos client credentials: infra sessions may read, but not rewrite them.
+(allow file-read*
+    (home-subpath "/.talos"))
