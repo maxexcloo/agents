@@ -34,7 +34,8 @@ differences. Audit by default; apply changes only within existing authorisation.
 - **Security:** Review available scanning, push protection, dependency alerts and
   security updates. Distinguish account-plan limitations and missing permissions
   from disabled features. Check existing Renovate or Dependabot ownership before
-  adding overlapping automation.
+  adding overlapping automation. Review secret/variable names, scopes and
+  consumers through metadata; keep values out of tool output and reports.
 - **Visibility & Deployment:** Inspect environments, protection rules, Pages
   configuration and repository visibility when relevant. Preserve licences and
   upstream requirements. Treat visibility, access and hosting changes as

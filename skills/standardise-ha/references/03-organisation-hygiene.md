@@ -67,6 +67,13 @@ ha_config_get_label()
 ha_list_floors_areas()
 ```
 
+## Cleanup After Removal
+
+When a component's removal is authorised, check its integrations, helpers,
+automations, blueprints, stored dashboard resources, entities and metadata for
+verified leftovers. Follow the deletion impact workflow before removing objects.
+Keep shared resources and intentionally parked alternatives with real consumers.
+
 ## Duplicate Camera & Media Entities
 
 Compare provider, supported_features and consumers before disabling duplicates.

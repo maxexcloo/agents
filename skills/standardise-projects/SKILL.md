@@ -41,15 +41,24 @@ relevant sections of [Tooling Review](references/tooling.md).
 Add only files and workflows justified by current use. Keep documentation accurate
 and remove stale commands, configuration and duplicated orchestration. Retain
 small checks that cover distinct failures; avoid identical tooling for its own sake.
+Remove verified stale files and empty directories after their purpose disappears.
+Omit explicit defaults only after checking their effective behaviour; keep values
+that encode policy or differ between platforms.
 
 Trace shared data from its owning source through generated outputs to consumers.
 For inventories, names, endpoints, secrets and deployment settings, check the
 whole path across repositories. Derive duplicated information where practical;
 update producers and consumers together instead of adding another manual copy.
+Use global address and URL preferences for derived endpoints. Prefer direct,
+typed inventory data over repeated names, context prefixes or layers of aliases.
 
 Make narrow patches. Preserve generated files and meaningful interface order.
 For multiple repositories, compare the relevant conventions and explain
 intentional differences in the conversation or an existing tracker.
+
+Required patches and overrides should fail clearly when upstream assumptions
+stop matching. Do not silently skip a stale required change; keep deliberately
+optional behaviour optional.
 
 ## 4. Verify & Finish
 

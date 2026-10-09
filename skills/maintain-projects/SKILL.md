@@ -27,6 +27,12 @@ maintenance permanently open.
 
 ## 2. Complete the Work
 
+Inventory update sources in scope: dependencies and lockfiles, tool/runtime pins,
+Actions, images and versions embedded in scripts or templates. Prefer the newest
+stable compatible versions; retain justified pins and review migrations.
+When minimum supported versions are in scope, update declarations, CI matrices,
+runtime setup and documentation together.
+
 1. Check existing PRs before implementing a duplicate fix. Review breaking changes
    and obsolete workarounds when updating dependencies. Compare upstream support
    with current targets and configuration; do not preserve a workaround solely
@@ -34,14 +40,18 @@ maintenance permanently open.
 2. Use specialised audit skills only when the work needs them. A routine maintenance
    pass does not require a repository redesign or full infrastructure audit.
 3. Make small changes and inspect current file contents before edits when other
-   sessions may be active.
+   sessions may be active. Remove the verified obsolete feature's remaining
+   configuration, consumers and generated outputs, not just its main code.
 4. Verify affected behaviour and applicable conventions. Fix failures or regressions
-   introduced by this batch; use the project's required checks.
+   introduced by this batch; use the project's required checks. Prefer existing
+   CI for expensive compilation or full target builds, with proportional local
+   checks. Required CI must pass for the current revision.
 5. Complete commit, push, merge, issue closure and deployment steps only when
    already authorised. Close issues only when resolution is verified; passing CI
    alone is not evidence that an issue is fixed.
 6. After deployment, verify the affected workload or reconciliation state. Report
    asynchronous CI or deployment as Waiting until its required result is known.
+   Refresh requested exports and derived consumers through existing project tasks.
 
 ## 3. Close the Batch
 

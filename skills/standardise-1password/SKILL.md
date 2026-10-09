@@ -34,16 +34,21 @@ or ask for the missing capability; do not expose the value as a workaround.
 - **Consumers & Ownership:** Trace item references and field labels through
   deployments, applications, dashboards and CI. Compare required fields with
   the actual consumer schema. Never infer that an unused-looking item has no
-  external consumer.
+  external consumer. Include shared-account consumers before replacing or
+  retiring a credential.
 - **Duplicates & History:** Identify current, archived and legacy candidates.
   Compare metadata and lineage before migration. Examine historical credentials
   only when requested and within the authorised test scope.
 - **Names & Organisation:** Apply the user's current vault and naming conventions.
   Avoid repeating context already supplied by the vault. Preserve standard
   username, password and URL fields; sort remaining peer fields alphabetically.
+  Populate known service URLs using the owning inventory and global URL preferences.
+  Review unnecessary custom fields without removing required generated metadata.
 - **Validity & Coverage:** Check missing or conflicting required fields. When
   login tests are requested, verify the intended endpoint and successful
   authenticated behaviour. Distinguish password, token and SSO login methods.
+  Check required access scopes; when setup guidance is requested, link to the
+  provider's credential-creation page and explain the minimum needed permissions.
 
 Use bounded login attempts with a known candidate. Stop on lockout, rate limiting
 or unexpected account behaviour; do not guess passwords or retry a failing

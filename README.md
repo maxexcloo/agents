@@ -10,7 +10,8 @@ systems. Use the relevant `standardise-*` skill for deliberate alignment, and
 every audit because a task touches several technologies.
 
 Ordinary feature development and research use the agent's normal capabilities.
-Completion, KISS, prose, naming and sorting remain shared defaults in `AGENTS.md`.
+Address/URL preferences, completion, KISS, prose, naming and sorting remain
+shared defaults in `AGENTS.md`.
 
 ## Contents
 

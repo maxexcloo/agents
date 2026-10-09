@@ -27,10 +27,13 @@ Read the sections relevant to the tools present in the project.
 ## Mise
 
 - Include tools used by development, CI, deployment, or documented operations.
+  Check the actual executable and interpreter selected locally and in CI; avoid
+  competing package managers for the same installation.
 - Keep a single-command task's `run` value inline. For tasks that run multiple
   commands, use a multiline string with one command per line instead of chaining
   commands with `&&` or `;`.
-- Pin tools where reproducibility is useful; let Renovate propose updates.
+- Pin current stable compatible tools where reproducibility is useful; let
+  Renovate propose updates. Recheck old pins against their original reason.
 - Prefer a small common task vocabulary such as `check`, `fmt`, and `setup`.
   Add cleanup, deploy, plan, or apply tasks only where the project needs them.
 

@@ -1,5 +1,16 @@
 # Global Agent Guidance
 
+## Addresses & URLs
+
+- Derive service links and host addresses from their owning inventory or provider
+  configuration. Preserve the intended private or public access boundary.
+- Keep host fields in their required format; construct absolute URLs where a
+  browser or credential field needs them.
+- Prefer configured service DNS, then Tailscale IP, then local hostname/DNS, then
+  raw IP. Honour explicitly supplied endpoints and the client's reachability.
+- Preserve the actual scheme, port and path. Prefer HTTPS when supported; use
+  HTTP for services that require it rather than inventing an HTTPS endpoint.
+
 ## Completion
 
 - Complete the agreed scope, verify relevant behaviour and conformance, and finish

@@ -1,6 +1,6 @@
 ---
 name: standardise-ha
-description: Audit Home Assistant configuration for correctness, behavioural risk, consistency, organisation and bloat. Use for HA audits, targeted diagnosis and requested cleanup.
+description: Audit Home Assistant configuration for correctness, behavioural risk, consistency, organisation and bloat. Use for HA audits, targeted diagnosis, updates and requested cleanup.
 ---
 
 # Standardise HA
@@ -39,6 +39,11 @@ or other metadata are findings only when the system's intended policy needs them
 For release-review requests, compare the installed version, integrations and
 devices with official release notes. Recommend applicable features and identify
 custom workarounds they can replace; apply changes only within the requested scope.
+
+When updates are requested, include core, add-ons/apps, integrations, HACS content,
+blueprints and device firmware only where they are in scope. Review installed
+versions and compatibility before updating; check required reloads or restarts
+and verify affected automations afterwards.
 
 ## 3. Verify & Finish
 
