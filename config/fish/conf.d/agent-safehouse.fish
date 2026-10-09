@@ -13,12 +13,5 @@ function safe-infra
 end
 
 function safe-docker
-    safe --enable=docker $argv
-end
-
-function safe-infra-docker
-    safe \
-        --enable=1password,kubectl,ssh,docker \
-        --append-profile="$__fish_config_dir/conf.d/agent-safehouse-infra.sb" \
-        $argv
+    safe-infra --enable=docker $argv
 end
