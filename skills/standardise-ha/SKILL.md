@@ -8,7 +8,7 @@ description: Audit Home Assistant configuration for correctness, behavioural ris
 Separate broken behaviour from risk, maintenance and local preferences. Audit
 first; change configuration only within the user's explicit fix authorisation.
 
-## Establish the Batch
+## 1. Establish the Batch
 
 1. Identify the requested objects and outcome. Reuse current evidence and respect
    accepted risks, exclusions and deferred items.
@@ -17,7 +17,7 @@ first; change configuration only within the user's explicit fix authorisation.
 3. For broad maintenance, establish one batch from the initial findings.
    Include regressions caused by the work; defer unrelated later discoveries.
 
-## Audit the Relevant Layers
+## 2. Audit the Relevant Layers
 
 Load only the references needed for the request, in this order:
 
@@ -36,7 +36,11 @@ configuration or consumer; use the reference checks before declaring an orphan.
 Discover this home's policies before judging consistency. Missing labels, floors
 or other metadata are findings only when the system's intended policy needs them.
 
-## Verify & Finish
+For release-review requests, compare the installed version, integrations and
+devices with official release notes. Recommend applicable features and identify
+custom workarounds they can replace; apply changes only within the requested scope.
+
+## 3. Verify & Finish
 
 Read [Verification & Delivery](references/04-verification-delivery.md) for
 before/after checks, finding severity, evidence and reporting.

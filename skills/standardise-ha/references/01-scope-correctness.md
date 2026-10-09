@@ -1,6 +1,6 @@
 # Scope & Critical Correctness
 
-## Baseline Inventory
+## 1. Baseline Inventory
 
 Examples depend on the installed tool version. Discover current schemas and inspect
 partial results and errors before treating an inventory as complete.
@@ -74,12 +74,21 @@ ha_get_system_health(include="repairs")
 
 Treat active broken-reference repairs as correctness findings:
 
+- `automation_unknown_entity_references`: missing entity in config.
 - `automation_unknown_service_references`: invalid service or stale script
   reference.
-- `automation_unknown_entity_references`: missing entity in config.
 
 Repairs created before the latest changes may be stale. Verify with current
 config and wait for a rescan when needed.
+
+## Avoid False Positives
+
+- A configured battery reading can be months old. Use report timestamps and
+  device availability rather than treating cached data as fresh.
+- A restored entity immediately after restart may still be initializing. Recheck
+  after startup and confirm its owner before calling it stale or deleting it.
+- A script state of off means idle, not disabled. Some trace tool hints get this
+  wrong. Missing traces after restart do not prove failed execution.
 
 ## Broken References
 
@@ -118,11 +127,11 @@ ha_search(query="input_")
 
 If a helper is missing:
 
+- Do not create helpers without confirming intended type, area, category, and
+  restore semantics.
 - Recreate it only if the intended type, name, restore behaviour, area,
   category, and icon are clear.
 - Update the automation/script reference if the helper was renamed.
-- Do not create helpers without confirming intended type, area, category, and
-  restore semantics.
 
 ## Runtime Errors & Failed Traces
 
@@ -156,12 +165,3 @@ startup triggers or descriptions claiming startup checks.
 ha_search(query="homeassistant")
 ha_get_logs(source="logbook", search="Home Assistant started", limit=20)
 ```
-
-## Avoid False Positives
-
-- A script state of off means idle, not disabled. Some trace tool hints get this
-  wrong. Missing traces after restart do not prove failed execution.
-- A restored entity immediately after restart may still be initializing. Recheck
-  after startup and confirm its owner before calling it stale or deleting it.
-- A configured battery reading can be months old. Use report timestamps and
-  device availability rather than treating cached data as fresh.

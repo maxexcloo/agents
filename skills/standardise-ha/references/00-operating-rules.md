@@ -7,33 +7,30 @@ explicitly asks for fixes.
 
 Classify every finding:
 
-- **Correctness**: broken references, runtime failures, invalid services,
-  missing helpers, dead triggers, or active Repairs.
 - **Behavioural risk**: working config that can produce wrong or conflicting
   behaviour.
-- **Maintenance**: duplicated patterns, stale names, inconsistent categories,
-  or hard-to-maintain structure.
+- **Correctness**: broken references, runtime failures, invalid services,
+  missing helpers, dead triggers, or active Repairs.
 - **Cosmetic / bloat**: metadata cleanup, ordering, redundant defaults, noisy
   entities, or recorder clutter.
+- **Maintenance**: duplicated patterns, stale names, inconsistent categories,
+  or hard-to-maintain structure.
 
 Do not present local style preferences as bugs. If something is only a policy
 choice, say so.
 
-## Safety Rules
+## Deletion Impact Workflow
 
-- Use targeted reads before conclusions.
-- Use `config_hash` wherever the configuration API supports it. Registry edits
-  have no hash: read current values, save the inverse, edit narrowly, and read back.
-- Never rename entities without impact analysis.
-- Never delete helpers, integrations, devices, entities, dashboards, or
-  categories without explicit user approval.
-- Never call a helper/entity orphan "safe to delete" based only on automation
-  and script searches.
-- Verify each batch with the narrowest relevant read-back, state or trace check.
-  Run config validation for configuration changes; metadata-only edits do not
-  require restarts or unrelated validation.
-- Preserve user intent. If a pattern is deliberate, record it as policy and do
-  not fight it.
+Before deleting anything:
+
+1. Confirm the object exists and identify its owner/integration.
+2. Search automations, scripts, scenes, helpers, dashboards, and labels.
+3. Check entity registry metadata, voice exposure, areas, devices, and Config
+   Entry relationships.
+4. Check external risk: Node-RED, app widgets, voice assistants, external
+   dashboards, manual UI use, and recorder/history value.
+5. Verify explicit deletion authorisation in this conversation. Ask only if it is missing; do not ask again for an already authorised deletion.
+6. After deletion, validate config and search the removed concept again.
 
 ## Rename Impact Workflow
 
@@ -51,15 +48,18 @@ Before any `ha_set_entity(..., new_entity_id=...)`:
    entity boundaries (not substring matches). If a consumer cannot be updated,
    restore the old ID and any already changed references.
 
-## Deletion Impact Workflow
+## Safety Rules
 
-Before deleting anything:
-
-1. Confirm the object exists and identify its owner/integration.
-2. Search automations, scripts, scenes, helpers, dashboards, and labels.
-3. Check entity registry metadata, voice exposure, areas, devices, and Config
-   Entry relationships.
-4. Check external risk: Node-RED, app widgets, voice assistants, external
-   dashboards, manual UI use, and recorder/history value.
-5. Verify explicit deletion authorisation in this conversation. Ask only if it is missing; do not ask again for an already authorised deletion.
-6. After deletion, validate config and search the removed concept again.
+- Never call a helper/entity orphan "safe to delete" based only on automation
+  and script searches.
+- Never delete helpers, integrations, devices, entities, dashboards, or
+  categories without explicit user approval.
+- Never rename entities without impact analysis.
+- Preserve user intent. If a pattern is deliberate, record it as policy and do
+  not fight it.
+- Use `config_hash` wherever the configuration API supports it. Registry edits
+  have no hash: read current values, save the inverse, edit narrowly, and read back.
+- Use targeted reads before conclusions.
+- Verify each batch with the narrowest relevant read-back, state or trace check.
+  Run config validation for configuration changes; metadata-only edits do not
+  require restarts or unrelated validation.

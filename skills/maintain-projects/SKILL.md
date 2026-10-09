@@ -9,39 +9,41 @@ Finish one maintenance batch with a clear outcome. Follow global completion
 rules and project-specific instructions; optional improvements do not keep
 maintenance permanently open.
 
-## Establish the Batch
+## 1. Establish the Batch
 
-- Distinguish an audit from an authorised fix batch. For audit-only requests,
-  report findings without modifying repositories.
-- Discover the requested Git roots and exclusions. Read applicable instructions
-  and inspect Git status before editing.
-- Read current issues, open PRs, recent CI failures and pending dependency updates
-  when GitHub is in scope. If access is missing, state the gap.
-- Establish the batch from that initial evidence. Reuse existing findings and
-  refresh only evidence that may have changed.
-- Prioritise broken behaviour, security problems and failed checks, then dependency
-  updates and useful cleanup. Distinguish actionable problems from preferences,
-  expected outages and accepted risks.
-- Include all explicitly requested work. If a broad request has ambiguous
-  boundaries, state a practical scope; ask only when that ambiguity matters.
+1. Distinguish an audit from an authorised fix batch. For audit-only requests,
+   report findings without modifying repositories.
+2. Discover the requested Git roots and exclusions. Read applicable instructions
+   and inspect Git status before editing.
+3. Read current issues, open PRs, recent CI failures and pending dependency updates
+   when GitHub is in scope. If access is missing, state the gap.
+4. Establish the batch from that initial evidence. Reuse existing findings and
+   refresh only evidence that may have changed.
+5. Prioritise broken behaviour, security problems and failed checks, then dependency
+   updates and useful cleanup. Distinguish actionable problems from preferences,
+   expected outages and accepted risks.
+6. Include all explicitly requested work. If a broad request has ambiguous
+   boundaries, state a practical scope; ask only when that ambiguity matters.
 
-## Complete the Work
+## 2. Complete the Work
 
-- Check existing PRs before implementing a duplicate fix. Review breaking changes
-  and obsolete workarounds when updating dependencies.
-- Use specialised audit skills only when the work needs them. A routine maintenance
-  pass does not require a repository redesign or full infrastructure audit.
-- Make small changes and inspect current file contents before edits when other
-  sessions may be active.
-- Verify affected behaviour and applicable conventions. Fix failures or regressions
-  introduced by this batch; use the project's required checks.
-- Complete commit, push, merge, issue closure and deployment steps only when
-  already authorised. Close issues only when resolution is verified; passing CI
-  alone is not evidence that an issue is fixed.
-- After deployment, verify the affected workload or reconciliation state. Report
-  asynchronous CI or deployment as Waiting until its required result is known.
+1. Check existing PRs before implementing a duplicate fix. Review breaking changes
+   and obsolete workarounds when updating dependencies. Compare upstream support
+   with current targets and configuration; do not preserve a workaround solely
+   because it existed before.
+2. Use specialised audit skills only when the work needs them. A routine maintenance
+   pass does not require a repository redesign or full infrastructure audit.
+3. Make small changes and inspect current file contents before edits when other
+   sessions may be active.
+4. Verify affected behaviour and applicable conventions. Fix failures or regressions
+   introduced by this batch; use the project's required checks.
+5. Complete commit, push, merge, issue closure and deployment steps only when
+   already authorised. Close issues only when resolution is verified; passing CI
+   alone is not evidence that an issue is fixed.
+6. After deployment, verify the affected workload or reconciliation state. Report
+   asynchronous CI or deployment as Waiting until its required result is known.
 
-## Close the Batch
+## 3. Close the Batch
 
 Review the completed batch once against its original scope. Add a newly discovered
 problem only when it blocks this work, was caused by it, or is urgent enough to

@@ -8,7 +8,7 @@ description: Audit and align GitHub repository descriptions, topics, settings, s
 Keep repository settings useful and consistent without erasing intentional
 differences. Audit by default; apply changes only within existing authorisation.
 
-## Establish Scope
+## 1. Establish Scope
 
 1. Confirm the owner and requested repositories. For an account-wide pass,
    enumerate owned repositories with pagination and exclude archives and forks
@@ -19,7 +19,7 @@ differences. Audit by default; apply changes only within existing authorisation.
    can omit administrative fields; a missing or null value is not proof that a
    feature is disabled.
 
-## Review the Relevant Settings
+## 2. Review the Relevant Settings
 
 - **Descriptions & Topics:** Compare with actual README content and purpose.
   Use a concise factual description and a few useful topics. Check homepage links
@@ -44,7 +44,7 @@ Use repository files and workflows to explain differences; do not force every
 repository to expose the same features. Consult current GitHub API documentation
 when fields or capabilities are uncertain.
 
-## Apply & Verify
+## 3. Apply & Verify
 
 Present numbered findings with the repository, evidence, impact and proposed
 change. Group shared changes while keeping exceptions explicit. A request to

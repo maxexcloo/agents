@@ -1,5 +1,68 @@
 # Behavioural Risk & Implementation Consistency
 
+## Area & Group Target Risk
+
+Area and group targets are convenient but can hide mixed capabilities. Flag as
+behavioural risk when a bulk command can reach entities that should not receive
+it.
+
+Check:
+
+- Groups whose members have different capabilities, positions, supported
+  features, or operational meaning.
+- Scripts that accept an `area`, `group`, or broad target as input.
+- `target.area_id` service calls for `light`, `cover`, `media_player`, `fan`,
+  `switch`, `climate`, and `lock`.
+- Whether exclusions or capability filters are applied before the service call.
+
+Severity depends on consequence: bulk light commands may be low risk, while
+cover, lock, climate, or appliance commands can be high risk.
+
+```python
+ha_search(query="area_id")
+ha_search(query="group.")
+```
+
+## Blueprint Consistency
+
+Blueprints may set automation mode internally. If there is no `mode` blueprint
+input, top-level automation config may not control runtime mode.
+
+```python
+ha_manage_blueprints(action="get", path="<blueprint_path>", domain="automation")
+ha_get_automation_traces(automation_id="automation.example", limit=5)
+```
+
+Blueprint inputs have a defined order. Automation configs are easier to audit
+when inputs follow the blueprint order. This is maintenance/cosmetic, not
+correctness.
+
+Inputs equal to blueprint defaults can be removed for readability. Do not remove
+defaults if explicit values communicate local policy.
+
+## Capability-Aware Actions
+
+Before flagging or changing a generic script, verify that targets support the
+service data it sends. A valid entity can still ignore unsupported fields.
+
+Common examples:
+
+- Brightness, colour temperature, RGB, or effects sent to `onoff` lights.
+- Climate preset, fan mode, or swing mode sent to devices that do not expose
+  them.
+- Cover position commands sent to covers that only support open/close/stop.
+- Fan percentage or preset commands sent to simple on/off fans.
+- Media volume, source, or grouping commands sent to players without those
+  features.
+
+Generic scripts should either filter by capability or tolerate unsupported
+targets deliberately.
+
+```python
+ha_get_state(entity_id="<entity_id>", fields=["state", "attributes"])
+ha_search(domain_filter="light", area_filter="<area>")
+```
+
 ## Cross-Entity Writer Conflicts
 
 Build a map:
@@ -13,64 +76,32 @@ fight, undo each other, or create timing races.
 
 Examples:
 
+- A routine bulk turns off a room while a media mode is active.
 - One automation turns a light on while another turns it off from the same
   trigger family.
-- A routine bulk turns off a room while a media mode is active.
 - Sensor-light automation and manual override automation write the same helper
   inconsistently.
 
-## Trigger & Controller Conflicts
+## Description & Mode Consistency
 
-For each trigger entity, list all automations that trigger from it. Compare
-actions for opposing writes to the same target.
+Compare each description with actual triggers, conditions, actions, and order.
+Flag descriptions that claim behaviour that is not implemented:
 
-```python
-ha_search(query="<trigger_entity_id>")
-```
+- Claims a reset happens first/last but order differs.
+- Claims cleared notifications but has no clear trigger.
+- Claims guest guard but no guest condition.
+- Claims startup checks but has no startup trigger.
 
-For controller, button, remote, and webhook automations, audit the event stream
-as well as the config. Blueprint inputs can look correct while runtime events do
-not match blueprint assumptions.
+Group automations by category, blueprint, naming pattern, or behaviour. Compare
+`mode`, `max`, and `max_exceeded`. Mode differences are bugs only when they
+change behaviour incorrectly.
 
-Check:
+Common checks:
 
-- Raw event names and timing from recent traces.
-- Single, double, hold, release, and repeat paths for the same physical control.
-- Whether one physical gesture can trigger multiple domains, such as light and
-  cover actions.
-- Blueprint variables that store previous events or last actions.
-- Version drift between installed blueprint behaviour and configured inputs.
-
-This is a general controller audit. Apply it to covers, lights, media players,
-locks, fans, scenes, and any multi-action controller.
-
-```python
-ha_get_automation_traces(automation_id="automation.example", limit=10)
-ha_manage_blueprints(action="get", path="<blueprint_path>", domain="automation")
-```
-
-## Area & Group Target Risk
-
-Area and group targets are convenient but can hide mixed capabilities. Flag as
-behavioural risk when a bulk command can reach entities that should not receive
-it.
-
-Check:
-
-- `target.area_id` service calls for `light`, `cover`, `media_player`, `fan`,
-  `switch`, `climate`, and `lock`.
-- Groups whose members have different capabilities, positions, supported
-  features, or operational meaning.
-- Scripts that accept an `area`, `group`, or broad target as input.
-- Whether exclusions or capability filters are applied before the service call.
-
-Severity depends on consequence: bulk light commands may be low risk, while
-cover, lock, climate, or appliance commands can be high risk.
-
-```python
-ha_search(query="area_id")
-ha_search(query="group.")
-```
+- Independent notifications can be `parallel`.
+- Motion/sensor lights often need `restart`.
+- One-shot reminders can be `single`.
+- Sequential lock/door workflows often need `queued`.
 
 ## Override Lifecycle
 
@@ -94,12 +125,32 @@ unexpectedly, flag as behavioural risk.
 When config enables persistent integration state, verify a disable path:
 
 - Adaptive Lighting manual control.
-- Sleep mode.
 - Away mode.
 - Guest mode.
 - Media mode.
+- Sleep mode.
 
 Time-based fallbacks are useful for rooms that never empty.
+
+## Recipient & Notification Semantics
+
+Audit notification helpers by intent, not only by service name.
+
+- Automation-local notifications are fine for one-off messages but create drift
+  when many automations should notify the same audience.
+- Native `notify` groups are simple broadcast targets.
+- Scripts can choose recipients dynamically, add per-device data, suppress
+  unavailable devices, and centralise retry or priority behaviour.
+
+Flag as maintenance when the implementation does not match the described
+recipient intent. Flag as correctness only when an intended recipient cannot
+receive the notification or the wrong audience can be notified.
+
+```python
+ha_list_services(domain="notify")
+ha_search(query="notify.")
+ha_search(query="mobile_app")
+```
 
 ## Routine Ordering & Clobbering
 
@@ -132,95 +183,6 @@ ha_get_state(entity_id=["cover.group_entity", "cover.member_1", "cover.member_2"
 ha_get_history(entity_ids=["cover.group_entity", "cover.member_1", "cover.member_2"], start_time="2h", limit=100)
 ```
 
-## Description & Mode Consistency
-
-Compare each description with actual triggers, conditions, actions, and order.
-Flag descriptions that claim behaviour that is not implemented:
-
-- Claims cleared notifications but has no clear trigger.
-- Claims startup checks but has no startup trigger.
-- Claims guest guard but no guest condition.
-- Claims a reset happens first/last but order differs.
-
-Group automations by category, blueprint, naming pattern, or behaviour. Compare
-`mode`, `max`, and `max_exceeded`. Mode differences are bugs only when they
-change behaviour incorrectly.
-
-Common checks:
-
-- Motion/sensor lights often need `restart`.
-- Sequential lock/door workflows often need `queued`.
-- Independent notifications can be `parallel`.
-- One-shot reminders can be `single`.
-
-## Trigger Parity Across Rooms
-
-Related room automations should usually use the same trigger shape. Differences
-may be intentional. Verify before flagging.
-
-Compare trigger entities, `for:` durations, startup triggers, guest/home
-conditions, and override helpers.
-
-## Blueprint Consistency
-
-Blueprints may set automation mode internally. If there is no `mode` blueprint
-input, top-level automation config may not control runtime mode.
-
-```python
-ha_manage_blueprints(action="get", path="<blueprint_path>", domain="automation")
-ha_get_automation_traces(automation_id="automation.example", limit=5)
-```
-
-Blueprint inputs have a defined order. Automation configs are easier to audit
-when inputs follow the blueprint order. This is maintenance/cosmetic, not
-correctness.
-
-Inputs equal to blueprint defaults can be removed for readability. Do not remove
-defaults if explicit values communicate local policy.
-
-## Capability-Aware Actions
-
-Before flagging or changing a generic script, verify that targets support the
-service data it sends. A valid entity can still ignore unsupported fields.
-
-Common examples:
-
-- Brightness, color temperature, RGB, or effects sent to `onoff` lights.
-- Cover position commands sent to covers that only support open/close/stop.
-- Fan percentage or preset commands sent to simple on/off fans.
-- Media volume, source, or grouping commands sent to players without those
-  features.
-- Climate preset, fan mode, or swing mode sent to devices that do not expose
-  them.
-
-Generic scripts should either filter by capability or tolerate unsupported
-targets deliberately.
-
-```python
-ha_get_state(entity_id="<entity_id>", fields=["state", "attributes"])
-ha_search(domain_filter="light", area_filter="<area>")
-```
-
-## Recipient & Notification Semantics
-
-Audit notification helpers by intent, not only by service name.
-
-- Native `notify` groups are simple broadcast targets.
-- Scripts can choose recipients dynamically, add per-device data, suppress
-  unavailable devices, and centralize retry or priority behaviour.
-- Automation-local notifications are fine for one-off messages but create drift
-  when many automations should notify the same audience.
-
-Flag as maintenance when the implementation does not match the described
-recipient intent. Flag as correctness only when an intended recipient cannot
-receive the notification or the wrong audience can be notified.
-
-```python
-ha_list_services(domain="notify")
-ha_search(query="notify.")
-ha_search(query="mobile_app")
-```
-
 ## Template Appropriateness
 
 Templates are appropriate in `data`, `message`, `title`, `event_data`, and
@@ -242,12 +204,12 @@ clean.
 
 Review template sensors that duplicate built-in helpers:
 
-- Time-of-day logic -> `tod` helper.
-- Threshold checks -> `threshold` helper.
 - Aggregation -> `min_max` helper.
-- Rate of change -> `derivative` helper.
 - Consumption tracking -> `utility_meter`.
 - Counting/timing -> `counter` or `timer`.
+- Rate of change -> `derivative` helper.
+- Threshold checks -> `threshold` helper.
+- Time-of-day logic -> `tod` helper.
 
 ```python
 ha_get_integration(domain="template")
@@ -271,7 +233,45 @@ Deterministic ordering helps maintenance but is not correctness.
 
 Useful local policy:
 
-- Group triggers by urgency/duration.
-- Sort same-duration trigger entities alphabetically.
-- Keep `choose` branches in the same order as trigger IDs when branches are
-  one-to-one.
+1. Group triggers by urgency/duration.
+2. Sort same-duration trigger entities alphabetically.
+3. Keep `choose` branches in the same order as trigger IDs when branches are
+   one-to-one.
+
+## Trigger & Controller Conflicts
+
+For each trigger entity, list all automations that trigger from it. Compare
+actions for opposing writes to the same target.
+
+```python
+ha_search(query="<trigger_entity_id>")
+```
+
+For controller, button, remote, and webhook automations, audit the event stream
+as well as the config. Blueprint inputs can look correct while runtime events do
+not match blueprint assumptions.
+
+Check:
+
+- Blueprint variables that store previous events or last actions.
+- Raw event names and timing from recent traces.
+- Single, double, hold, release, and repeat paths for the same physical control.
+- Version drift between installed blueprint behaviour and configured inputs.
+- Whether one physical gesture can trigger multiple domains, such as light and
+  cover actions.
+
+This is a general controller audit. Apply it to covers, lights, media players,
+locks, fans, scenes, and any multi-action controller.
+
+```python
+ha_get_automation_traces(automation_id="automation.example", limit=10)
+ha_manage_blueprints(action="get", path="<blueprint_path>", domain="automation")
+```
+
+## Trigger Parity Across Rooms
+
+Related room automations should usually use the same trigger shape. Differences
+may be intentional. Verify before flagging.
+
+Compare trigger entities, `for:` durations, startup triggers, guest/home
+conditions, and override helpers.

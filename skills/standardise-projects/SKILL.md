@@ -7,7 +7,7 @@ description: Audit, create and tidy software repositories for lean, consistent s
 
 Apply a shared decision framework while preserving justified project differences.
 
-## Establish Scope
+## 1. Establish Scope
 
 1. Discover the Git roots in scope, including nested repositories, and honour
    exclusions. Read applicable instructions and inspect current changes.
@@ -16,7 +16,7 @@ Apply a shared decision framework while preserving justified project differences
 3. Keep personal defaults in global guidance, project invariants and exceptions in
    project `AGENTS.md`, task procedures in skills and mechanical rules in checks.
 
-## Inventory & Assess
+## 2. Inventory & Assess
 
 Inventory tracked and relevant untracked files with
 `git ls-files --cached --others --exclude-standard`. Inspect manifests, source,
@@ -36,17 +36,22 @@ uncertain; an explicit near-term user requirement is also concrete evidence.
 For Mise, Prek/pre-commit, tests, dependencies, Renovate or ignore rules, read the
 relevant sections of [Tooling Review](references/tooling.md).
 
-## Align the Project
+## 3. Align the Project
 
 Add only files and workflows justified by current use. Keep documentation accurate
 and remove stale commands, configuration and duplicated orchestration. Retain
 small checks that cover distinct failures; avoid identical tooling for its own sake.
 
+Trace shared data from its owning source through generated outputs to consumers.
+For inventories, names, endpoints, secrets and deployment settings, check the
+whole path across repositories. Derive duplicated information where practical;
+update producers and consumers together instead of adding another manual copy.
+
 Make narrow patches. Preserve generated files and meaningful interface order.
 For multiple repositories, compare the relevant conventions and explain
 intentional differences in the conversation or an existing tracker.
 
-## Verify & Finish
+## 4. Verify & Finish
 
 Use global verification requirements and any project-specific checks. Validate
 changed tooling and configuration with their native validators where available.

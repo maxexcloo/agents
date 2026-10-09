@@ -1,6 +1,6 @@
 # Verification, Delivery, & Tool Patterns
 
-## Before Changes
+## 1. Before Changes
 
 For every proposed edit:
 
@@ -18,7 +18,7 @@ ha_config_get_scene(query="...")
 ha_config_get_dashboard(url_path="...")
 ```
 
-## After Changes
+## 2. After Changes
 
 Run the narrowest validation that proves the change:
 
@@ -35,16 +35,30 @@ For automations/scripts with changed references, search for the old reference:
 ha_search(query="<old_name_or_id>")
 ```
 
-## After Deletes Or Renames
+## 3. After Deletes Or Renames
 
 Verify:
 
-- No broken references.
-- No active Repairs.
-- Expected entities exist.
-- Removed entity no longer appears.
 - Dashboards still load.
+- Expected entities exist.
+- No active Repairs.
+- No broken references.
+- Removed entity no longer appears.
 - Voice exposure did not accidentally change.
+
+## 4. Close the Batch
+
+Review the original scope once after the last change. Use the global completion
+criteria and report **Done**, **Waiting** or **Blocked**, including required checks
+that could not run. Accepted risks, expected outages and optional cleanup do not
+reopen the batch. A clean audit can finish without changes or an inventory dump.
+
+## Coverage & Evidence
+
+State what was checked, what was excluded and what remains uncertain. Report
+validation, saved configuration and live behaviour separately. Do not claim a
+ten-minute trigger was exercised merely because its template rendered. Keep
+applied results distinct from historical proposals and prepared diffs.
 
 ## Delivery Format
 
@@ -72,33 +86,19 @@ Do not bury important findings in a long inventory dump.
 
 ## Tool Patterns
 
-- Use `ha_search` for broad discovery and automation/script references.
-- Search stored dashboards separately with `ha_config_get_dashboard(mode="search",
-query="...")`; inspect scenes, helper options and area sensor references too.
-- Use `ha_get_state` for runtime state and capabilities.
-- Use `ha_get_entity` for registry metadata.
-- Use `ha_config_get_*` before editing config.
-- Use `ha_config_set_*` with `config_hash` for edits.
-- Use `ha_set_entity` for metadata: area, hidden, icon, labels, categories,
-  display name, entity ID rename, and voice exposure.
-- Use `ha_get_automation_traces` for runtime behaviour.
-- Use `ha_get_history` when behaviour depends on timing or stale state.
-- Use `ha_get_system_health(include="config_check")` after config changes.
 - Prefer native triggers, conditions, helpers, and service calls over
   templates.
+- Search stored dashboards separately with `ha_config_get_dashboard(mode="search",
+query="...")`; inspect scenes, helper options and area sensor references too.
+- Use `ha_config_get_*` before editing config.
+- Use `ha_config_set_*` with `config_hash` for edits.
+- Use `ha_get_automation_traces` for runtime behaviour.
+- Use `ha_get_entity` for registry metadata.
+- Use `ha_get_history` when behaviour depends on timing or stale state.
+- Use `ha_get_state` for runtime state and capabilities.
+- Use `ha_get_system_health(include="config_check")` after config changes.
+- Use `ha_search` for broad discovery and automation/script references.
+- Use `ha_set_entity` for metadata: area, hidden, icon, labels, categories,
+  display name, entity ID rename, and voice exposure.
 - Use templates deliberately in shared generic scripts, message text, and
   dynamic service data.
-
-## Coverage & Evidence
-
-State what was checked, what was excluded and what remains uncertain. Report
-validation, saved configuration and live behaviour separately. Do not claim a
-ten-minute trigger was exercised merely because its template rendered. Keep
-applied results distinct from historical proposals and prepared diffs.
-
-## Close the Batch
-
-Review the original scope once after the last change. Use the global completion
-criteria and report **Done**, **Waiting** or **Blocked**, including required checks
-that could not run. Accepted risks, expected outages and optional cleanup do not
-reopen the batch. A clean audit can finish without changes or an inventory dump.
