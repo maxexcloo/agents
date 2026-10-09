@@ -43,6 +43,21 @@ The shared Fish wrapper grants read access to the resolved guidance checkout,
 including when an agent runs from another project. Start a new Fish session to
 load updated launch functions.
 
+## Launch Modes
+
+| Agent       | Standard      | Infra               | Docker               | Unsafe               |
+| ----------- | ------------- | ------------------- | -------------------- | -------------------- |
+| AGY         | `agy`         | `agy-infra`         | `agy-docker`         | `agy-unsafe`         |
+| Antigravity | `antigravity` | `antigravity-infra` | `antigravity-docker` | `antigravity-unsafe` |
+| Codex       | `codex`       | `codex-infra`       | `codex-docker`       | `codex-unsafe`       |
+| OpenCode    | `opencode`    | `opencode-infra`    | `opencode-docker`    | `opencode-unsafe`    |
+| Pi          | `pi`          | `pi-infra`          | `pi-docker`          | `pi-unsafe`          |
+
+Standard uses the shared sandbox. Infra adds 1Password, Kubernetes and SSH
+access plus the infrastructure profile. Docker inherits infra and adds Docker
+access. Unsafe bypasses Safehouse. The `docker` command also uses infra with
+Docker access.
+
 ## Skills
 
 | Skill                                                        | Use                                                                                 |

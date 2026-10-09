@@ -1,3 +1,7 @@
+function docker
+    safe-infra --enable=docker docker $argv
+end
+
 function safe
     command safehouse \
         --add-dirs-ro="$HOME/.agents" \
@@ -10,8 +14,4 @@ function safe-infra
         --enable=1password,kubectl,ssh \
         --append-profile="$__fish_config_dir/conf.d/agent-safehouse-infra.sb" \
         $argv
-end
-
-function safe-docker
-    safe-infra --enable=docker $argv
 end
