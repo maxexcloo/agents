@@ -1,30 +1,34 @@
 # Keep native permissions; avoid sharing a server across Safehouse boundaries.
 
 function codex
-    safe codex --no-daemon \
+    safe codex \
         -c 'sandbox_workspace_write.network_access=true' \
         -c 'sandbox_workspace_write.writable_roots=["/Users/max.schaefer/Library/Caches/prek","/Users/max.schaefer/Library/Caches/uv"]' \
+        --no-daemon \
         $argv
 end
 
 function codex-docker
-    safe-docker codex --no-daemon \
+    safe-docker codex \
         -c 'sandbox_workspace_write.network_access=true' \
         -c 'sandbox_workspace_write.writable_roots=["/Users/max.schaefer/Library/Caches/prek","/Users/max.schaefer/Library/Caches/uv"]' \
+        --no-daemon \
         $argv
 end
 
 function codex-infra
-    safe-infra codex --no-daemon \
+    safe-infra codex \
         -c 'sandbox_workspace_write.network_access=true' \
         -c 'sandbox_workspace_write.writable_roots=["/Users/max.schaefer/Library/Caches/prek","/Users/max.schaefer/Library/Caches/uv"]' \
+        --no-daemon \
         $argv
 end
 
 function codex-unsafe
-    command codex --no-daemon \
+    command codex \
         -c 'sandbox_workspace_write.network_access=true' \
         -c 'sandbox_workspace_write.writable_roots=["/Users/max.schaefer/Library/Caches/prek","/Users/max.schaefer/Library/Caches/uv"]' \
+        --no-daemon \
         $argv
 end
 

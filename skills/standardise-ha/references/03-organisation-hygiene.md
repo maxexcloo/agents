@@ -12,8 +12,8 @@ as Home, Network, Homelab or Portable can intentionally have no floor. An
 unassigned floor alone is not a defect.
 
 ```python
-ha_set_entity(entity_id="...", area_id="living_room")
-ha_set_device(device_id="...", area_id="living_room")
+ha_set_entity(area_id="living_room", entity_id="...")
+ha_set_device(area_id="living_room", device_id="...")
 ha_list_floors_areas()
 ```
 
@@ -60,9 +60,9 @@ floor.
 
 ```python
 ha_config_get_category(scope="automation")
-ha_config_get_category(scope="script")
-ha_config_get_category(scope="scene")
 ha_config_get_category(scope="helpers")
+ha_config_get_category(scope="scene")
+ha_config_get_category(scope="script")
 ha_config_get_label()
 ha_list_floors_areas()
 ```
@@ -123,7 +123,7 @@ Storage-level helper `id` and `name` can diverge from entity-level name after
 renames. This is cosmetic unless it causes repairs or service lookup issues.
 
 ```python
-ha_config_set_helper(helper_type="<type>", helper_id="<id>", name="<correct name>", action="update")
+ha_config_set_helper(action="update", helper_id="<id>", helper_type="<type>", name="<correct name>")
 ```
 
 ## Hidden, Icon, Label, & Exposure Policy
@@ -176,7 +176,7 @@ often, are unused in automations/dashboards/energy/statistics, or duplicate
 another sensor.
 
 ```python
-ha_get_history(entity_ids="sensor.suspect", start_time="24h", limit=1000, significant_changes_only=False)
+ha_get_history(entity_ids="sensor.suspect", limit=1000, significant_changes_only=False, start_time="24h")
 ha_search(query="sensor.suspect")
 ```
 
@@ -204,7 +204,7 @@ Use integrations and logs to catch setup problems:
 ```python
 ha_get_integration()
 ha_get_system_health(include="repairs")
-ha_get_logs(source="system", level="ERROR", limit=100)
+ha_get_logs(level="ERROR", limit=100, source="system")
 ```
 
 Investigate integrations in `setup_error`, `setup_retry`, `migration_error`,

@@ -35,7 +35,7 @@ For automations/scripts with changed references, search for the old reference:
 ha_search(query="<old_name_or_id>")
 ```
 
-## 3. After Deletes Or Renames
+## 3. After Deletes or Renames
 
 Verify:
 
@@ -72,7 +72,7 @@ Findings should lead. Use severity buckets appropriate to actual impact:
 3. **Medium**: inconsistent modes, missing reset paths, unsupported capability
    calls, duplicated logic with drift.
 4. **Low**: naming, icons, categories, labels, ordering, redundant defaults.
-5. **Warnings / questions**: suspicious patterns that need user intent.
+5. **Warnings / Questions**: suspicious patterns that need user intent.
 
 For every finding include:
 

@@ -29,7 +29,7 @@ Blueprints may set automation mode internally. If there is no `mode` blueprint
 input, top-level automation config may not control runtime mode.
 
 ```python
-ha_manage_blueprints(action="get", path="<blueprint_path>", domain="automation")
+ha_manage_blueprints(action="get", domain="automation", path="<blueprint_path>")
 ha_get_automation_traces(automation_id="automation.example", limit=5)
 ```
 
@@ -60,7 +60,7 @@ targets deliberately.
 
 ```python
 ha_get_state(entity_id="<entity_id>", fields=["state", "attributes"])
-ha_search(domain_filter="light", area_filter="<area>")
+ha_search(area_filter="<area>", domain_filter="light")
 ```
 
 ## Cross-Entity Writer Conflicts
@@ -166,7 +166,7 @@ Entities unchanged since boot may have never reported. Entities stuck in
 implausible states may indicate bad sensors or integration state.
 
 ```python
-ha_get_history(entity_ids="<entity_id>", start_time="24h", limit=100)
+ha_get_history(entity_ids="<entity_id>", limit=100, start_time="24h")
 ```
 
 Group and composite entities can temporarily disagree with members during
@@ -180,7 +180,7 @@ shows normal convergence after commands.
 
 ```python
 ha_get_state(entity_id=["cover.group_entity", "cover.member_1", "cover.member_2"])
-ha_get_history(entity_ids=["cover.group_entity", "cover.member_1", "cover.member_2"], start_time="2h", limit=100)
+ha_get_history(entity_ids=["cover.group_entity", "cover.member_1", "cover.member_2"], limit=100, start_time="2h")
 ```
 
 ## Template Appropriateness
@@ -193,14 +193,14 @@ native triggers exist, service names, and target entity IDs unless a shared
 generic script intentionally needs them.
 
 ```python
-ha_search(query="{{", limit=50)
+ha_search(limit=50, query="{{")
 ```
 
 Flag shared generic scripts separately from ordinary automations. A generic
 script may reasonably template target IDs if it validates inputs and traces are
 clean.
 
-## Template Sensors Vs Built-In Helpers
+## Template Sensors vs Built-In Helpers
 
 Review template sensors that duplicate built-in helpers:
 
@@ -265,7 +265,7 @@ locks, fans, scenes, and any multi-action controller.
 
 ```python
 ha_get_automation_traces(automation_id="automation.example", limit=10)
-ha_manage_blueprints(action="get", path="<blueprint_path>", domain="automation")
+ha_manage_blueprints(action="get", domain="automation", path="<blueprint_path>")
 ```
 
 ## Trigger Parity Across Rooms

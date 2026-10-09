@@ -12,50 +12,50 @@ Collect all relevant entities and follow pagination with `has_more` and
 ha_search(domain_filter="automation", limit=200)
 ha_search(domain_filter="script", limit=200)
 ha_config_get_scene(limit=100)
-ha_search(domain_filter="input_boolean", limit=200)
-ha_search(domain_filter="input_number", limit=200)
-ha_search(domain_filter="input_text", limit=200)
-ha_search(domain_filter="input_select", limit=200)
-ha_search(domain_filter="input_datetime", limit=200)
-ha_search(domain_filter="input_button", limit=200)
 ha_search(domain_filter="counter", limit=200)
-ha_search(domain_filter="timer", limit=200)
+ha_search(domain_filter="input_boolean", limit=200)
+ha_search(domain_filter="input_button", limit=200)
+ha_search(domain_filter="input_datetime", limit=200)
+ha_search(domain_filter="input_number", limit=200)
+ha_search(domain_filter="input_select", limit=200)
+ha_search(domain_filter="input_text", limit=200)
 ha_search(domain_filter="schedule", limit=200)
+ha_search(domain_filter="timer", limit=200)
 ```
 
 Prefer `ha_config_list_helpers(helper_type="all", limit=200)` when supported,
 following pagination. Otherwise enumerate storage and Config Entry helpers:
 
 ```python
-ha_config_list_helpers(helper_type="input_boolean")
-ha_config_list_helpers(helper_type="input_number")
-ha_config_list_helpers(helper_type="input_text")
-ha_config_list_helpers(helper_type="input_select")
-ha_config_list_helpers(helper_type="input_datetime")
-ha_config_list_helpers(helper_type="input_button")
 ha_config_list_helpers(helper_type="counter")
-ha_config_list_helpers(helper_type="timer")
-ha_config_list_helpers(helper_type="schedule")
+ha_config_list_helpers(helper_type="input_boolean")
+ha_config_list_helpers(helper_type="input_button")
+ha_config_list_helpers(helper_type="input_datetime")
+ha_config_list_helpers(helper_type="input_number")
+ha_config_list_helpers(helper_type="input_select")
+ha_config_list_helpers(helper_type="input_text")
 ha_config_list_helpers(helper_type="person")
+ha_config_list_helpers(helper_type="schedule")
 ha_config_list_helpers(helper_type="tag")
+ha_config_list_helpers(helper_type="timer")
 ha_config_list_helpers(helper_type="zone")
 
-ha_get_integration(domain="template")
 ha_get_integration(domain="group")
-ha_get_integration(domain="utility_meter")
-ha_get_integration(domain="threshold")
 ha_get_integration(domain="min_max")
-ha_get_integration(domain="tod")
 ha_get_integration(domain="switch_as_x")
+ha_get_integration(domain="template")
+ha_get_integration(domain="threshold")
+ha_get_integration(domain="tod")
+ha_get_integration(domain="utility_meter")
 ```
 
 Collect organisation and system health:
 
 ```python
 ha_config_get_category(scope="automation")
-ha_config_get_category(scope="script")
-ha_config_get_category(scope="scene")
 ha_config_get_category(scope="helpers")
+ha_config_get_category(scope="scene")
+ha_config_get_category(scope="script")
 ha_config_get_label()
 ha_list_floors_areas()
 ha_config_get_dashboard(list_only=True)
@@ -85,7 +85,7 @@ config and wait for a rescan when needed.
 
 - A configured battery reading can be months old. Use report timestamps and
   device availability rather than treating cached data as fresh.
-- A restored entity immediately after restart may still be initializing. Recheck
+- A restored entity immediately after restart may still be initialising. Recheck
   after startup and confirm its owner before calling it stale or deleting it.
 - A script state of off means idle, not disabled. Some trace tool hints get this
   wrong. Missing traces after restart do not prove failed execution.
@@ -110,7 +110,7 @@ Severity:
 Verify unusual services against available services:
 
 ```python
-ha_list_services(domain="<domain>", detail_level="summary")
+ha_list_services(detail_level="summary", domain="<domain>")
 ```
 
 Invalid service names are correctness findings. Stale script references are
@@ -140,8 +140,8 @@ Check recent traces for important automations and shared scripts:
 ```python
 ha_get_automation_traces(automation_id="automation.example", limit=10)
 ha_get_automation_traces(automation_id="script.example", limit=10)
-ha_get_logs(source="system", level="ERROR", search="automation", limit=50)
-ha_get_logs(source="system", level="ERROR", search="script", limit=50)
+ha_get_logs(level="ERROR", limit=50, search="automation", source="system")
+ha_get_logs(level="ERROR", limit=50, search="script", source="system")
 ```
 
 Prioritise errors over style issues. If traces show service calls succeed but
@@ -154,7 +154,7 @@ persistently `unavailable` or `unknown`.
 
 ```python
 ha_get_state(entity_id="<trigger_entity_id>")
-ha_get_history(entity_ids="<trigger_entity_id>", start_time="24h", limit=100)
+ha_get_history(entity_ids="<trigger_entity_id>", limit=100, start_time="24h")
 ```
 
 Automations that recover state at startup must have a startup trigger and must
@@ -163,5 +163,5 @@ startup triggers or descriptions claiming startup checks.
 
 ```python
 ha_search(query="homeassistant")
-ha_get_logs(source="logbook", search="Home Assistant started", limit=20)
+ha_get_logs(limit=20, search="Home Assistant started", source="logbook")
 ```

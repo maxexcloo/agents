@@ -7,11 +7,11 @@ explicitly asks for fixes.
 
 Classify every finding:
 
-- **Behavioural risk**: working config that can produce wrong or conflicting
+- **Behavioural Risk**: working config that can produce wrong or conflicting
   behaviour.
 - **Correctness**: broken references, runtime failures, invalid services,
   missing helpers, dead triggers, or active Repairs.
-- **Cosmetic / bloat**: metadata cleanup, ordering, redundant defaults, noisy
+- **Cosmetic / Bloat**: metadata cleanup, ordering, redundant defaults, noisy
   entities, or recorder clutter.
 - **Maintenance**: duplicated patterns, stale names, inconsistent categories,
   or hard-to-maintain structure.
