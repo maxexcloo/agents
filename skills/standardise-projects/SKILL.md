@@ -19,7 +19,7 @@ Apply a shared decision framework while preserving justified project differences
 ## 2. Inventory & Assess
 
 Inventory tracked and relevant untracked files with
-`git ls-files --cached --others --exclude-standard`. Inspect manifests, source,
+`git ls-files --cached --exclude-standard --others`. Inspect manifests, source,
 tests, generated inputs, documentation, tooling, CI and operational workflows.
 
 For each file, tool, task or abstraction, ask:
