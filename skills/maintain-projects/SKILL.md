@@ -22,7 +22,10 @@ maintenance permanently open.
 5. Prioritise broken behaviour, security problems and failed checks, then dependency
    updates and useful cleanup. Distinguish actionable problems from preferences,
    expected outages and accepted risks.
-6. Include all explicitly requested work. If a broad request has ambiguous
+6. Include a project-wide convention review in the initial batch, covering
+   authored text, configuration, tooling and CLI invocations. Follow global
+   and project rules; preserve justified exceptions and meaningful order.
+7. Include all explicitly requested work. If a broad request has ambiguous
    boundaries, state a practical scope; ask only when that ambiguity matters.
 
 ## 2. Complete the Work
