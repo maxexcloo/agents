@@ -32,6 +32,16 @@
   an external result or decision is pending, and **Blocked** when required work
   cannot proceed. Required checks that could not run prevent an unqualified Done.
 
+## Secret Values
+
+- Prefer metadata-only discovery. Keep secret values out of model context, tool
+  output, screenshots, logs, diffs and reports.
+- Resolve secret values inside credential-consuming local processes using the
+  existing credential tools. Do not embed values in command arguments or shell
+  tracing. Report item references and redacted results.
+- If a tool cannot keep secret values out of context, use a suitable local path
+  or request the missing capability.
+
 ## Skill Selection
 
 - Choose a skill by the requested outcome. Broad maintenance and standardisation
@@ -88,6 +98,8 @@
   protocol and schema fields, standard filenames and legal text.
 - Use Title Case for user-facing headings, labels and actions, with `&` instead of
   `And`. Keep explanatory prose in sentence case.
+- When presenting substantial findings, recommendations or options, label items
+  with numbers or letters so the user can select them unambiguously.
 
 ## Verification & Delivery
 

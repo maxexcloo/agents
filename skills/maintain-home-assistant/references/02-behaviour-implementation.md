@@ -15,8 +15,8 @@ Check:
   `switch`, `climate`, and `lock`.
 - Whether exclusions or capability filters are applied before the service call.
 
-Severity depends on consequence: bulk light commands may be low risk, while
-cover, lock, climate, or appliance commands can be high risk.
+Grade the command's actual consequence using
+[Finding Classification](00-operating-rules.md#finding-classification).
 
 ```python
 ha_search(query="area_id")

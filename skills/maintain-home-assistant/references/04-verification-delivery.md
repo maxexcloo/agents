@@ -10,6 +10,10 @@ For every proposed edit:
 4. Check relevant state/trace/log evidence.
 5. Check existing authorisation for the concrete scope. Ask only when intent
    or authorisation is missing; do not repeat an already answered question.
+6. Record the affected workflow's expected behaviour and current evidence. For
+   cleanup, preserve its behaviour unless a change is requested. Identify the
+   trigger, conditions, helper state and expected actions needed for a before/after
+   comparison.
 
 ```python
 ha_config_get_automation(identifier="...")
@@ -20,7 +24,9 @@ ha_config_get_dashboard(url_path="...")
 
 ## 2. After Changes
 
-Run the narrowest validation that proves the change:
+Validate configuration and references, then verify the affected behavioural
+scenarios against the baseline. A successful configuration check or template
+render does not exercise a trigger, controller gesture or delayed reset.
 
 ```python
 ha_get_system_health(include="config_check")
@@ -35,14 +41,33 @@ For automations/scripts with changed references, search for the old reference:
 ha_search(query="<old_name_or_id>")
 ```
 
+Exercise only relevant scenarios within the existing authorisation:
+
+1. **Controller Gestures:** Compare the affected single, double, hold and release
+   events with their traces and resulting actions. Check for duplicate actions.
+2. **Overrides:** Check normal operation, override activation, bypass behaviour
+   and the return to automatic operation.
+3. **Resets:** Check both entry and exit paths, including delay, cancellation and
+   re-entry when those affect the workflow.
+4. **Startup:** Verify intended helper restoration and startup recovery when a
+   relevant restart occurs. Do not restart solely to validate cosmetic changes.
+5. **Triggers & Timing:** Verify the original trigger and its conditions, including
+   sustained states or thresholds and delayed actions. Running actions manually
+   does not verify that the trigger can fire.
+
+Record which scenarios were observed, checked statically or remain unverified.
+If a regression appears, compare with the baseline and restore or fix the
+affected behaviour before claiming resolution. Do not expand verification into
+unrelated rooms or automations.
+
 ## 3. After Deletes or Renames
 
 Verify:
 
 - Dashboards still load.
 - Expected entities exist.
-- No active Repairs.
-- No broken references.
+- No new or affected active Repairs.
+- No broken references in affected consumers.
 - Removed entity no longer appears.
 - Voice exposure did not accidentally change.
 
@@ -55,17 +80,8 @@ applied results distinct from historical proposals and prepared diffs.
 
 ## Delivery Format
 
-Findings should lead. Use severity buckets appropriate to actual impact:
-
-1. **Critical**: active Repairs, broken references affecting critical
-   services, safety/security failures.
-2. **High**: missing entities/helpers in active workflows, descriptions
-   that demonstrably mislead consequential behaviour, writer conflicts likely to cause wrong
-   behaviour.
-3. **Medium**: inconsistent modes, missing reset paths, unsupported capability
-   calls, duplicated logic with drift.
-4. **Low**: naming, icons, categories, labels, ordering, redundant defaults.
-5. **Warnings / Questions**: suspicious patterns that need user intent.
+Findings should lead. Use the classes and severity defined in
+[Finding Classification](00-operating-rules.md#finding-classification).
 
 For every finding include:
 

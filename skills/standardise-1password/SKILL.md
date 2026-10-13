@@ -16,18 +16,10 @@ Keep credential records accurate, consistent and connected to their actual owner
    fields. Do not overwrite one ownership class to repair the other.
 3. Establish one batch and honour requested group boundaries and pauses.
 
-## 2. Protect Secret Values
+## 2. Inspect Credential Schemas
 
 Use metadata-only reads for discovery. Check tool schemas before reading items:
 an item-detail response may expose credentials even when only names are needed.
-
-For authorised tests or transfers, handle secret values inside local processes
-using the existing credential tools. Never return values through tool output,
-model context, screenshots, logs, diffs or reports. Do not embed values in command
-arguments or shell tracing. Report item references and redacted pass/fail results.
-
-If the available tool cannot keep values out of context, use a suitable local path
-or ask for the missing capability; do not expose the value as a workaround.
 
 ## 3. Audit the Items
 

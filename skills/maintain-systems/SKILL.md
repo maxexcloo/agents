@@ -41,6 +41,10 @@ Finish a bounded live-system maintenance pass with evidence of the actual result
 Use targeted reads and relevant time windows. A healthy process or HTTP response
 does not establish that the application's important workflow works.
 
+For requested model catalogue, runtime or profile reconciliation, read
+[Model & Runtime Reconciliation](references/model-runtimes.md). Ordinary host
+maintenance does not require a model audit.
+
 ## 3. Complete the Batch
 
 Prioritise confirmed legacy, outdated or superseded components for cleanup.

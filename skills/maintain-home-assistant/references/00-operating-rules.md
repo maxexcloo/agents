@@ -5,17 +5,6 @@
 Audit first. Do not change Home Assistant configuration unless the user
 explicitly asks for fixes.
 
-Classify every finding:
-
-- **Behavioural Risk**: working config that can produce wrong or conflicting
-  behaviour.
-- **Correctness**: broken references, runtime failures, invalid services,
-  missing helpers, dead triggers, or active Repairs.
-- **Cosmetic / Bloat**: metadata cleanup, ordering, redundant defaults, noisy
-  entities, or recorder clutter.
-- **Maintenance**: duplicated patterns, stale names, inconsistent categories,
-  or hard-to-maintain structure.
-
 Do not present local style preferences as bugs. If something is only a policy
 choice, say so.
 
@@ -31,6 +20,35 @@ Before deleting anything:
    dashboards, manual UI use, and recorder/history value.
 5. Verify explicit deletion authorisation in this conversation. Ask only if it is missing; do not ask again for an already authorised deletion.
 6. After deletion, validate config and search the removed concept again.
+
+## Finding Classification
+
+Classify every finding by its nature:
+
+- **Behavioural Risk**: working config that can produce wrong or conflicting
+  behaviour.
+- **Correctness**: broken references, runtime failures, invalid services,
+  missing helpers, dead triggers, or active Repairs.
+- **Cosmetic / Bloat**: metadata cleanup, ordering, redundant defaults, noisy
+  entities, or recorder clutter.
+- **Maintenance**: duplicated patterns, stale names, inconsistent categories,
+  or hard-to-maintain structure.
+
+Grade severity separately by the affected workflow and actual consequence:
+
+1. **Critical**: failures or credible behavioural risks affecting safety,
+   security, leak detection, locks, alarms, critical presence handling, backups
+   or critical notifications.
+2. **High**: broken room workflows or routines, or consequential writer conflicts
+   and misleading descriptions likely to cause incorrect behaviour.
+3. **Medium**: non-critical dashboard or optional-target failures, operational
+   confusion, or maintenance and behavioural risks with limited impact.
+4. **Low**: cosmetic naming, icons, metadata, ordering or redundant configuration
+   without a functional consequence.
+
+An active Repair, missing entity or unusual mode is evidence to investigate,
+not a severity by itself. Keep uncertain findings as questions with the missing
+evidence identified; do not report a suspected failure as confirmed.
 
 ## Rename Impact Workflow
 

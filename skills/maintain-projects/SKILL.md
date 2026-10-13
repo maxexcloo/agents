@@ -34,6 +34,10 @@ stable compatible versions; retain justified pins and review migrations.
 When minimum supported versions are in scope, update declarations, CI matrices,
 runtime setup and documentation together.
 
+For requested fork maintenance, upstream alignment or preparation of upstream
+contributions, read [Fork Maintenance](references/forks.md). Ordinary maintenance
+does not require a fork comparison or history rewrite.
+
 1. Check existing PRs before implementing a duplicate fix. Review breaking changes
    and obsolete workarounds when updating dependencies. Compare upstream support
    with current targets and configuration; do not preserve a workaround solely

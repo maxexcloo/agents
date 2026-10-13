@@ -24,14 +24,14 @@ Make the user's important tasks clearer and faster with a small, coherent interf
 - **Controls & Layout:** Group related controls, use consistent alignment and
   keep the primary task easy to scan. Prefer a direct flow with fewer screens
   when extra navigation provides no value.
-- **Dashboards & Links:** For service/host dashboards, put widgets before other
-  peer cards and alphabetise within each group. Use supported widgets where useful
-  and derive links, icons and descriptions from the owning inventory. Link status
+- **Dashboards & Links:** Use supported widgets where useful and derive links,
+  icons and descriptions from the owning inventory. Link status
   or build indicators to the relevant service page or logs. Preserve deliberate
   grouping and workflow order.
 - **Language & Content:** Use concise human wording, current data and clear
   labels. Avoid duplicated explanations, implementation details and redundant
-  badges or metadata.
+  badges or metadata. Describe the user's task; expose runtime names and status
+  badges only when they help the user choose or understand a result.
 - **Responsiveness & Access:** Check real viewport sizes, keyboard use, focus,
   labels, contrast and overflow. Keep loading and empty states useful.
 - **State & Performance:** Preserve user input and selection across relevant

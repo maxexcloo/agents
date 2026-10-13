@@ -100,12 +100,8 @@ ha_search(query="<entity_id>")
 ha_get_state(entity_id="<entity_id>")
 ```
 
-Severity:
-
-- Critical if the missing entity blocks safety, security, leak, lock, alarm,
-  presence, backup, or critical notification behaviour.
-- High if it breaks a room workflow or routine.
-- Medium if it is cosmetic, dashboard-only, or a duplicated optional target.
+Grade the affected workflow using
+[Finding Classification](00-operating-rules.md#finding-classification).
 
 Verify unusual services against available services:
 

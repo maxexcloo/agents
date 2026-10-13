@@ -86,11 +86,9 @@ or alter external recording. Do not blanket-enable parked alternate players.
 A mismatch between entity ID and friendly name can suggest an incomplete rename.
 Verify references and user intent before proposing an entity ID rename.
 
-Treat as:
-
-1. High only if references are already broken.
-2. Medium if the name causes operational confusion.
-3. Low if cosmetic.
+Distinguish cosmetic mismatches from broken consumers or operational confusion.
+Grade the actual impact using
+[Finding Classification](00-operating-rules.md#finding-classification).
 
 Flag integration titles that are pure GUIDs, hex hashes, or random identifiers.
 Do not flag meaningful model/firmware suffixes like `P110M`, `v2`, or vendor
