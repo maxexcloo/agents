@@ -1,6 +1,6 @@
 ---
 name: standardise-github
-description: Audit and align GitHub repository descriptions, topics, settings, security features and hosting. Use for a GitHub settings pass across repositories; source structure belongs to standardise-projects and issues, PRs or CI fixes to maintain-projects.
+description: Audit or align GitHub repository metadata, settings, security features and hosting when a settings review or alignment pass is requested. Exclude ordinary issue, PR and CI work and source structure changes.
 ---
 
 # Standardise GitHub
@@ -55,7 +55,3 @@ For authorised fixes, reread the affected settings, patch only intended fields
 and verify them through fresh API reads. Topic updates replace the whole set, so
 preserve intended topics. Check affected consumers when changing hosting or
 features; API success alone does not prove the workflow still works.
-
-Review the original batch once and finish using the global completion criteria.
-Report material exceptions and required gaps; later unrelated findings belong to
-another batch.

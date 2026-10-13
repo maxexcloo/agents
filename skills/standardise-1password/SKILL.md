@@ -1,6 +1,6 @@
 ---
 name: standardise-1password
-description: Audit and reconcile 1Password vaults, items, naming, fields, ownership and credential consumers without exposing secret values. Use for vault cleanup, duplicate migration and requested login checks.
+description: Audit or reconcile 1Password vault organisation, item naming, fields, duplicates and credential consumers when a vault review or reconciliation is requested. Keep secret values out of context. Exclude standalone credential retrieval and login checks.
 ---
 
 # Standardise 1Password
@@ -45,8 +45,9 @@ or ask for the missing capability; do not expose the value as a workaround.
   Populate known service URLs using the owning inventory and global URL preferences.
   Review unnecessary custom fields without removing required generated metadata.
 - **Validity & Coverage:** Check missing or conflicting required fields. When
-  login tests are requested, verify the intended endpoint and successful
-  authenticated behaviour. Distinguish password, token and SSO login methods.
+  authorised login tests are needed to verify reconciliation, check the intended
+  endpoint and successful authenticated behaviour. Distinguish password, token
+  and SSO login methods.
   Check required access scopes; when setup guidance is requested, link to the
   provider's credential-creation page and explain the minimum needed permissions.
 
@@ -63,6 +64,4 @@ references or field labels change.
 Verify a replacement and its consumers before deleting an explicitly authorised
 legacy item. A successful password login does not verify SSO or every integration.
 
-Finish with numbered findings and grouped status, separating verified logins,
-metadata corrections, accepted exceptions and required gaps. Use the global
-completion criteria without publishing secret values or creating extra reports.
+Separate verified logins from metadata corrections and unverified consumers.

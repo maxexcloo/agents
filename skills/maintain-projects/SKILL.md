@@ -1,13 +1,11 @@
 ---
 name: maintain-projects
-description: Complete a bounded maintenance pass across software repositories, covering issues, PRs, failed CI, updates and conformance. Use for routine repository maintenance; targeted fixes need only their relevant checks.
+description: Audit or complete a requested software repository maintenance pass covering issues, PRs, CI, updates and conformance. Exclude individual bug fixes, targeted CI repairs and feature development.
 ---
 
 # Maintain Projects
 
-Finish one maintenance batch with a clear outcome. Follow global completion
-rules and project-specific instructions; optional improvements do not keep
-maintenance permanently open.
+Finish one maintenance batch with a clear outcome.
 
 ## 1. Establish the Batch
 
@@ -52,21 +50,5 @@ runtime setup and documentation together.
 5. Complete commit, push, merge, issue closure and deployment steps only when
    already authorised. Close issues only when resolution is verified; passing CI
    alone is not evidence that an issue is fixed.
-6. After deployment, verify the affected workload or reconciliation state. Report
-   asynchronous CI or deployment as Waiting until its required result is known.
+6. After deployment, verify the affected workload or reconciliation state.
    Refresh requested exports and derived consumers through existing project tasks.
-
-## 3. Close the Batch
-
-Review the completed batch once against its original scope. Add a newly discovered
-problem only when it blocks this work, was caused by it, or is urgent enough to
-require immediate attention. New unrelated issues, releases or dependency PRs go
-to the next batch; do not chase a continuously changing latest state.
-
-Use the global Done, Waiting or Blocked outcome. A clean no-change pass can be
-Done. Optional cleanup and deferred issues are not required blockers.
-
-For multiple repositories, report each repository's outcome briefly and identify
-only the decisions or blockers needing attention. Use existing trackers or the
-conversation for deferred findings; do not create a new report or issue unless
-requested. End without an unsolicited list of further improvements.

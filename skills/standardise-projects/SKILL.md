@@ -1,6 +1,6 @@
 ---
 name: standardise-projects
-description: Audit, create and tidy software repositories for lean, consistent structure, tooling and instruction layering. Use for project setup or alignment; routine upkeep belongs to maintain-projects and GitHub settings to standardise-github.
+description: Audit or align software repository structure, tooling and instruction layers when a structure review or deliberate alignment is requested. Exclude ordinary project setup, feature development, targeted fixes, routine maintenance and GitHub settings work.
 ---
 
 # Standardise Projects
@@ -68,7 +68,3 @@ changed tooling and configuration with their native validators where available.
 After dependency or test-tool changes, inspect the resolved dependency graph and
 confirm removed packages are absent. Check the current tree before treating an
 alert about a deleted manifest as stale.
-
-Review the final diff and status for unintended artefacts. Close the agreed batch
-using the global completion criteria; distinguish static inspection from builds,
-CI and runtime verification.

@@ -1,6 +1,6 @@
 ---
 name: maintain-systems
-description: Audit and maintain live hosts, services, application settings, storage, backups and synchronisation. Use for system health or cleanup passes; repository-only upkeep belongs to maintain-projects and Home Assistant configuration to standardise-ha.
+description: Audit or complete a requested maintenance pass for live hosts, services, storage, backups and synchronisation. Exclude individual operational commands, targeted troubleshooting and repository or Home Assistant configuration maintenance.
 ---
 
 # Maintain Systems
@@ -66,6 +66,3 @@ relevant. Protect secret values when using logs and local commands.
 
 Distinguish source validation, saved configuration and live behaviour. Check
 service recovery, relevant logs and affected consumers after the last change.
-
-Use the global completion criteria. Report numbered findings grouped by host or
-service, then the batch status, verified changes and required gaps.

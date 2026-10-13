@@ -46,13 +46,6 @@ Verify:
 - Removed entity no longer appears.
 - Voice exposure did not accidentally change.
 
-## 4. Close the Batch
-
-Review the original scope once after the last change. Use the global completion
-criteria and report **Done**, **Waiting** or **Blocked**, including required checks
-that could not run. Accepted risks, expected outages and optional cleanup do not
-reopen the batch. A clean audit can finish without changes or an inventory dump.
-
 ## Coverage & Evidence
 
 State what was checked, what was excluded and what remains uncertain. Report

@@ -1,6 +1,6 @@
 ---
 name: improve-interfaces
-description: Review and improve an existing application's UI, UX, flow and interaction performance. Use for interface cleanup or redesign requests; ordinary backend work does not need this skill.
+description: Review or substantially improve an existing application's UI, UX, flow and interaction performance when an interface review or substantial improvement is requested. Exclude ordinary UI feature development, small styling fixes and backend work.
 ---
 
 # Improve Interfaces
@@ -52,5 +52,3 @@ catalogues that will drift.
 Verify affected workflows in the browser when available, including meaningful
 loading, error and concurrent-action cases. Run relevant project checks and
 distinguish visual or interaction verification from static inspection.
-
-Review the agreed changes once and finish using the global completion criteria.

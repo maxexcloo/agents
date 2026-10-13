@@ -4,14 +4,11 @@ Shared agent guidance, skills and discovery configuration.
 
 ## Choose a Skill
 
-Use `maintain-projects` for routine repository work and `maintain-systems` for live
-systems. Use the relevant `standardise-*` skill for deliberate alignment, and
-`improve-interfaces` for UI/UX work. Choose by the requested outcome; do not run
-every audit because a task touches several technologies.
-
-Ordinary feature development and research use the agent's normal capabilities.
-Address/URL preferences, completion, KISS, prose, naming and sorting remain
-shared defaults in `AGENTS.md`.
+Follow [Skill Selection](AGENTS.md#skill-selection) for shared activation boundaries
+across Codex, OpenCode and Pi. The skills below support requested maintenance,
+alignment and interface reviews, plus domain-specific upstream workflows.
+Ordinary feature development, targeted fixes and research do not require a broad
+audit skill. Specialised tool skills retain their own domain-specific triggers.
 
 ## Contents
 
@@ -83,16 +80,15 @@ load updated launch functions.
 
 ## Skills
 
-| Skill                                                          | Use                                                                                 |
-| -------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| [improve-interfaces](skills/improve-interfaces/SKILL.md)       | Review and simplify UI, UX, flow and interaction performance.                       |
-| [maintain-projects](skills/maintain-projects/SKILL.md)         | Finish a bounded batch of issues, PRs, CI failures, updates and conformance checks. |
-| [maintain-systems](skills/maintain-systems/SKILL.md)           | Check and maintain live hosts, services, storage, backups and synchronisation.      |
-| [standardise-1password](skills/standardise-1password/SKILL.md) | Reconcile vaults, naming, fields and credential consumers without exposing values.  |
-| [standardise-github](skills/standardise-github/SKILL.md)       | Review and align GitHub repository metadata and settings.                           |
-| [standardise-ha](skills/standardise-ha/SKILL.md)               | Audit Home Assistant and complete requested fixes.                                  |
-| [standardise-projects](skills/standardise-projects/SKILL.md)   | Simplify project structure, tooling, data ownership and instruction layers.         |
-| [terrashark](skills/terrashark/SKILL.md)                       | Review Terraform/OpenTofu failure modes using the pinned upstream package.          |
-
-Each task defines its scope and follows the global **Done**, **Waiting** and
-**Blocked** criteria. Optional improvements do not extend a completed batch.
+| Skill                                                              | Use                                                                                 |
+| ------------------------------------------------------------------ | ----------------------------------------------------------------------------------- |
+| [improve-interfaces](skills/improve-interfaces/SKILL.md)           | Review and simplify UI, UX, flow and interaction performance.                       |
+| [maintain-home-assistant](skills/maintain-home-assistant/SKILL.md) | Audit and maintain Home Assistant configuration, updates and organisation.          |
+| [maintain-projects](skills/maintain-projects/SKILL.md)             | Finish a bounded batch of issues, PRs, CI failures, updates and conformance checks. |
+| [maintain-systems](skills/maintain-systems/SKILL.md)               | Check and maintain live hosts, services, storage, backups and synchronisation.      |
+| [orca-cli](skills/orca-cli/SKILL.md)                               | Operate Orca worktrees, terminals, automations and the embedded browser.            |
+| [orchestration](skills/orchestration/SKILL.md)                     | Coordinate supervised Orca workers and dependent tasks.                             |
+| [standardise-1password](skills/standardise-1password/SKILL.md)     | Reconcile vaults, naming, fields and credential consumers without exposing values.  |
+| [standardise-github](skills/standardise-github/SKILL.md)           | Review and align GitHub repository metadata and settings.                           |
+| [standardise-projects](skills/standardise-projects/SKILL.md)       | Simplify project structure, tooling, data ownership and instruction layers.         |
+| [terrashark](skills/terrashark/SKILL.md)                           | Review Terraform/OpenTofu failure modes using the pinned upstream package.          |

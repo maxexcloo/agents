@@ -32,6 +32,18 @@
   an external result or decision is pending, and **Blocked** when required work
   cannot proceed. Required checks that could not run prevent an unqualified Done.
 
+## Skill Selection
+
+- Choose a skill by the requested outcome. Broad maintenance and standardisation
+  skills require a requested pass, audit or reconciliation, or an explicit skill
+  mention. A technology mention, individual command, targeted fix or ordinary
+  feature request is insufficient.
+- Use `maintain-*` for audits and upkeep, `standardise-*` for deliberate alignment
+  of organisation, structure or settings, and `improve-*` for substantial
+  experience improvements. Preserve upstream skill names.
+- Use TerraShark only for Terraform/OpenTofu work. Generic CI or delivery/testing
+  pipeline work does not activate it.
+
 ## Sorting
 
 - GitHub workflow keys start with `name`, `on`, `permissions`, `concurrency`, then

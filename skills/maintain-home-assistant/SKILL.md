@@ -1,9 +1,9 @@
 ---
-name: standardise-ha
-description: Audit Home Assistant configuration for correctness, behavioural risk, consistency, organisation and bloat. Use for HA audits, targeted diagnosis, updates and requested cleanup.
+name: maintain-home-assistant
+description: Audit or complete a requested Home Assistant maintenance pass covering configuration correctness, behavioural risk, updates, organisation and cleanup. Exclude individual automation edits and targeted troubleshooting.
 ---
 
-# Standardise HA
+# Maintain Home Assistant
 
 Separate broken behaviour from risk, maintenance and local preferences. Audit
 first; change configuration only within the user's explicit fix authorisation.
@@ -51,8 +51,5 @@ Read [Verification & Delivery](references/04-verification-delivery.md) for
 before/after checks, finding severity, evidence and reporting.
 
 For fixes, verify each changed object and its consumers with relevant read-back,
-configuration, state or trace checks. Review the original batch once after the
-last change. Distinguish saved configuration from observed live behaviour.
-
-Use the global completion criteria and a concise **Done**, **Waiting** or
-**Blocked** report. Optional cleanup does not keep a completed batch open.
+configuration, state or trace checks. Distinguish saved configuration from
+observed live behaviour.
