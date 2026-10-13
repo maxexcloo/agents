@@ -1,34 +1,12 @@
-function agy
-    antigravity $argv
-end
+alias agy='antigravity'
+alias agy-docker='antigravity-docker'
+alias agy-infra='antigravity-infra'
+alias agy-unsafe='antigravity-unsafe'
 
-function agy-docker
-    antigravity-docker $argv
-end
-
-function agy-infra
-    antigravity-infra $argv
-end
-
-function agy-unsafe
-    antigravity-unsafe $argv
-end
-
-function antigravity
-    safe --add-dirs="$HOME/.gemini" antigravity $argv
-end
-
-function antigravity-docker
-    safe-docker --add-dirs="$HOME/.gemini" antigravity $argv
-end
-
-function antigravity-infra
-    safe-infra --add-dirs="$HOME/.gemini" antigravity $argv
-end
-
-function antigravity-unsafe
-    command antigravity $argv
-end
+alias antigravity='safe --add-dirs="$HOME/.gemini" antigravity'
+alias antigravity-docker='safe-docker --add-dirs="$HOME/.gemini" antigravity'
+alias antigravity-infra='safe-infra --add-dirs="$HOME/.gemini" antigravity'
+alias antigravity-unsafe='command antigravity'
 
 complete -c agy -w antigravity
 complete -c agy-docker -w antigravity
