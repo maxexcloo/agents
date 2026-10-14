@@ -45,7 +45,10 @@ Markdown formatting, relative links and instruction consistency after prose
 changes. Validate changed skills with the available skill validator.
 
 TerraShark is an upstream submodule with its own licence and documentation.
-Update its pin deliberately; avoid replacing it with an untracked nested clone.
+Renovate proposes pin updates for manual review; avoid replacing it with an untracked nested clone.
+The Orca skills are discovery stubs: their operational guides come from the installed
+Orca executable, so updating Orca owns guide updates. Keep installer metadata in
+`.skill-lock.json`; do not treat its folder hashes as Git commit pins.
 
 ## Setup
 
