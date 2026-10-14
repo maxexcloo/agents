@@ -87,6 +87,7 @@ load updated launch functions.
 | [maintain-home-assistant](skills/maintain-home-assistant/SKILL.md) | Audit and maintain Home Assistant configuration, updates and organisation.          |
 | [maintain-projects](skills/maintain-projects/SKILL.md)             | Finish a bounded batch of issues, PRs, CI failures, updates and conformance checks. |
 | [maintain-systems](skills/maintain-systems/SKILL.md)               | Check and maintain live hosts, services, storage, backups and synchronisation.      |
+| [maintain-unifi](skills/maintain-unifi/SKILL.md)                   | Review UniFi device health, client naming, network settings and authorised cleanup. |
 | [orca-cli](skills/orca-cli/SKILL.md)                               | Operate Orca worktrees, terminals, automations and the embedded browser.            |
 | [orchestration](skills/orchestration/SKILL.md)                     | Coordinate supervised Orca workers and dependent tasks.                             |
 | [standardise-1password](skills/standardise-1password/SKILL.md)     | Reconcile vaults, naming, fields and credential consumers without exposing values.  |
