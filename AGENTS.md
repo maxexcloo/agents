@@ -76,6 +76,10 @@
 
 ## Structure
 
+- Prefer Mise for task orchestration; use npm for package-specific operations.
+- Inherit globally managed Mise tools in projects and document them as commented
+  `latest` entries. Keep active declarations only for project-specific tools or
+  genuine compatibility overrides.
 - Keep check orchestration single-layered; avoid running a validator both directly
   and through a nested task in the same check path.
 - Keep only `AGENTS.md` and `README.md` as root Markdown files. Put other needed
