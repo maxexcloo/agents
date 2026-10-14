@@ -5,53 +5,26 @@ description: Audit or align GitHub repository metadata, settings, security featu
 
 # Standardise GitHub
 
-Keep repository settings useful and consistent without erasing intentional
-differences. Audit by default; apply changes only within existing authorisation.
+## Read Complete Settings
 
-## 1. Establish Scope
+Enumerate requested repositories with pagination; exclude archives and forks
+unless requested. Compare metadata with actual project purpose and usage.
 
-1. Confirm the owner and requested repositories. For an account-wide pass,
-   enumerate owned repositories with pagination and exclude archives and forks
-   unless requested.
-2. Establish one batch from the initial inventory. Read applicable project rules
-   and note access gaps, intentional differences and existing authorisation.
-3. Read each repository's detail endpoint for settings. Repository-list responses
-   can omit administrative fields; a missing or null value is not proof that a
-   feature is disabled.
+Read each repository's detail endpoint. List responses can omit administrative
+fields; missing or null values do not prove a feature is disabled. Distinguish
+plan limitations and missing permissions from disabled security features.
 
-## 2. Review the Relevant Settings
+Inspect consumers before disabling Issues, Discussions, Pages, Projects or Wiki.
+An empty issue list does not prove Issues is unnecessary: dependency dashboards
+and integration manifests may depend on it. Check existing Renovate or Dependabot
+ownership before adding overlapping automation.
 
-- **Descriptions & Topics:** Compare with actual README content and purpose.
-  Use a concise factual description and a few useful topics. Check homepage links
-  against the current site or product.
-- **Features & Hosting:** Check Issues, Discussions, Pages, Projects and Wiki
-  against actual use. Inspect content, workflows and consumers before disabling
-  features. An empty issue list does not establish that Issues is unnecessary:
-  Renovate dashboards and integration manifests may depend on it.
-- **Merge & Branch Settings:** Compare allowed merge methods, commit-message
-  settings, automatic branch deletion, rulesets and branch protection. Preserve
-  intentional policy; identify required checks before proposing automerge.
-- **Security:** Review available scanning, push protection, dependency alerts and
-  security updates. Distinguish account-plan limitations and missing permissions
-  from disabled features. Check existing Renovate or Dependabot ownership before
-  adding overlapping automation. Review secret/variable names, scopes and
-  consumers through metadata; keep values out of tool output and reports.
-- **Visibility & Deployment:** Inspect environments, protection rules, Pages
-  configuration and repository visibility when relevant. Preserve licences and
-  upstream requirements. Treat visibility, access and hosting changes as
-  consequential choices requiring concrete authorisation.
+## Align & Read Back
 
-Use repository files and workflows to explain differences; do not force every
-repository to expose the same features. Consult current GitHub API documentation
-when fields or capabilities are uncertain.
+Identify required checks before proposing automerge. Treat visibility, access and
+hosting changes as explicit decisions. Preserve intended merge and branch policy.
 
-## 3. Apply & Verify
-
-Present numbered findings with the repository, evidence, impact and proposed
-change. Group shared changes while keeping exceptions explicit. A request to
-create or invoke this skill does not itself authorise unrelated settings changes.
-
-For authorised fixes, reread the affected settings, patch only intended fields
-and verify them through fresh API reads. Topic updates replace the whole set, so
-preserve intended topics. Check affected consumers when changing hosting or
-features; API success alone does not prove the workflow still works.
+Reread affected settings before patching and verify the result through fresh API
+reads. Topic updates replace the whole set, so preserve intended topics. Check
+consumers when changing hosting or features; API success does not prove their
+workflow still works.

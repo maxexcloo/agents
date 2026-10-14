@@ -5,8 +5,8 @@ Shared agent guidance, skills and discovery configuration.
 ## Choose a Skill
 
 Follow [Skill Selection](AGENTS.md#skill-selection) for shared activation boundaries
-across Codex, OpenCode and Pi. The skills below support requested maintenance,
-alignment and interface reviews, plus domain-specific upstream workflows.
+across Codex, OpenCode and Pi. The skills below support requested maintenance
+and alignment, plus domain-specific upstream workflows.
 Ordinary feature development, targeted fixes and research do not require a broad
 audit skill. Specialised tool skills retain their own domain-specific triggers.
 
@@ -82,7 +82,6 @@ load updated launch functions.
 
 | Skill                                                              | Use                                                                                 |
 | ------------------------------------------------------------------ | ----------------------------------------------------------------------------------- |
-| [improve-interfaces](skills/improve-interfaces/SKILL.md)           | Review and simplify UI, UX, flow and interaction performance.                       |
 | [maintain-home-assistant](skills/maintain-home-assistant/SKILL.md) | Audit and maintain Home Assistant configuration, updates and organisation.          |
 | [maintain-projects](skills/maintain-projects/SKILL.md)             | Finish a bounded batch of issues, PRs, CI failures, updates and conformance checks. |
 | [maintain-systems](skills/maintain-systems/SKILL.md)               | Check and maintain live hosts, services, storage, backups and synchronisation.      |

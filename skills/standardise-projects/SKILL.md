@@ -5,66 +5,33 @@ description: Audit or align software repository structure, tooling and instructi
 
 # Standardise Projects
 
-Apply a shared decision framework while preserving justified project differences.
+## Assess Actual Use
 
-## 1. Establish Scope
+Discover Git roots and inventory tracked and relevant untracked files with
+`git ls-files --cached --exclude-standard --others`. Include manifests, tooling,
+CI, generated inputs and operational workflows.
 
-1. Discover the Git roots in scope, including nested repositories, and honour
-   exclusions. Read applicable instructions and inspect current changes.
-2. Establish the requested outcome and one batch of findings. Audit-only requests
-   produce findings; requested tidy-up work permits relevant reversible edits.
-3. Keep personal defaults in global guidance, project invariants and exceptions in
-   project `AGENTS.md`, task procedures in skills and mechanical rules in checks.
+For each proposed change, identify the concrete need, existing owner and effect
+on consumers. Do not declare a tool unused from text search alone: check indirect
+use in CI, deployment, generated artefacts and documented operations. Retain it
+when use remains uncertain.
 
-## 2. Inventory & Assess
+For Mise, Prek/pre-commit, tests, dependencies, Renovate or ignore rules, read only
+the relevant sections of [Tooling Review](references/tooling.md).
 
-Inventory tracked and relevant untracked files with
-`git ls-files --cached --exclude-standard --others`. Inspect manifests, source,
-tests, generated inputs, documentation, tooling, CI and operational workflows.
+## Align Producers & Consumers
 
-For each file, tool, task or abstraction, ask:
+Trace inventories, names, endpoints and settings from their owning source through
+generated outputs to consumers. Update both sides of a change rather than adding
+another manual copy. Preserve generated inputs and meaningful interface order.
 
-1. What concrete failure, repetition or operational need does it address?
-2. Is that value already supplied elsewhere?
-3. Is this the narrowest reliable implementation?
-4. Would removal harm an important workflow?
+Remove verified stale files after their workflow disappears. Omit explicit
+configuration defaults only after checking effective behaviour; retain values
+that communicate policy or encode platform differences.
 
-Do not declare a tool unused from text search alone. Check indirect use in CI,
-deployment, generated artefacts and documented operations. Keep it when use remains
-uncertain; an explicit near-term user requirement is also concrete evidence.
+Required patches and overrides must fail clearly when upstream assumptions stop
+matching. Keep deliberately optional behaviour optional.
 
-For Mise, Prek/pre-commit, tests, dependencies, Renovate or ignore rules, read the
-relevant sections of [Tooling Review](references/tooling.md).
-
-## 3. Align the Project
-
-Add only files and workflows justified by current use. Keep documentation accurate
-and remove stale commands, configuration and duplicated orchestration. Retain
-small checks that cover distinct failures; avoid identical tooling for its own sake.
-Remove verified stale files and empty directories after their purpose disappears.
-Omit explicit defaults only after checking their effective behaviour; keep values
-that encode policy or differ between platforms.
-
-Trace shared data from its owning source through generated outputs to consumers.
-For inventories, names, endpoints, secrets and deployment settings, check the
-whole path across repositories. Derive duplicated information where practical;
-update producers and consumers together instead of adding another manual copy.
-Use global address and URL preferences for derived endpoints. Prefer direct,
-typed inventory data over repeated names, context prefixes or layers of aliases.
-
-Make narrow patches. Preserve generated files and meaningful interface order.
-For multiple repositories, compare the relevant conventions and explain
-intentional differences in the conversation or an existing tracker.
-
-Required patches and overrides should fail clearly when upstream assumptions
-stop matching. Do not silently skip a stale required change; keep deliberately
-optional behaviour optional.
-
-## 4. Verify & Finish
-
-Use global verification requirements and any project-specific checks. Validate
-changed tooling and configuration with their native validators where available.
-
-After dependency or test-tool changes, inspect the resolved dependency graph and
-confirm removed packages are absent. Check the current tree before treating an
-alert about a deleted manifest as stale.
+After dependency or test-tool changes, inspect the resolved graph to verify that
+removed packages are absent. Check the current tree before dismissing an alert
+about a deleted manifest as stale.

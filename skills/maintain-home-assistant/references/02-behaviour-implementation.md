@@ -18,20 +18,10 @@ Check:
 Grade the command's actual consequence using
 [Finding Classification](00-operating-rules.md#finding-classification).
 
-```python
-ha_search(query="area_id")
-ha_search(query="group.")
-```
-
 ## Blueprint Consistency
 
 Blueprints may set automation mode internally. If there is no `mode` blueprint
 input, top-level automation config may not control runtime mode.
-
-```python
-ha_manage_blueprints(action="get", domain="automation", path="<blueprint_path>")
-ha_get_automation_traces(automation_id="automation.example", limit=5)
-```
 
 Blueprint inputs have a defined order. Automation configs are easier to audit
 when inputs follow the blueprint order. This is maintenance/cosmetic, not
@@ -57,11 +47,6 @@ Common examples:
 
 Generic scripts should either filter by capability or tolerate unsupported
 targets deliberately.
-
-```python
-ha_get_state(entity_id="<entity_id>", fields=["state", "attributes"])
-ha_search(area_filter="<area>", domain_filter="light")
-```
 
 ## Cross-Entity Writer Conflicts
 
@@ -113,10 +98,6 @@ For every override helper, trace the lifecycle:
 4. What happens if the room never empties.
 5. What routines reset it globally.
 
-```python
-ha_search(query="override")
-```
-
 Every ON path needs an OFF path. If an override can persist forever
 unexpectedly, flag as behavioural risk.
 
@@ -146,12 +127,6 @@ Flag as maintenance when the implementation does not match the described
 recipient intent. Flag as correctness only when an intended recipient cannot
 receive the notification or the wrong audience can be notified.
 
-```python
-ha_list_services(domain="notify")
-ha_search(query="notify.")
-ha_search(query="mobile_app")
-```
-
 ## Routine Ordering & Clobbering
 
 Routine step order matters. Cleanup usually belongs at the end so room
@@ -165,10 +140,6 @@ commands, reset helpers, and guest/sleep conditions.
 Entities unchanged since boot may have never reported. Entities stuck in
 implausible states may indicate bad sensors or integration state.
 
-```python
-ha_get_history(entity_ids="<entity_id>", limit=100, start_time="24h")
-```
-
 Group and composite entities can temporarily disagree with members during
 integration delays, partial failures, or mixed commands. Do not assume this is a
 bug. Investigate only when there is a symptom, trace error, stale state, or
@@ -178,11 +149,6 @@ Check whether automations read the group/composite state, whether child
 entities report different states/positions/availability, and whether history
 shows normal convergence after commands.
 
-```python
-ha_get_state(entity_id=["cover.group_entity", "cover.member_1", "cover.member_2"])
-ha_get_history(entity_ids=["cover.group_entity", "cover.member_1", "cover.member_2"], limit=100, start_time="2h")
-```
-
 ## Template Appropriateness
 
 Templates are appropriate in `data`, `message`, `title`, `event_data`, and
@@ -191,10 +157,6 @@ Templates are appropriate in `data`, `message`, `title`, `event_data`, and
 Avoid templates in logic conditions when native conditions exist, triggers when
 native triggers exist, service names, and target entity IDs unless a shared
 generic script intentionally needs them.
-
-```python
-ha_search(limit=50, query="{{")
-```
 
 Flag shared generic scripts separately from ordinary automations. A generic
 script may reasonably template target IDs if it validates inputs and traces are
@@ -211,10 +173,6 @@ Review template sensors that duplicate built-in helpers:
 - Threshold checks -> `threshold` helper.
 - Time-of-day logic -> `tod` helper.
 
-```python
-ha_get_integration(domain="template")
-```
-
 ## `time_pattern` Review
 
 `time_pattern` is not automatically wrong. It is a warning when it polls for an
@@ -222,10 +180,6 @@ entity change that could be handled by a state trigger.
 
 It is often acceptable for periodic reminders, watchdogs, rate-limited checks,
 and integrations that do not emit useful state changes.
-
-```python
-ha_search(query="time_pattern")
-```
 
 ## Trigger & Branch Ordering
 
@@ -243,10 +197,6 @@ Useful local policy:
 For each trigger entity, list all automations that trigger from it. Compare
 actions for opposing writes to the same target.
 
-```python
-ha_search(query="<trigger_entity_id>")
-```
-
 For controller, button, remote, and webhook automations, audit the event stream
 as well as the config. Blueprint inputs can look correct while runtime events do
 not match blueprint assumptions.
@@ -262,11 +212,6 @@ Check:
 
 This is a general controller audit. Apply it to covers, lights, media players,
 locks, fans, scenes, and any multi-action controller.
-
-```python
-ha_get_automation_traces(automation_id="automation.example", limit=10)
-ha_manage_blueprints(action="get", domain="automation", path="<blueprint_path>")
-```
 
 ## Trigger Parity Across Rooms
 

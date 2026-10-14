@@ -15,31 +15,14 @@ For every proposed edit:
    trigger, conditions, helper state and expected actions needed for a before/after
    comparison.
 
-```python
-ha_config_get_automation(identifier="...")
-ha_config_get_script(script_id="...")
-ha_config_get_scene(query="...")
-ha_config_get_dashboard(url_path="...")
-```
-
 ## 2. After Changes
 
 Validate configuration and references, then verify the affected behavioural
 scenarios against the baseline. A successful configuration check or template
 render does not exercise a trigger, controller gesture or delayed reset.
 
-```python
-ha_get_system_health(include="config_check")
-ha_get_system_health(include="repairs")
-ha_get_automation_traces(automation_id="automation.example", limit=5)
-ha_get_state(entity_id="<target_entity>")
-```
-
-For automations/scripts with changed references, search for the old reference:
-
-```python
-ha_search(query="<old_name_or_id>")
-```
+For automations/scripts with changed references, search affected consumers for
+the old reference using entity boundaries.
 
 Exercise only relevant scenarios within the existing authorisation:
 

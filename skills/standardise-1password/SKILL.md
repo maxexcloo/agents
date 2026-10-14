@@ -5,55 +5,30 @@ description: Audit or reconcile 1Password vault organisation, item naming, field
 
 # Standardise 1Password
 
-Keep credential records accurate, consistent and connected to their actual owners.
+## Trace Ownership & Consumers
 
-## 1. Establish Scope
+Use metadata-only discovery and inspect item-detail schemas before reading:
+responses may include credentials even when only names are needed.
 
-1. Identify the requested vaults, item groups, consumers and exclusions. Distinguish
-   metadata review from authorised credential tests, edits or deletions.
-2. Identify repository-managed and manually maintained fields. Generated metadata
-   belongs in its source; manually supplied credentials remain in their intended
-   fields. Do not overwrite one ownership class to repair the other.
-3. Establish one batch and honour requested group boundaries and pauses.
+Distinguish repository-generated fields from manually supplied credentials.
+Update generated metadata in its source; do not overwrite one ownership class
+to repair the other.
 
-## 2. Inspect Credential Schemas
+Trace item references and field labels through applications, deployments and CI,
+including shared-account consumers. Absence from one repository does not prove
+an item has no external consumer. Compare duplicates through metadata and
+lineage; examine historical credentials only within the requested scope.
 
-Use metadata-only reads for discovery. Check tool schemas before reading items:
-an item-detail response may expose credentials even when only names are needed.
+## Reconcile & Verify
 
-## 3. Audit the Items
+Apply the user's vault conventions without repeating scope already carried by
+the vault. Preserve standard username, password and URL fields and required
+consumer metadata. Update references and consumers together.
 
-- **Consumers & Ownership:** Trace item references and field labels through
-  deployments, applications, dashboards and CI. Compare required fields with
-  the actual consumer schema. Never infer that an unused-looking item has no
-  external consumer. Include shared-account consumers before replacing or
-  retiring a credential.
-- **Duplicates & History:** Identify current, archived and legacy candidates.
-  Compare metadata and lineage before migration. Examine historical credentials
-  only when requested and within the authorised test scope.
-- **Names & Organisation:** Apply the user's current vault and naming conventions.
-  Avoid repeating context already supplied by the vault. Preserve standard
-  username, password and URL fields; sort remaining peer fields alphabetically.
-  Populate known service URLs using the owning inventory and global URL preferences.
-  Review unnecessary custom fields without removing required generated metadata.
-- **Validity & Coverage:** Check missing or conflicting required fields. When
-  authorised login tests are needed to verify reconciliation, check the intended
-  endpoint and successful authenticated behaviour. Distinguish password, token
-  and SSO login methods.
-  Check required access scopes; when setup guidance is requested, link to the
-  provider's credential-creation page and explain the minimum needed permissions.
+For authorised login tests needed to verify reconciliation, distinguish password,
+token and SSO methods. Use bounded attempts with a known candidate; stop on
+lockout, rate limiting or unexpected account behaviour.
 
-Use bounded login attempts with a known candidate. Stop on lockout, rate limiting
-or unexpected account behaviour; do not guess passwords or retry a failing
-candidate indefinitely.
-
-## 4. Reconcile & Verify
-
-For authorised fixes, reread current metadata, update the owning source or intended
-manual fields, and preserve unrelated data. Update consumers together when item
-references or field labels change.
-
-Verify a replacement and its consumers before deleting an explicitly authorised
-legacy item. A successful password login does not verify SSO or every integration.
-
-Separate verified logins from metadata corrections and unverified consumers.
+Verify a replacement and its consumers before deleting an authorised legacy
+item. Password login does not verify SSO or every integration. Separate verified
+logins from metadata corrections and unverified consumers.

@@ -11,12 +11,6 @@ Physical rooms should follow the local floor policy. Functional areas such
 as Home, Network, Homelab or Portable can intentionally have no floor. An
 unassigned floor alone is not a defect.
 
-```python
-ha_set_entity(area_id="living_room", entity_id="...")
-ha_set_device(area_id="living_room", device_id="...")
-ha_list_floors_areas()
-```
-
 ## Automatically Generated Dashboards
 
 Separate stored Lovelace cards from built-in Home/area strategies. Visibility
@@ -57,15 +51,6 @@ Treat discovered policy as guidance for consistency findings. Missing labels
 are not a finding in a system with no label workflow, but missing floor
 assignment is a finding in a system where every real area is assigned to a
 floor.
-
-```python
-ha_config_get_category(scope="automation")
-ha_config_get_category(scope="helpers")
-ha_config_get_category(scope="scene")
-ha_config_get_category(scope="script")
-ha_config_get_label()
-ha_list_floors_areas()
-```
 
 ## Cleanup After Removal
 
@@ -147,11 +132,7 @@ helpers with inconsistent icons, and icons that contradict function.
 Labels are optional. Zero labels is fine unless labels are part of the local
 workflow.
 
-Voice exposure can be useful or dangerous. Audit exposed entities:
-
-```python
-ha_get_entity_exposure()
-```
+Audit voice exposure through the entity registry.
 
 Flag stale, duplicate, hidden, sensitive, or unexpectedly exposed entities.
 
@@ -173,11 +154,6 @@ High-frequency sensors are not automatically bad. Flag them when they update
 often, are unused in automations/dashboards/energy/statistics, or duplicate
 another sensor.
 
-```python
-ha_get_history(entity_ids="sensor.suspect", limit=1000, significant_changes_only=False, start_time="24h")
-ha_search(query="sensor.suspect")
-```
-
 Buttons are okay when they trigger real actions, support diagnostics, expose
 device capabilities, or are useful in dashboards. Flag only same-purpose
 duplicates, stale buttons for removed devices, or never-used generated actions.
@@ -197,13 +173,7 @@ Helpers or entities that only mirror another entity may still be useful when
 they normalise semantics, hide vendor noise, feed dashboards, or provide stable
 IDs. Flag as bloat only when they have no consumer or value.
 
-Use integrations and logs to catch setup problems:
-
-```python
-ha_get_integration()
-ha_get_system_health(include="repairs")
-ha_get_logs(level="ERROR", limit=100, source="system")
-```
+Use integration status, Repairs and recent system logs to catch setup problems.
 
 Investigate integrations in `setup_error`, `setup_retry`, `migration_error`,
 `failed_unload`, or repeatedly logging errors. Distinguish powered-off devices,
