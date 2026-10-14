@@ -44,8 +44,7 @@ Edit the files here; the application paths resolve through symlinks. Check
 Markdown formatting, relative links and instruction consistency after prose
 changes. Validate changed skills with the available skill validator.
 
-TerraShark is an upstream submodule with its own licence and documentation.
-Updatecli previews upstream pin updates locally for manual review; keep TerraShark as a pinned submodule.
+TerraShark is a pinned upstream submodule with its own licence and documentation.
 The Orca skills are discovery stubs: their operational guides come from the installed
 Orca executable, so updating Orca owns guide updates. Keep installer metadata in
 `.skill-lock.json`; do not treat its folder hashes as Git commit pins.
@@ -94,19 +93,3 @@ load updated launch functions.
 | [standardise-github](skills/standardise-github/SKILL.md)           | Review and align GitHub repository metadata and settings.                           |
 | [standardise-projects](skills/standardise-projects/SKILL.md)       | Simplify project structure, tooling, data ownership and instruction layers.         |
 | [terrashark](skills/terrashark/SKILL.md)                           | Review Terraform/OpenTofu failure modes using the pinned upstream package.          |
-
-## Dependency Updates
-
-Mise installs the pinned Updatecli CLI. Run `mise run dependencies:check` locally
-to preview updates from `.updatecli.d/`. GitHub authentication uses the existing
-`gh` login; credentials stay in the command process.
-
-Review compatibility and major upgrades separately, then apply a selected group:
-
-```sh
-mise run dependencies:update --labels group:tools
-```
-
-Use the groups declared in the policy, review the Git diff and run the project
-checks before committing or deploying. Updatecli changes local files; it does
-not create issues, pull requests, commits or deployments. Hosted Renovate is disabled.

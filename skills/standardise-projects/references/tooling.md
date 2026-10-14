@@ -28,12 +28,15 @@ Read the sections relevant to the tools present in the project.
 
 - Include tools used by development, CI, deployment, or documented operations.
   Check the actual executable and interpreter selected locally and in CI; avoid
-  competing package managers for the same installation.
+  competing package managers for the same installation. Check for a compatible
+  system installation before adding another copy. Use Mise's `system` version
+  when suitable; retain project overrides where a different version is required.
 - Keep a single-command task's `run` value inline. For tasks that run multiple
   commands, use a multiline string with one command per line instead of chaining
   commands with `&&` or `;`.
 - Pin current stable compatible tools where reproducibility is useful; let
   Updatecli preview updates locally. Recheck old pins against their original reason.
+- Sort dependency tasks with the other tasks in their lifecycle section.
 - Prefer a small common task vocabulary such as `check`, `fmt`, and `setup`.
   Add cleanup, deploy, plan, or apply tasks only where the project needs them.
 
@@ -51,16 +54,23 @@ Read the sections relevant to the tools present in the project.
 
 ## Updatecli
 
-- Use native crawlers for dependency formats they actually support. Use explicit
-  policies for custom pins, tool versions and unsupported manifest fields.
+- Prefer native autodiscovery across each supported dependency format. Avoid
+  enumerating tools, packages, actions or paths unless compatibility or ownership
+  requires it. Verify coverage before adding explicit policies.
+- For unsupported formats such as Mise, prefer one policy covering all tool
+  declarations over a fixed tool list. Include versions embedded in tool options
+  where needed. Keep specific compatibility exceptions separate and named for
+  their scope; do not hide them in a general development-tools policy.
 - Read versions, branches and endpoints from their owning configuration where
   possible. Update linked producers, consumers and lockfiles together.
 - Preserve compatibility limits, source variants and release-age policies.
   Review major upgrades separately from routine updates.
 - Keep workflows local and manual. Configure no SCM commits, pull requests,
   schedules or deployments unless explicitly requested.
-- Keep hosted updaters explicitly disabled to prevent duplicate changes and
-  automatic re-onboarding. Existing unrelated PRs remain outside the migration.
+- Keep hosted updater integrations disconnected to prevent duplicate changes.
+  Remove retired Renovate configuration when its hosted integration is gone.
+  Existing unrelated PRs remain outside the migration. Do not add routine
+  dependency-update sections to READMEs; keep them focused on actual usage.
 - Resolve credentials inside the Updatecli-consuming process; never print
   authenticated generated manifests or place tokens in configuration files.
 - Validate manifests in the existing check path with `updatecli manifest validate`,
