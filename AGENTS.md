@@ -48,6 +48,8 @@
   skills require a requested pass, audit or reconciliation, or an explicit skill
   mention. A technology mention, individual command, targeted fix or ordinary
   feature request is insufficient.
+- An audit or review produces findings. Apply fixes only when requested or
+  already authorised; loading a skill does not itself authorise changes.
 - Use `maintain-*` for audits and upkeep, `standardise-*` for deliberate alignment
   of organisation, structure or settings. Preserve upstream skill names.
 - Use TerraShark only for Terraform/OpenTofu work. Generic CI or delivery/testing

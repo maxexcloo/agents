@@ -16,6 +16,9 @@ Check executable paths and runtime ownership before removing software; on macOS,
 reconcile Homebrew, Mise, uv, casks and App Store installs without introducing a
 second installation owner or polluting system interpreters.
 
+For requested updates, compare installed versions with official release notes
+and check compatibility, migrations and required restarts before changing them.
+
 For requested catalogue or profile reconciliation, read
 [Model & Runtime Reconciliation](references/model-runtimes.md).
 
@@ -24,6 +27,8 @@ For requested catalogue or profile reconciliation, read
 Trace persistent data, mounts, snapshots, backup jobs and sync consumers before
 renaming, migrating or removing components. Age, inactivity, an empty directory
 or absence from one catalogue does not establish that state is disposable.
+Delete persistent data, snapshots, volumes or credentials only within explicit
+authorisation.
 
 Preserve administrative access through network or authentication changes. Keep
 service downtime proportional to the affected workflow. Honour explicit cleanup

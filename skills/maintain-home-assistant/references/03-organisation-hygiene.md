@@ -132,7 +132,8 @@ helpers with inconsistent icons, and icons that contradict function.
 Labels are optional. Zero labels is fine unless labels are part of the local
 workflow.
 
-Audit voice exposure through the entity registry.
+Audit voice exposure through `ha_get_entity_exposure` when supported; ordinary
+entity metadata does not establish exposure to each voice assistant.
 
 Flag stale, duplicate, hidden, sensitive, or unexpectedly exposed entities.
 

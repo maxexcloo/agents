@@ -9,10 +9,13 @@ description: Audit or align GitHub repository metadata, settings, security featu
 
 Enumerate requested repositories with pagination; exclude archives and forks
 unless requested. Compare metadata with actual project purpose and usage.
+Cover descriptions/topics, merge and branch policy, security controls and
+deployment/hosting protections within the requested scope.
 
 Read each repository's detail endpoint. List responses can omit administrative
 fields; missing or null values do not prove a feature is disabled. Distinguish
 plan limitations and missing permissions from disabled security features.
+Treat partial, inaccessible or failed API results as evidence gaps.
 
 Inspect consumers before disabling Issues, Discussions, Pages, Projects or Wiki.
 An empty issue list does not prove Issues is unnecessary: dependency dashboards
