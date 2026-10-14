@@ -69,8 +69,8 @@
   order. Add a short comment only when a meaningful order may look accidental.
 - Sort independent CLI options alphabetically within their command scope. Keep
   option values attached and preserve positional, parsing and precedence order.
-- Sort Mise tools and tasks within lifecycle sections, Renovate rules by
-  `description`, and Prek repositories predictably with hooks by `id`.
+- Sort Mise tools and tasks within lifecycle sections, Updatecli policies by
+  `name`, and Prek repositories predictably with hooks by `id`.
 - Sort unordered peer headings, lists and table rows alphabetically. When listing
   directories and files together, put directories first and sort each group.
 

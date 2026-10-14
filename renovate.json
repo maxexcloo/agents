@@ -1,8 +1,4 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "automerge": false,
-  "extends": ["config:recommended"],
-  "git-submodules": {
-    "enabled": true
-  }
+  "enabled": false
 }

@@ -16,7 +16,7 @@ on consumers. Do not declare a tool unused from text search alone: check indirec
 use in CI, deployment, generated artefacts and documented operations. Retain it
 when use remains uncertain.
 
-For Mise, Prek/pre-commit, tests, dependencies, Renovate or ignore rules, read only
+For Mise, Prek/pre-commit, tests, dependencies, Updatecli or ignore rules, read only
 the relevant sections of [Tooling Review](references/tooling.md).
 
 ## Align Producers & Consumers

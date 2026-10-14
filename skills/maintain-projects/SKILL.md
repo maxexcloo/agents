@@ -11,6 +11,10 @@ Read open issues, PRs, recent CI failures and pending dependency updates when
 GitHub is in scope. Check existing PRs before duplicating a fix. Include convention
 conformance in the requested maintenance pass.
 
+Use the repository's local `mise run dependencies:check` task when present. Review
+its Updatecli preview, apply selected policies and run the project checks. Keep
+updates local until delivery is authorised; review major upgrades separately.
+
 Inventory dependency and lockfile updates, runtime/tool pins, Actions, images and
 versions embedded in scripts or templates. Review compatibility, migrations and
 obsolete workarounds before adopting newer stable releases. Update supported

@@ -33,7 +33,7 @@ Read the sections relevant to the tools present in the project.
   commands, use a multiline string with one command per line instead of chaining
   commands with `&&` or `;`.
 - Pin current stable compatible tools where reproducibility is useful; let
-  Renovate propose updates. Recheck old pins against their original reason.
+  Updatecli preview updates locally. Recheck old pins against their original reason.
 - Prefer a small common task vocabulary such as `check`, `fmt`, and `setup`.
   Add cleanup, deploy, plan, or apply tasks only where the project needs them.
 
@@ -49,21 +49,24 @@ Read the sections relevant to the tools present in the project.
 - Use repository hygiene hooks, schema validation, formatting, and language
   linters only where relevant.
 
-## Renovate
+## Updatecli
 
-- Add a custom manager only when no native manager can discover the dependency.
-  Document opaque regular expressions and keep their scope narrow.
-- Enable managers or presets only for dependency formats present in the project.
-- Keep automerge disabled unless the user explicitly requests unattended merges
-  and required CI/branch protections have been verified.
-- Keep major updates separate. Group minor updates and patch/pin updates when the
-  reduced PR noise is worth the coupling.
-- Look for pinned versions embedded in action inputs, scripts, and templates, not
-  only standard manifests. Add maintenance rules only when the pin is intentionally
-  reproducible and the update path justifies the extra configuration.
-- Start with `config:recommended`.
-- Use `:enablePreCommit` when a Prek/pre-commit config exists.
-- Validate every Renovate configuration.
+- Use native crawlers for dependency formats they actually support. Use explicit
+  policies for custom pins, tool versions and unsupported manifest fields.
+- Read versions, branches and endpoints from their owning configuration where
+  possible. Update linked producers, consumers and lockfiles together.
+- Preserve compatibility limits, source variants and release-age policies.
+  Review major upgrades separately from routine updates.
+- Keep workflows local and manual. Configure no SCM commits, pull requests,
+  schedules or deployments unless explicitly requested.
+- Keep hosted updaters explicitly disabled to prevent duplicate changes and
+  automatic re-onboarding. Existing unrelated PRs remain outside the migration.
+- Resolve credentials inside the Updatecli-consuming process; never print
+  authenticated generated manifests or place tokens in configuration files.
+- Validate manifests in the existing check path with `updatecli manifest validate`,
+  passing `--config .updatecli.d --disable-templating --strict`. Schema validation
+  does not prove discovery or update behaviour; verify previews and lockfile
+  handling for the affected dependency formats.
 
 ## Tests & Dependencies
 
