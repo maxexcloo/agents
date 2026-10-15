@@ -29,13 +29,16 @@ the destination cluster and hostname, and keep deployment resources in the app's
 no npm package, Docker build or app-level Mise task is needed for static files.
 Do not publish the starter as a separate demonstration app.
 
-For a new app without a chosen stack, [assets/app](assets/app) is an optional
-dependency-free Node.js and SQLite starter with a UI, JSON API, health endpoint,
-optimistic concurrency, persistent data and secret editing links. Copy ordinary
-files into its monorepo app directory, rename the app, and replace the example
-behaviour. Submit changes through a PR; Flux deploys merged `main` directly.
-It is a starting point, not a shared runtime or required framework. Preserve an
-existing licence; new projects use the workspace's canonical AGPL-3.0 licence.
+For a simple backend, prefer a small Node.js server using built-in SQLite, with
+the editable frontend in one HTML file. The existing Reddit app shows this shape;
+serve its pinned Web Awesome assets locally to keep the UI consistent. Avoid npm,
+build scripts, Docker/Compose files and per-app task wrappers when they add no
+runtime capability. Keep meaningful data tests separately from the editable app.
+[assets/app](assets/app) supplies optional reference code for JSON APIs, optimistic
+concurrency and secret editing links; copy only the needed runtime source rather
+than its full development scaffold. Submit changes through a PR; Flux deploys
+merged `main` directly. Preserve existing licences; new projects use the workspace's
+canonical AGPL-3.0 licence.
 
 Implement the actual backend behaviour the tool needs: storage, validation,
 server-side integrations and uploads as applicable. Keep UI and API on the same
@@ -107,7 +110,7 @@ cases. For a feed-list app, for example, verify parsing, normalisation,
 deduplication, removal/filtering and links derived from its configured feed origin.
 Test the requested functionality, not a particular framework or the starter's example.
 
-Build and smoke-test the container where supported. For Kubelab edits, run its
+Build a custom image only when the app needs one. For Kubelab edits, run its
 required checks and render the changed Helm chart; inspect the rendered route,
 service, storage, probes and secret references. Finish with a diff and status
 review, preserving other sessions' edits.
