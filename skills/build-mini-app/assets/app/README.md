@@ -11,8 +11,8 @@ The database stores capability hashes. There is no link recovery or revocation U
 Use Node.js 24.22 or newer. There are no third-party application dependencies.
 
 ```sh
-mise run check
-mise run start
+node --test
+node server.mjs
 ```
 
 Open `http://127.0.0.1:3000`. Create a note, save it and open the editing link in
@@ -21,28 +21,21 @@ Runtime settings are `DATA_DIRECTORY` (default `./data`), `HOST` (default
 `127.0.0.1`), `MAX_NOTES` (default `1000`) and `PORT` (default `3000`).
 `/health` is a capability-free probe.
 
-## Containers
+## Persistence
 
-```sh
-docker compose up --build --detach
-mise run smoke
-```
-
-Compose binds to localhost. Its named volume persists `/data`; do not delete it
-when redeploying. The image runs as the upstream `node` user, UID/GID 1000.
 SQLite needs one application replica and a local persistent filesystem. Keep the
 database and its WAL files together; do not use NFS for the live database.
 
-For manual backup, stop the app and copy `/data/app.sqlite` together with any WAL
+For manual backup, stop the app and copy `data/app.sqlite` together with any WAL
 and SHM files, or use SQLite's online backup API. Restore while the app is stopped,
 preserve file ownership, then verify a saved note. Container/image rollback does
 not reverse database migrations.
 
 ## Publication
 
-Copy the starter into `mini-apps/apps/<name>`. Use the shared repository's checks
-and CI deployment branch, with native manifests beside the app. Kubelab selects
-the cluster entry point and provides shared integrations. Use the shared
+Copy the required source into `mini-apps/apps/<name>`, with native manifests
+beside the app. Open a PR and merge into `main`; Flux deploys it directly.
+Kubelab selects the cluster entry point and provides shared integrations. Use the shared
 `build-mini-app` skill to prepare storage, DNS, routing and access and verify the
 result. Choose the stack for the actual tool; existing apps need not adopt this
 example's code.

@@ -35,9 +35,8 @@ serve its pinned Web Awesome assets locally to keep the UI consistent. Avoid npm
 build scripts, Docker/Compose files and per-app task wrappers when they add no
 runtime capability. Keep meaningful data tests separately from the editable app.
 [assets/app](assets/app) supplies optional reference code for JSON APIs, optimistic
-concurrency and secret editing links; copy only the needed runtime source rather
-than its full development scaffold. Submit changes through a PR; Flux deploys
-merged `main` directly. Preserve existing licences; new projects use the workspace's
+concurrency and secret editing links; copy only the runtime source the app needs.
+Submit changes through a PR; Flux deploys merged `main` directly. Preserve existing licences; new projects use the workspace's
 canonical AGPL-3.0 licence.
 
 Implement the actual backend behaviour the tool needs: storage, validation,
