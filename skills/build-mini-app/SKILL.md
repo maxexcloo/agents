@@ -33,7 +33,7 @@ For a new app without a chosen stack, [assets/app](assets/app) is an optional
 dependency-free Node.js and SQLite starter with a UI, JSON API, health endpoint,
 optimistic concurrency, persistent data and secret editing links. Copy ordinary
 files into its monorepo app directory, rename the app, and replace the example
-behaviour. Use the monorepo's CI and verified `deploy` branch.
+behaviour. Submit changes through a PR; Flux deploys merged `main` directly.
 It is a starting point, not a shared runtime or required framework. Preserve an
 existing licence; new projects use the workspace's canonical AGPL-3.0 licence.
 
@@ -61,7 +61,7 @@ intent; internal access is the default.
 Homepage discovers enabled route annotations from selected mini-app directories.
 Use the safe app landing page. A GitHub AI connection can author and submit these
 files without Kubernetes credentials once the shared integration is installed;
-it must read the repository instructions, respect CI/review gates and use existing
+it must read the repository instructions, respect PR review and use existing
 credential integration for backend secrets.
 
 Keep this workflow focused on small browser tools and simple backends, including

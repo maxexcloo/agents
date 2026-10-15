@@ -88,10 +88,11 @@ beside the app, without recording real links.
 
 ## Automatic Deployment
 
-Use the shared `mini-apps` repository for all mini apps. Source lives on `main`;
-CI validates app behaviour and native configuration, runs container smoke tests,
-then fast-forwards `deploy` to that exact commit. Flux watches `deploy`, never an
-unverified source branch. Do not force-push deployment history or bypass checks.
+Use the shared `mini-apps` repository for all mini apps. Open a PR, verify the
+relevant behaviour and merge into `main`; Flux deploys that branch directly.
+There is no Actions workflow or separate deployment branch for ordinary mini apps.
+Use the repository's local checks when available, record what ran and verify the
+live result after merge. Keep validation proportional to the change.
 
 For static or dependency-free apps, prefer a pinned upstream runtime with
 checked-in code/assets mounted through hashed ConfigMaps. Keep generator source
@@ -102,7 +103,7 @@ Kubelab can supply externally owned URLs through Flux substitution in workload
 configuration; derive these from their owning resources using Kustomize.
 
 Apps needing custom dependencies can keep their own image build in the same
-repository, with an immutable image digest available before advancing `deploy`.
+repository, with an immutable image digest available before merging the change.
 Do not introduce a new image pipeline for a dependency-free app. Publication
 visibility must respect the user's source and runtime-data boundaries.
 
@@ -117,7 +118,7 @@ namespace to accomplish the transfer.
 Run the required Mise checks in both repositories and render changed Helm
 releases separately. Review source changes, route/DNS ownership, deletion and
 recovery behaviour. Follow existing commit, push and live-route authorisation.
-Once CI advances `deploy`, verify Flux and Helm readiness, the exact source
+After merge, verify Flux and Helm readiness, the exact source
 revision, the retained PVC, DNS/TLS and app behaviour from the intended network.
 Verify public access is removed when converting an app to internal-only access.
-Report pending CI, approval or reconciliation instead of claiming completion.
+Report pending approval or reconciliation instead of claiming completion.
