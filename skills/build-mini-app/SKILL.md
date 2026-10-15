@@ -64,12 +64,15 @@ files without Kubernetes credentials once the shared integration is installed;
 it must read the repository instructions, respect CI/review gates and use existing
 credential integration for backend secrets.
 
-An existing backend such as Actual Up can remain an ordinary app directory. Retain
-its own stack, serial queue, schedules, encrypted data format and secret references.
-A matching pinned dependency runtime can mount checked-in compiled app assets;
-verify dependency agreement and keep the native file list current. Updating those
-dependencies needs a matching published image. Do not mount source into an image
-with incompatible dependencies or claim all apps need the same backend.
+Keep this workflow focused on small browser tools and simple backends, including
+apps with their own SQLite data. Prefer standard upstream runtimes and minimal
+app-specific deployment configuration. A custom container being technically
+possible does not make an existing service a good migration candidate.
+
+Keep services with substantial dependency and operational requirements in their
+own repositories with ordinary container deployment in Kubelab. Actual Up belongs
+there: preserve its specialised dependencies, serial operation queue, schedules
+and encrypted financial settings rather than adapting it to the mini-app runtime.
 
 ## Access & Publication
 
