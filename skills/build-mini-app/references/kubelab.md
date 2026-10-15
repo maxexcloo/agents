@@ -115,8 +115,8 @@ embedded source/resources. Check the old inventory no longer owns them. Delete
 only obsolete code ConfigMaps after successful adoption; never delete the PVC or
 namespace to accomplish the transfer.
 
-Run the required Mise checks in both repositories and render changed Helm
-releases separately. Review source changes, route/DNS ownership, deletion and
+Use the app's direct checks (`node --test` for the minimal Node app). Run Kubelab's
+checks when its configuration changes, and render changed Helm releases separately. Review source changes, route/DNS ownership, deletion and
 recovery behaviour. Follow existing commit, push and live-route authorisation.
 After merge, verify Flux and Helm readiness, the exact source
 revision, the retained PVC, DNS/TLS and app behaviour from the intended network.
