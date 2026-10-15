@@ -1,0 +1,14 @@
+[tools]
+# node = "latest"
+
+[tasks.check]
+description = "Check Application Behaviour & Syntax"
+run = "npm run check"
+
+[tasks.smoke]
+description = "Build & Smoke-Test The Container"
+run = "npm run smoke"
+
+[tasks.start]
+description = "Start The Application"
+run = "npm start"

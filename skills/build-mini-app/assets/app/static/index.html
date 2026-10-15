@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Shared Notes</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/app.mjs" type="module"></script>
+  </head>
+  <body>
+    <main>
+      <h1>Shared Notes</h1>
+      <p>
+        Save a note across devices. Anyone with its editing link can read and
+        change it.
+      </p>
+      <button id="create" type="button">New Note</button>
+      <section id="editor" hidden>
+        <p><a id="link">Editing Link</a> — keep this link private.</p>
+        <label for="content">Note</label>
+        <textarea id="content" maxlength="10000" rows="12"></textarea>
+        <button id="save" type="button">Save</button>
+        <button id="reload" type="button">Reload</button>
+      </section>
+      <p id="status" role="status"></p>
+    </main>
+  </body>
+</html>
