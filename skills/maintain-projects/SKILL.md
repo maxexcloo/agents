@@ -12,8 +12,9 @@ GitHub is in scope. Check existing PRs before duplicating a fix. Include convent
 conformance in the requested maintenance pass.
 
 Use the repository's local `mise run dependencies:check` task when present. Review
-its Updatecli preview, apply selected policies and run the project checks. Keep
-updates local until delivery is authorised; review major upgrades separately.
+its Updatecli preview during an audit. When fixes are authorised, apply the
+selected policies and run the project checks. Keep updates local until delivery
+is authorised; review major upgrades separately.
 
 Inventory dependency and lockfile updates, runtime/tool pins, Actions, images and
 versions embedded in scripts or templates. Review compatibility, migrations and
