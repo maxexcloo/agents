@@ -74,7 +74,8 @@ Read the sections relevant to the tools present in the project.
 - Resolve credentials inside the Updatecli-consuming process; never print
   authenticated generated manifests or place tokens in configuration files.
 - Validate manifests in the existing check path with `updatecli manifest validate`,
-  passing `--config .updatecli.d --disable-templating --strict`. Schema validation
+  passing `--config .updatecli.d --strict` with placeholder credentials. Keep
+  templating enabled: disabling it can skip manifest parsing. Schema validation
   does not prove discovery or update behaviour; verify previews and lockfile
   handling for the affected dependency formats.
 
