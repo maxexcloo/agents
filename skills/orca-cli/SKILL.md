@@ -1,18 +1,16 @@
 ---
 name: orca-cli
 description: >-
-  Operate Orca-managed worktrees, folder contexts, terminals, repos, automations, artifacts,
-  skill sharing, worktree comments, and Orca's embedded browser through the `orca` CLI. Use
-  when the user says "$orca-cli", "Orca worktree", "child worktree", "spawn codex/claude in a
-  worktree", "read/wait/send Orca terminal", "handoff" / "handover" / "give this to another
-  agent", "Orca browser", "orca artifacts", or "share skills". Prefer it over raw git
-  worktree, ad hoc PTYs, or Computer Use when Orca state is involved. Use Computer Use only
-  when a visible window needs GUI control that a CLI, filesystem, or API cannot do.
+  Operate Orca-managed worktrees, terminals, repos, automations, artifacts, skill sharing,
+  worktree comments and Orca's embedded browser through its CLI. Use for explicit Orca
+  requests or operations on existing Orca-owned state. Generic delegation, handoffs,
+  worktrees and terminal commands do not select Orca without that context.
 ---
 
 # Orca CLI
 
 This discovery stub loads the version-matched guide from the Orca executable used for this session.
+Use it for Orca-owned operations; honour an explicitly requested native worker tool.
 
 ## Resolve the CLI for this session
 

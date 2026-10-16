@@ -1,13 +1,10 @@
 ---
 name: orchestration
 description: >-
-  Coordinate supervised Orca workers: threaded messages, blocking ask/reply,
-  task dispatch, worker_done/escalation waits, task DAGs, decision gates,
-  coordinator loops, and decomposing work across agents. Use `orca-cli` for full
-  ownership handoffs — "hand off", "handoff", "handover", "give this to another
-  agent", "another worktree" — unless asked to supervise, monitor, or coordinate
-  a DAG, and for terminal control, lightweight terminal prompts, shell commands,
-  Orca worktree management, and reading or waiting on terminals.
+  Coordinate supervised Orca workers and Orca task DAGs, messages, decision gates and
+  settlement. Use when the user requests Orca coordination or the task already owns
+  live Orca worker state. Generic multi-agent work and native Codex workers do not
+  select this skill. Use orca-cli for Orca terminal control and ownership handoffs.
 ---
 
 # Orca Orchestration
@@ -16,14 +13,11 @@ This file is a discovery stub, not the usage guide. The full, version-matched Or
 orchestration reference is served by the `orca` binary itself — kept out of this file on
 purpose so it can never drift from the binary that will actually run your commands.
 
-Engage Orca orchestration whenever you need structured multi-agent coordination: threaded
-messages, blocking ask/reply flows, task dispatch, worker_done/escalation waits, task DAGs,
-decision gates, coordinator loops, or decomposing work across agents. Use the orca-cli skill
-instead for full ownership handoffs ("hand off", "handoff", "handover", "give this to
-another agent", "another worktree") when the user did not ask to supervise, monitor, wait
-for results, or coordinate a DAG — and for ordinary terminal control, shell commands,
-worktree management, and the built-in browser. Coordination requires real Orca runtime
-state; never substitute a non-Orca subagent tool.
+Use this workflow for explicitly requested Orca coordination or existing Orca-owned
+worker state. Generic delegation can use the session's native worker tools; honour
+the user's chosen runtime. Use the orca-cli skill for Orca ownership handoffs and
+terminal control. Once work belongs to Orca, its coordination requires real Orca
+runtime state; native subagent results cannot establish Orca dispatch settlement.
 
 ## Resolve the CLI for this session
 
