@@ -36,9 +36,7 @@ export function createApp({
       revision INTEGER NOT NULL
     );
   `);
-  const select = database.prepare(
-    "SELECT content, revision FROM notes WHERE capability_hash = ?",
-  );
+  const select = database.prepare("SELECT content, revision FROM notes WHERE capability_hash = ?");
   const insert = database.prepare("INSERT INTO notes VALUES (?, ?, 0)");
   const update = database.prepare(
     "UPDATE notes SET content = ?, revision = revision + 1 WHERE capability_hash = ? AND revision = ?",
@@ -66,15 +64,13 @@ export function createApp({
         return json(200, { status: "ok" });
       }
       if (path === "/api/notes") {
+        const mediaType = request.headers["content-type"]?.split(";", 1)[0].trim().toLowerCase();
         if (request.headers["sec-fetch-site"] === "cross-site")
           return json(403, { error: "Cross-site requests are not allowed." });
         if (request.method === "POST") {
-          if (request.headers["content-type"] !== "application/json")
+          if (mediaType !== "application/json")
             return json(415, { error: "Use application/json." });
-          if (
-            database.prepare("SELECT count(*) AS count FROM notes").get()
-              .count >= maxNotes
-          ) {
+          if (database.prepare("SELECT count(*) AS count FROM notes").get().count >= maxNotes) {
             return json(429, { error: "The note limit has been reached." });
           }
           // The fragment stays in the browser; proxies never receive the editing URL.
@@ -87,14 +83,12 @@ export function createApp({
         const capability = /^Bearer ([A-Za-z0-9_-]{43})$/.exec(
           request.headers.authorization || "",
         )?.[1];
-        if (!capability)
-          return json(401, { error: "An editing link is required." });
+        if (!capability) return json(401, { error: "An editing link is required." });
         const key = hash(capability);
         const row = select.get(key);
         if (!row) return json(404, { error: "Note not found." });
         if (request.method === "GET") return json(200, row);
-        if (request.headers["content-type"] !== "application/json")
-          return json(415, { error: "Use application/json." });
+        if (mediaType !== "application/json") return json(415, { error: "Use application/json." });
         let length = 0;
         const chunks = [];
         for await (const chunk of request) {
@@ -141,16 +135,9 @@ export function createApp({
   return server;
 }
 
-if (
-  process.argv[1] &&
-  resolve(process.argv[1]) === fileURLToPath(import.meta.url)
-) {
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   process.umask(0o077);
   const server = createApp();
-  server.listen(
-    Number(process.env.PORT || 3000),
-    process.env.HOST || "127.0.0.1",
-  );
-  for (const signal of ["SIGINT", "SIGTERM"])
-    process.on(signal, () => server.close());
+  server.listen(Number(process.env.PORT || 3000), process.env.HOST || "127.0.0.1");
+  for (const signal of ["SIGINT", "SIGTERM"]) process.on(signal, () => server.close());
 }

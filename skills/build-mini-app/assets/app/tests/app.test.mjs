@@ -10,9 +10,7 @@ test("isolates notes, detects stale edits and persists across clients and restar
   let server;
   let base;
   const stop = () =>
-    new Promise((resolve, reject) =>
-      server.close((error) => (error ? reject(error) : resolve())),
-    );
+    new Promise((resolve, reject) => server.close((error) => (error ? reject(error) : resolve())));
   async function start() {
     server = createApp({ dataDirectory: directory });
     await new Promise((resolve) => server.listen(0, "127.0.0.1", resolve));
@@ -34,12 +32,16 @@ test("isolates notes, detects stale edits and persists across clients and restar
     assert.equal((await request("GET")).status, 401);
     assert.equal((await request("GET", "a".repeat(43))).status, 404);
     assert.equal((await request("DELETE")).status, 405);
-    assert.equal(
-      (await request("POST", null, {}, { "Sec-Fetch-Site": "cross-site" }))
-        .status,
-      403,
+    assert.equal((await request("POST", null, {}, { "Sec-Fetch-Site": "cross-site" })).status, 403);
+    assert.equal((await request("POST", null, {}, { "Content-Type": "text/plain" })).status, 415);
+    const create = await request(
+      "POST",
+      null,
+      {},
+      {
+        "Content-Type": "application/json; charset=utf-8",
+      },
     );
-    const create = await request("POST", null, {});
     assert.equal(create.status, 201);
     const first = await create.json();
     const second = await (await request("POST", null, {})).json();
@@ -47,10 +49,12 @@ test("isolates notes, detects stale edits and persists across clients and restar
     assert.notEqual(first.capability, second.capability);
     assert.equal(
       (
-        await request("PUT", first.capability, {
-          content: "First client",
-          revision: 0,
-        })
+        await request(
+          "PUT",
+          first.capability,
+          { content: "First client", revision: 0 },
+          { "Content-Type": "Application/JSON; charset=utf-8" },
+        )
       ).status,
       200,
     );
@@ -143,20 +147,13 @@ test("isolates notes, detects stale edits and persists across clients and restar
         revision: 1,
       }),
     ]);
-    assert.deepEqual(
-      concurrent.map((response) => response.status).sort(),
-      [200, 409],
-    );
+    assert.deepEqual(concurrent.map((response) => response.status).sort(), [200, 409]);
     const saved = await (await request("GET", first.capability)).json();
     await stop();
     await start();
-    assert.deepEqual(
-      await (await request("GET", first.capability)).json(),
-      saved,
-    );
+    assert.deepEqual(await (await request("GET", first.capability)).json(), saved);
     assert.equal(
-      (await request("PUT", first.capability, { content: "", revision: 2 }))
-        .status,
+      (await request("PUT", first.capability, { content: "", revision: 2 })).status,
       200,
     );
     const page = await fetch(base);
