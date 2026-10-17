@@ -31,6 +31,9 @@ Read the sections relevant to the tools present in the project.
   competing package managers for the same installation. Check for a compatible
   system installation before adding another copy. Use Mise's `system` version
   when suitable; retain project overrides where a different version is required.
+- Use Oxfmt and its defaults for supported formats; retain language-specific
+  formatters and required project conventions. Add an Oxfmt configuration only
+  for a real need, such as ignore patterns for generated or template files.
 - Keep a single-command task's `run` value inline. For tasks that run multiple
   commands, use a multiline string with one command per line instead of chaining
   commands with `&&` or `;`.

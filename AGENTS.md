@@ -82,8 +82,8 @@
   genuine compatibility overrides.
 - Keep check orchestration single-layered; avoid running a validator both directly
   and through a nested task in the same check path.
-- Keep only `AGENTS.md` and `README.md` as root Markdown files. Put other needed
-  maintained documentation in `docs/`, unless project rules specify otherwise.
+- Prefer maintained Markdown documentation in the project root. Use subdirectories
+  when the volume of documentation or established project conventions warrant them.
 - Keep `README.md` focused on purpose and actual usage. Use Git history as the
   work log; keep one coherent outcome per commit with an imperative subject.
 - Preserve licences and legal text. For a new project without an overriding
