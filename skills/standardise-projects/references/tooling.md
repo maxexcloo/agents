@@ -26,19 +26,22 @@ Read the sections relevant to the tools present in the project.
 
 ## Mise
 
+- Reuse inherited Mise tools and tasks before adding project declarations.
+  Keep project tool declarations for project-specific tools or genuine compatibility
+  overrides; document inherited tools as commented `latest` entries when useful.
 - Include tools used by development, CI, deployment, or documented operations.
   Check the actual executable and interpreter selected locally and in CI; avoid
-  competing package managers for the same installation. Check for a compatible
-  system installation before adding another copy. Use Mise's `system` version
-  when suitable; retain project overrides where a different version is required.
+  competing package managers for the same installation. For tools not already
+  inherited, check for a compatible system installation before adding another copy.
+  Use Mise's `system` version when suitable.
 - Use Oxfmt and its defaults for supported formats; retain language-specific
   formatters and required project conventions. Add an Oxfmt configuration only
   for a real need, such as ignore patterns for generated or template files.
 - Keep a single-command task's `run` value inline. For tasks that run multiple
   commands, use a multiline string with one command per line instead of chaining
   commands with `&&` or `;`.
-- Pin current stable compatible tools where reproducibility is useful; let
-  Updatecli preview updates locally. Recheck old pins against their original reason.
+- Keep pins with the configuration that owns the tool; let Updatecli preview
+  updates locally. Recheck old pins against their original reason.
 - Sort dependency tasks with the other tasks in their lifecycle section.
 - Prefer a small common task vocabulary such as `check`, `fmt`, and `setup`.
   Add cleanup, deploy, plan, or apply tasks only where the project needs them.
