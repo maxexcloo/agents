@@ -23,42 +23,64 @@ Simon Willison-style converters, calculators and visualisers. Related static
 tools can share a site; separate apps with independent data or access boundaries.
 
 For browser-only apps, copy `mini-apps/templates/static`, keeping the tool in a
-single `index.html` or a small directory. Rename the example consistently, choose
-the destination cluster and hostname, and keep deployment resources in the app's
-`deploy.yaml`. Native `kustomization.yaml` files select resources and mount assets;
+single `index.html` or a small directory. Rename the example consistently, follow
+the repository's app identity and cluster selection rules, and keep resources
+in its `deploy.yaml`. Native `kustomization.yaml` files select resources and mount assets;
 no npm package, Docker build or app-level Mise task is needed for static files.
 Do not publish the starter as a separate demonstration app.
 
-For a simple backend, prefer a small Node.js server using built-in SQLite, with
-the editable frontend in one HTML file. The existing Reddit app shows this shape;
-serve its pinned Web Awesome assets locally to keep the UI consistent. Avoid npm,
-build scripts, Docker/Compose files and per-app task wrappers when they add no
-runtime capability. Keep meaningful data tests separately from the editable app.
+For a simple backend, a small Node.js server with built-in SQLite and one HTML
+page is a useful starting point, not a required stack. The existing Reddit app
+shows this shape. Prefer locally served Web Awesome with its default appearance;
+allow native controls or another UI approach when requested or materially simpler.
+Avoid dependencies, build scripts and task wrappers that add no runtime capability.
+Keep meaningful data tests separately from the editable app.
 [assets/app](assets/app) supplies optional reference code for JSON APIs, optimistic
 concurrency and secret editing links; copy only the runtime source the app needs.
-Submit changes through a PR; Flux deploys merged `main` directly. Preserve existing licences; new projects use the workspace's
-canonical AGPL-3.0 licence.
+Submit changes through a PR; Flux deploys merged `main` directly. Preserve existing
+licences; new projects use the workspace's canonical AGPL-3.0 licence.
 
-Implement the actual backend behaviour the tool needs: storage, validation,
-server-side integrations and uploads as applicable. Keep UI and API on the same
-origin where practical. Credentials stay server-side. For a stateless tool omit
-the starter's database and volume. For single-instance SQLite use local persistent
-block storage, one replica and `Recreate`; never put its live database on NFS.
-Use the existing CloudNativePG pattern when PostgreSQL is warranted. Consider
-PocketBase when its built-in data API, auth, file handling or dashboard removes
-app code: use a separate instance and volume per app, keep administration private
-and define explicit collection rules. Do not add it to an already simple backend
-merely for uniformity. Check current upstream migration and production limitations.
+## Backend & Data Recipes
+
+Choose the combination that removes the most app code and operational work for
+the requested behaviour. These are examples, not an approved stack list. Keep a
+working backend unless a change has a concrete benefit.
+
+| Recipe          | Useful When                                                                                                                                       |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Browser storage | Data can stay on one device; no server or shared persistence is needed.                                                                           |
+| PocketBase      | Built-in accounts, collection APIs, uploads, realtime updates or an admin UI replace custom code.                                                 |
+| PostgreSQL      | Relational data needs multiple app replicas, concurrent writers or capabilities beyond an embedded store; use the existing CloudNativePG pattern. |
+| Small server    | Custom validation, integrations or transformations need a backend; omit storage for stateless work. Node.js, Go or Python can all fit.            |
+| SQLite          | A single app instance needs transactional persistence with little operational overhead.                                                           |
+
+Keep UI and API on the same origin where practical. Credentials stay server-side.
+For SQLite, including PocketBase, use app-scoped local persistent block storage,
+one replica and `Recreate`; never put the live database on NFS. Other datastores
+and object storage are reasonable when they satisfy a concrete app need; derive
+endpoints and credentials from their owning integrations rather than adding a
+parallel platform.
+
+For PocketBase, use an app-scoped instance and volume, commit collection migrations,
+keep administration private and define collection rules for the intended users
+and data ownership. Its built-in authentication can be the app's account system;
+there is no need to write another auth backend. Test unauthenticated and other-user
+access because authentication alone does not establish record access. Check the
+current [authentication](https://pocketbase.io/docs/authentication/),
+[API rules](https://pocketbase.io/docs/api-rules-and-filters/) and
+[production guidance](https://pocketbase.io/docs/going-to-production/) before
+choosing it; account for upstream compatibility and migration constraints.
 
 ## Publication Preferences
 
 Keep all app source and workload configuration in `mini-apps/apps/<name>`.
-Choose cluster membership in `clusters/<cluster>/kustomization.yaml`. Put the
-hostname, private/public gateway, Homepage annotations, storage, resource limits
-and credential references in native `deploy.yaml` resources, using the existing
-`bjw-s/app-template` chart. Derive full URLs from the owning hostname through
-Kustomize replacements. Honour existing choices and ask only for genuinely missing
-intent; internal access is the default.
+Follow the repository's current cluster entry point, shared components and app
+identity rules. Derive hostnames and full URLs through the existing owning
+configuration and Kustomize replacements; do not introduce another hostname
+setting when app identity already determines it. Keep app-specific gateway,
+Homepage, storage, resource limits and credential references beside the workload,
+using the existing native manifests and chart conventions. Honour existing
+choices and ask only for genuinely missing intent; internal access is the default.
 
 Homepage discovers enabled route annotations from selected mini-app directories.
 Use the safe app landing page. A GitHub AI connection can author and submit these
@@ -82,10 +104,11 @@ Treat reachability and application authorisation as separate decisions. Carry
 forward the user's existing choices; otherwise default to internal reachability.
 For sensitive stored data, establish who can read and change it before publishing.
 
-- **Account:** integrate Pocket ID through a maintained OIDC library suitable for
-  the app. Apply authorisation to API routes as well as pages; decide whether data
-  is per-user or shared. Do not substitute trusted-header authentication without
-  an existing, verified authenticating proxy.
+- **Account:** use the backend's built-in authentication when it meets the app's
+  needs, or the established Pocket ID/OIDC integration for shared sign-in. Verify
+  provider compatibility before choosing a library or backend. Apply authorisation
+  to API routes as well as pages; decide whether data is per-user or shared. Do not
+  substitute trusted-header authentication without a verified authenticating proxy.
 - **Public:** anonymous access is intentional; define which reads and writes are
   public. Public DNS does not imply anonymous data access.
 - **Secret Link:** possession of a randomly generated editing URL grants access.

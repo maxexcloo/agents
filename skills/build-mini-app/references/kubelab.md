@@ -9,11 +9,11 @@ environment, writable paths, architecture and data migration behaviour from its
 actual source, Dockerfile and Compose file. An existing app is the preferred
 starter for its own deployment.
 
-Choose cluster and hostname from the request and inventory. If the destination
-is genuinely ambiguous, ask for it while completing independent local work. Do
-not infer a target cluster merely from a nearby example or reuse another app's
-hostname. Derive the Redlib feed origin from Redlib's owning settings; its hostname
-is separate from the mini app's hostname.
+Derive cluster selection and app addresses from the request and repository
+configuration, including shared app identity and routing components. Ask only if
+the destination remains genuinely ambiguous. Do not copy another app's address or
+add a manual hostname where identity already determines it. Derive external
+service origins from their owning settings, independently of the app's address.
 
 ## Native Workload
 
@@ -48,17 +48,12 @@ needed; do not silently change the chosen backend.
 
 ## Reachability & DNS
 
-| Reachability | Route                                           | Namespace                                   | DNS                                                          |
-| ------------ | ----------------------------------------------- | ------------------------------------------- | ------------------------------------------------------------ |
-| Internal     | Parent `private` in `networking`                | `gateway.excloo.dev/private-access: "true"` | Existing `PrivateDNSRecord` composition and cluster settings |
-| External     | Normally parent `public-tunnel` in `networking` | `gateway.excloo.dev/public-access: "true"`  | ExternalDNS from the public HTTPRoute                        |
-
-These names describe the current patterns; verify them against the selected
-cluster. Public routes also need the public-access label on the HTTPRoute itself
-and `external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"` for the tunnel.
+Read the repository's current private/public gateway, listener, namespace and
+route label requirements. Mini-app routing can differ from general cluster apps.
+Carry forward configured wildcard DNS and ExternalDNS ownership; derive proxy
+mode from the selected gateway rather than assuming tunnel or direct access.
 The gateways own targets. Never hard-code a target IP or create a competing DNS
-record for an ExternalDNS-managed route. `public-direct` is an explicit option
-only when the app requires it and the cluster supports it.
+record for an ExternalDNS-managed route.
 
 Bind routes to the intended HTTPS listener and verify the HTTP-to-HTTPS behaviour
 in current Traefik configuration. Check certificate coverage for the exact

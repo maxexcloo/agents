@@ -9,9 +9,7 @@ async function request(method, body) {
     method,
     headers: {
       "Content-Type": "application/json",
-      ...(capability && method !== "POST"
-        ? { Authorization: `Bearer ${capability}` }
-        : {}),
+      ...(capability && method !== "POST" ? { Authorization: `Bearer ${capability}` } : {}),
     },
     ...(body === undefined ? {} : { body: JSON.stringify(body) }),
   });
