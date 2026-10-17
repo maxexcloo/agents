@@ -64,7 +64,7 @@
 - GitHub workflow keys start with `name`, `on`, `permissions`, `concurrency`, then
   global configuration and `jobs`. Preserve job-step dependency order.
 - Identifiers may lead list-item mappings. Follow project-specific identifier
-  order; otherwise use `type`, `name`, `id`. Prek hooks use `id`, then `name`.
+  order; otherwise use `type`, `name`, `id`.
 - In unordered peer groups, put simple or single-line values before structured or
   multi-line values; sort alphabetically within each group. Apply recursively to
   mappings, metadata, configuration objects, environment blocks and similar data.
@@ -74,7 +74,7 @@
 - Sort independent CLI options alphabetically within their command scope. Keep
   option values attached and preserve positional, parsing and precedence order.
 - Sort Mise tools and tasks within lifecycle sections, Updatecli policies by
-  `name`, and Prek repositories predictably with hooks by `id`.
+  `name`, and Hk steps alphabetically.
 - Sort unordered peer headings, lists and table rows alphabetically. When listing
   directories and files together, put directories first and sort each group.
 

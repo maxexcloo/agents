@@ -2,6 +2,9 @@
 
 Read the sections relevant to the tools present in the project.
 
+Preserve required behaviour when replacing tools, and keep related workflows
+consistent.
+
 ## Ignore Rules
 
 - Avoid copying generic ignore templates when global excludes or project tooling
@@ -46,16 +49,19 @@ Read the sections relevant to the tools present in the project.
 - Prefer a small common task vocabulary such as `check`, `fmt`, and `setup`.
   Add cleanup, deploy, plan, or apply tasks only where the project needs them.
 
-## Prek & Pre-Commit
+## Hk & Pre-Commit
 
+- Use Hk for Git hooks and declare its steps in `hk.pkl`. Keep a step to an Hk
+  builtin where one exists, and add a custom step only for a check Hk does not
+  provide. Hk does not install the tools its builtins invoke; Mise provides them.
 - Do not add a hook framework to a small static repository unless it prevents a
   realistic error or unifies repeated commands.
-- Make check filters match formatter coverage; for example, check Markdown when
-  `mise run fmt` formats Markdown. Inspect formatter and linter ignore files before
-  expanding a hook filter so the new trigger is not a no-op.
+- Make step file patterns match formatter coverage; for example, check Markdown
+  when `mise run fmt` formats Markdown. Inspect formatter and linter ignore files
+  before expanding a step pattern so the new trigger is not a no-op.
 - Treat schema validators and semantic linters as complementary, not duplicates.
 - Use Mise-managed local tools rather than creating another dependency layer.
-- Use repository hygiene hooks, schema validation, formatting, and language
+- Use repository hygiene steps, schema validation, formatting, and language
   linters only where relevant.
 
 ## Updatecli

@@ -81,7 +81,7 @@ Do not bury important findings in a long inventory dump.
 - Prefer native triggers, conditions, helpers, and service calls over
   templates.
 - Search stored dashboards separately with `ha_config_get_dashboard(mode="search",
-query="...")`; inspect scenes, helper options and area sensor references too.
+  query="...")`; inspect scenes, helper options and area sensor references too.
 - Use `ha_config_get_*` before editing config.
 - Use `ha_config_set_*` with `config_hash` for edits.
 - Use `ha_get_automation_traces` for runtime behaviour.
