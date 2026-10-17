@@ -31,6 +31,10 @@ Check affected behaviour as well as conventions. Use proportional local checks
 and existing CI for expensive builds; required CI must pass for the current
 revision.
 
+When checks depend on shared configuration or Actions, verify consumers against
+the committed provider revision used by CI, rather than only the locally
+installed configuration.
+
 Passing CI alone does not prove an issue is resolved. Verify the reported failure
 before closing it. After an authorised deployment, check the affected workload or
 reconciliation state and refresh requested exports through existing project tasks.
