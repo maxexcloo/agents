@@ -52,8 +52,12 @@
   already authorised; loading a skill does not itself authorise changes.
 - Use `maintain-*` for audits and upkeep, `standardise-*` for deliberate alignment
   of organisation, structure or settings. Preserve upstream skill names.
+- Use Orca skills for explicit Orca requests or existing Orca-owned state.
+  Generic delegation uses the session's native tools; honour the chosen runtime.
 - Use TerraShark only for Terraform/OpenTofu work. Generic CI or delivery/testing
   pipeline work does not activate it.
+- Use Web Awesome skills when requested or already used by the project. Generic
+  UI work does not establish a new component-library choice.
 
 ## Sorting
 
@@ -118,6 +122,14 @@
   `mise run check` after code or configuration changes, unless project rules specify
   narrower verification. For prose-only changes, check formatting, affected links
   and instruction consistency; project-specific requirements still apply.
+- For site or app review, prefer a running local preview that the user can explore.
+  Reuse the project's development command and distinguish sample data or simulated
+  operations from live behaviour. Screenshots support the preview. Leave it running
+  for review and report its reachable URL unless running it is impractical.
+- In Orca, load its version-matched browser guide, reuse a suitable embedded tab
+  and keep the preview server in an identifiable terminal. Verify the page loaded
+  and report the terminal title. Use localhost only when the browser shares the
+  server's host or has configured forwarding.
 
 ## Working Agreements
 
