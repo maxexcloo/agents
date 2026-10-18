@@ -8,9 +8,7 @@ For every proposed edit:
 2. Identify exact behaviour being changed.
 3. Search references.
 4. Check relevant state/trace/log evidence.
-5. Check existing authorisation for the concrete scope. Ask only when intent
-   or authorisation is missing; do not repeat an already answered question.
-6. Record the affected workflow's expected behaviour and current evidence. For
+5. Record the affected workflow's expected behaviour and current evidence. For
    cleanup, preserve its behaviour unless a change is requested. Identify the
    trigger, conditions, helper state and expected actions needed for a before/after
    comparison.
@@ -24,7 +22,7 @@ render does not exercise a trigger, controller gesture or delayed reset.
 For automations/scripts with changed references, search affected consumers for
 the old reference using entity boundaries.
 
-Exercise only relevant scenarios within the existing authorisation:
+Exercise only relevant scenarios:
 
 1. **Controller Gestures:** Compare the affected single, double, hold and release
    events with their traces and resulting actions. Check for duplicate actions.

@@ -52,7 +52,6 @@ previously accepted exceptions.
 
 ## Apply Authorised Cleanup
 
-Treat an audit as findings until changes are requested or already authorised.
 For each approved rename or removal, retain the matched MAC and ownership so
 the action remains tied to the reviewed record. Forgetting a client removes
 configuration and history; it does not block reconnection. Do not remove a

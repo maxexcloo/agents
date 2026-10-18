@@ -2,9 +2,6 @@
 
 ## Audit Stance
 
-Audit first. Do not change Home Assistant configuration unless the user
-explicitly asks for fixes.
-
 Do not present local style preferences as bugs. If something is only a policy
 choice, say so.
 
@@ -18,8 +15,7 @@ Before deleting anything:
    Entry relationships.
 4. Check external risk: Node-RED, app widgets, voice assistants, external
    dashboards, manual UI use, and recorder/history value.
-5. Verify explicit deletion authorisation in this conversation. Ask only if it is missing; do not ask again for an already authorised deletion.
-6. After deletion, validate config and search the removed concept again.
+5. After deletion, validate config and search the removed concept again.
 
 ## Finding Classification
 
