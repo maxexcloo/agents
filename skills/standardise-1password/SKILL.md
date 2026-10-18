@@ -19,6 +19,18 @@ including shared-account consumers. Absence from one repository does not prove
 an item has no external consumer. Compare duplicates through metadata and
 lineage; examine historical credentials only within the requested scope.
 
+## Name & Group Fields
+
+Name upstream API keys `provider-<provider>[-<number>]-api-key` and access tokens
+`provider-<provider>[-<number>]-<token-type>-token`; keep them in the consuming
+application's item. Name gateway-issued client keys `virtual-key-<consumer>` and
+administration keys `master-key`; keep them in the issuing gateway's item.
+Preserve descriptive names for application, database and sign-in secrets.
+
+Group custom fields by purpose, with OAuth and OIDC fields under `Authentication`,
+and remove empty groups. Update field references and generation declarations
+together. Preserve existing website URLs, labels and primary flags.
+
 ## Reconcile & Verify
 
 Apply the user's vault conventions without repeating scope already carried by
