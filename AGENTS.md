@@ -104,10 +104,6 @@
   Reuse the project's development command and distinguish sample data or simulated
   operations from live behaviour. Screenshots support the preview. Leave it running
   for review and report its reachable URL unless running it is impractical.
-- In Orca, load its version-matched browser guide, reuse a suitable embedded tab
-  and keep the preview server in an identifiable terminal. Verify the page loaded
-  and report the terminal title. Use localhost only when the browser shares the
-  server's host or has configured forwarding.
 
 ## Working Agreements
 
