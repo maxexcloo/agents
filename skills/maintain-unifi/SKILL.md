@@ -75,6 +75,6 @@ without asserting that the UI is stale or deleting additional records to chase
 its count.
 
 Verify affected connectivity, integrations and repository ownership after
-changes. Report inventory coverage, numbered findings, applied fixes and checks
+changes. Report inventory coverage, findings, applied fixes and checks
 that remain unavailable. Keep historical warnings, optional hardening and
 expected offline devices distinct from demonstrated faults.
