@@ -24,7 +24,8 @@ against this home's policy rather than assuming labels or floors are required.
 For requested release reviews or updates, compare installed versions and
 compatibility with official notes. Include core, apps/add-ons, integrations,
 HACS, blueprints and firmware only within scope; identify necessary reloads and
-verify affected automations.
+verify affected automations. ESPHome firmware work follows the `esphome`
+repository's `AGENTS.md`.
 
 For changes, read [Verification & Delivery](references/04-verification-delivery.md)
 and compare the affected workflow's behaviour before and after. Configuration
