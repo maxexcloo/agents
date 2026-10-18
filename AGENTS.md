@@ -83,8 +83,6 @@
   legal text. Rename owned names in producers and consumers together.
 - Use Title Case for user-facing headings, labels and actions, with `&` instead of
   `And`. Keep explanatory prose in sentence case.
-- When presenting substantial findings, recommendations or options, label items
-  with numbers or letters so the user can select them unambiguously.
 
 ## Verification & Delivery
 
@@ -114,9 +112,9 @@
   in checks. Do not copy this rulebook into each project.
 - Keep it simple. Prefer native features, standard tools and direct code. Add a
   dependency, abstraction or automation only for a concrete need.
-- Number audit findings and recommendations, grouped by project, host or topic.
-  Give evidence, impact and the proposed change; keep applied fixes distinct from
-  suggestions.
+- Number findings, recommendations and options so the user can select them.
+  Group audit findings by project, host or topic with evidence, impact and the
+  proposed change; keep applied fixes distinct from suggestions.
 - Preserve intended behaviour and unrelated user changes. Define shared settings
   once, near their owner, and derive repeated information where practical.
 - When sessions overlap, keep one owner for each change and coordinate edits to

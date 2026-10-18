@@ -61,17 +61,9 @@ applied results distinct from historical proposals and prepared diffs.
 
 ## Delivery Format
 
-Findings should lead. Use the classes and severity defined in
-[Finding Classification](00-operating-rules.md#finding-classification).
-
-For every finding include:
-
-- Entity/config name.
-- Evidence: config line/field, trace, state, repair, or log.
-- Practical impact.
-- Proposed fix.
-- Whether it is correctness, risk, maintenance, or cosmetic.
-
+Findings lead, classified and graded per
+[Finding Classification](00-operating-rules.md#finding-classification). Name the
+entity or configuration and cite the config field, trace, state, repair or log.
 Do not bury important findings in a long inventory dump.
 
 ## Tool Patterns
