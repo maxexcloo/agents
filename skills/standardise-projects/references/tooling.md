@@ -82,9 +82,6 @@ consistent.
 - Keep workflows local and manual. Configure no SCM commits, pull requests,
   schedules or deployments unless explicitly requested.
 - Keep hosted updater integrations disconnected to prevent duplicate changes.
-  Remove retired Renovate configuration when its hosted integration is gone.
-  Existing unrelated PRs remain outside the migration. Do not add routine
-  dependency-update sections to READMEs; keep them focused on actual usage.
 - Resolve credentials inside the Updatecli-consuming process; never print
   authenticated generated manifests or place tokens in configuration files.
 - Validate manifests in the existing check path with `updatecli manifest validate`,
