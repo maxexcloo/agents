@@ -109,7 +109,9 @@
 - Project-specific rules override these defaults; skills provide task procedures.
 - Keep instructions layered: personal defaults here, project invariants and
   exceptions in project `AGENTS.md`, task procedures in skills, mechanical rules
-  in checks. Do not copy this rulebook into each project.
+  in checks. A project needs an `AGENTS.md` only for invariants an agent would
+  otherwise get wrong; keep it to scope, invariants and verification, never copied
+  global rules.
 - Keep it simple. Prefer native features, standard tools and direct code. Add a
   dependency, abstraction or automation only for a concrete need.
 - Number findings, recommendations and options so the user can select them.
