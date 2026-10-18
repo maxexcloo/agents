@@ -87,7 +87,8 @@
 ## Verification & Delivery
 
 - Distinguish static inspection, local checks, remote CI and live verification.
-  State any checks that could not run.
+  State any checks that could not run and any live or externally triggered
+  workflow path that was not exercised.
 - Run `git diff --check` and review the final diff and status after repository
   edits. Keep validation proportional to the change.
 - Use the project's verification commands. Where a Mise `check` task exists, run
