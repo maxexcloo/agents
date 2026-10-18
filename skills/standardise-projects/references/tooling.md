@@ -42,9 +42,9 @@ consistent.
 - Keep a single-command task's `run` value inline. For tasks that run multiple
   commands, use a multiline string with one command per line instead of chaining
   commands with `&&` or `;`.
-- Keep pins with the configuration that owns the tool. Use native Mise commands
-  to preview and upgrade tool pins, preserving compatibility exclusions. Recheck
-  old pins against their original reason.
+- Use `latest` for CI and Mise tools. Hold a tool back only when it must be,
+  with a one-line comment giving the reason, in the configuration that owns it;
+  recheck held-back versions against that reason.
 - Sort dependency tasks with the other tasks in their lifecycle section.
 - Prefer a small common task vocabulary such as `check`, `fmt`, and `setup`.
   Add cleanup, deploy, plan, or apply tasks only where the project needs them.
@@ -66,9 +66,9 @@ consistent.
 
 ## Updatecli
 
-- Use Updatecli where its discovery or coordination saves concrete maintenance
-  work. Prefer compact native crawlers for supported formats; complete coverage
-  of every pin is not a requirement.
+- Use Updatecli only for exact pins: deployed images, Helm charts, providers and
+  held-back tools. Prefer compact native crawlers for supported formats; complete
+  coverage of every pin is not a requirement.
 - Put native Mise upgrades, Python compilation and lockfile refreshes directly in
   Mise tasks rather than shell-based Updatecli policies. Preserve compatibility
   exclusions and review previews before applying upgrades.
@@ -90,8 +90,8 @@ consistent.
   does not prove discovery or update behaviour; verify previews and lockfile
   handling for the affected dependency formats.
 - Run `updatecli diff` and confirm each autodiscovery policy detects at least one
-  manifest; digest-only Docker pins are not discovered. Anchor tag version
-  filters to the current scheme and check the version each preview resolves.
+  manifest. Anchor tag version filters to the current scheme and check the
+  version each preview resolves.
 
 ## Tests & Dependencies
 
@@ -110,18 +110,24 @@ consistent.
   lockfiles, configuration, bootstrap steps, CI setup, maintenance rules, and
   documented commands.
 
+## Versions
+
+- Use major tags for GitHub Actions everywhere, without SHA pins.
+- Use plain tags for Dockerfile base images, without digests.
+- Use exact versions without digests for deployed images, Helm charts and
+  providers.
+- Keep lockfiles; they pin what the declarations leave open.
+
 ## Containers
 
-- Start Dockerfiles with `# syntax=docker/dockerfile:1` and pin base images as
-  `tag@digest`.
+- Start Dockerfiles with `# syntax=docker/dockerfile:1`.
 - Set standard OCI labels (`org.opencontainers.image.source`, `revision` from
   `github.sha` and `version`) in one place.
 - Add a `.dockerignore` alongside each Dockerfile.
 
 ## GitHub Actions
 
-- Pin third-party actions by commit SHA in jobs that hold secrets or an
-  `id-token` permission; other jobs may use major tags. The owner-controlled
+- Use major tags for actions (see [Versions](#versions)). The owner-controlled
   `maxexcloo/dotfiles` action may use `@main`.
 - Scope secrets to the steps that need them and set `persist-credentials: false`
   on checkout.

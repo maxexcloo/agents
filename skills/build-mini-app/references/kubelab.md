@@ -87,7 +87,7 @@ through Flux substitution in workload configuration; derive these from their
 owning resources using Kustomize.
 
 Apps needing custom dependencies can keep their own image build in the same
-repository, with an immutable image digest available before merging the change.
+repository, with the exact image version published before merging the change.
 Do not introduce a new image pipeline for a dependency-free app. Publication
 visibility must respect the user's source and runtime-data boundaries. For an
 existing deployment, retain its release name, namespace and PVC.
