@@ -60,10 +60,8 @@ existence.
 
 If a helper is missing:
 
-- Do not create helpers without confirming intended type, area, category, and
-  restore semantics.
-- Recreate it only if the intended type, name, restore behaviour, area,
-  category, and icon are clear.
+- Recreate it only after confirming the intended type, name, restore behaviour,
+  area, category, and icon.
 - Update the automation/script reference if the helper was renamed.
 
 ## Runtime Errors & Failed Traces

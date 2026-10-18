@@ -64,10 +64,6 @@ Before any `ha_set_entity(..., new_entity_id=...)`:
 
 ## Safety Rules
 
-- Never call a helper/entity orphan "safe to delete" based only on automation
-  and script searches.
-- Never delete helpers, integrations, devices, entities, dashboards, or
-  categories without explicit user approval.
 - Never rename entities without impact analysis.
 - Preserve user intent. If a pattern is deliberate, record it as policy and do
   not fight it.
