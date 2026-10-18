@@ -5,10 +5,9 @@ Shared agent guidance and self-written skills.
 ## Choose a Skill
 
 Follow [Skill Selection](AGENTS.md#skill-selection) for shared activation boundaries
-across Codex, OpenCode and Pi. The skills below support requested maintenance,
-alignment, mini app and Home Assistant integration development.
-Ordinary feature development, targeted fixes and research do not require a broad
-audit skill. Specialised tool skills retain their own domain-specific triggers.
+across all agents. The skills below support requested maintenance, alignment, mini
+app and Home Assistant integration development. Ordinary feature development,
+targeted fixes and research do not require a broad audit skill. Specialised tool skills retain their own domain-specific triggers.
 
 ## Contents
 
