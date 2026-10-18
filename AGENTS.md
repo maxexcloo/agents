@@ -58,9 +58,11 @@
 
 ## Structure
 
-- Prefer Mise for task orchestration; use npm for package-specific operations.
-- Inherit globally managed Mise tools; declare only project-specific tools or
-  genuine compatibility overrides.
+- Prefer Mise for task orchestration and npm for package-specific operations.
+  Inherit global Mise tools; declare only project-specific tools or overrides.
+- Use major tags for GitHub Actions, `latest` for CI/Mise tools unless one must be
+  held back, and exact versions for deployed images, charts and providers. Never
+  pin digests or SHAs; keep lockfiles.
 - Keep check orchestration single-layered; avoid running a validator both directly
   and through a nested task in the same check path.
 - Prefer maintained Markdown documentation in the project root. Use subdirectories
