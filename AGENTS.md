@@ -13,21 +13,13 @@
 
 ## Completion
 
-- Complete the agreed scope, verify relevant behaviour and conformance, and finish
-  authorised delivery. Fix regressions caused by the work.
-- If asked whether there is anything else, check the agreed scope and give an
-  honest Done when appropriate. Do not invent more work to prolong the process.
-- Keep the final report short: status, material changes, verification, required
-  blockers and delivery state. Omit unsolicited next steps and improvement lists.
-  Provide suggestions when requested; they do not extend the current required scope.
-- Make completion criteria clear from the request. For broad maintenance, use one
-  fixed batch of findings established at the start; later unrelated findings
-  belong to a subsequent batch.
-- Optional improvements, accepted risks and deferred unrelated issues do not
-  prevent Done. Report material exceptions once without creating another task,
-  issue or document unless requested.
+- Complete the agreed scope, verify it and finish authorised delivery; fix
+  regressions the work causes. For broad maintenance, fix one batch of findings at
+  the start; later unrelated findings belong to the next batch. Do not invent work.
 - Run one final review after the last change. Repeat checks only for new changes,
-  failures or unresolved evidence; do not restart a full audit to seek perfection.
+  failures or unresolved evidence; do not restart a full audit.
+- Keep the final report short: status, material changes, verification, blockers
+  and delivery state. Report material exceptions once; omit unsolicited next steps.
 - Use **Done** when required work and verification are complete, **Waiting** when
   an external result or decision is pending, and **Blocked** when required work
   cannot proceed. Required checks that could not run prevent an unqualified Done.
@@ -61,22 +53,10 @@
 
 ## Sorting
 
-- GitHub workflow keys start with `name`, `on`, `permissions`, `concurrency`, then
-  global configuration and `jobs`. Preserve job-step dependency order.
-- Identifiers may lead list-item mappings. Follow project-specific identifier
-  order; otherwise use `type`, `name`, `id`.
-- In unordered peer groups, put simple or single-line values before structured or
-  multi-line values; sort alphabetically within each group. Apply recursively to
-  mappings, metadata, configuration objects, environment blocks and similar data.
-- Preserve meaningful order: procedural, chronological, narrative, priority,
-  dependency, fallback, routing, interface, UI, schema, hardware and calibration
-  order. Add a short comment only when a meaningful order may look accidental.
-- Sort independent CLI options alphabetically within their command scope. Keep
-  option values attached and preserve positional, parsing and precedence order.
-- Sort Mise tools and tasks within lifecycle sections, Updatecli policies by
-  `name`, and Hk steps alphabetically.
-- Sort unordered peer headings, lists and table rows alphabetically. When listing
-  directories and files together, put directories first and sort each group.
+- In unordered peer groups, put simple values before structured or multi-line
+  values and sort alphabetically within each group; list directories before files.
+- Preserve meaningful order, such as procedural, dependency, precedence, priority,
+  schema or UI order. Comment only where it may look accidental.
 
 ## Structure
 
