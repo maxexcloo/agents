@@ -29,9 +29,8 @@ consistent.
 
 ## Mise
 
-- Reuse inherited Mise tools and tasks before adding project declarations.
-  Keep project tool declarations for project-specific tools or genuine compatibility
-  overrides; document inherited tools as commented `latest` entries when useful.
+- Reuse inherited Mise tools and tasks; declare only project-specific tools or
+  genuine compatibility overrides.
 - Include tools used by development, CI, deployment, or documented operations.
   Check the actual executable and interpreter selected locally and in CI; avoid
   competing package managers for the same installation. For tools not already
