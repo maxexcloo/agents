@@ -89,6 +89,9 @@ consistent.
   templating enabled: disabling it can skip manifest parsing. Schema validation
   does not prove discovery or update behaviour; verify previews and lockfile
   handling for the affected dependency formats.
+- Run `updatecli diff` and confirm each autodiscovery policy detects at least one
+  manifest; digest-only Docker pins are not discovered. Anchor tag version
+  filters to the current scheme and check the version each preview resolves.
 
 ## Tests & Dependencies
 
