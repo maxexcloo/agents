@@ -18,9 +18,8 @@ plan limitations and missing permissions from disabled security features.
 Treat partial, inaccessible or failed API results as evidence gaps.
 
 Inspect consumers before disabling Issues, Discussions, Pages, Projects or Wiki.
-An empty issue list does not prove Issues is unnecessary: dependency dashboards
-and integration manifests may depend on it. Check existing Renovate or Dependabot
-ownership before adding overlapping automation.
+An empty issue list does not prove Issues is unnecessary: integration manifests
+may depend on it.
 
 ## Align & Read Back
 
