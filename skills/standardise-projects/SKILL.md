@@ -24,7 +24,8 @@ Updatecli or ignore rules, read only the relevant sections of
 
 Trace inventories, names, endpoints and settings from their owning source through
 generated outputs to consumers. Update both sides of a change rather than adding
-another manual copy. Preserve generated inputs and meaningful interface order.
+another manual copy. Before removing a port or changing an endpoint, trace and
+update its consumers. Preserve generated inputs and meaningful interface order.
 
 Remove verified stale files after their workflow disappears. Omit explicit
 configuration defaults only after checking effective behaviour; retain values
