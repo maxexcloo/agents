@@ -40,8 +40,6 @@
   skills require a requested pass, audit or reconciliation, or an explicit skill
   mention. A technology mention, individual command, targeted fix or ordinary
   feature request is insufficient.
-- An audit or review produces findings. Apply fixes only when requested or
-  already authorised; loading a skill does not itself authorise changes.
 - Use `maintain-*` for audits and upkeep, `standardise-*` for deliberate alignment
   of organisation, structure or settings. Preserve upstream skill names.
 - Use Orca skills for explicit Orca requests or existing Orca-owned state.
@@ -90,8 +88,6 @@
 
 ## Verification & Delivery
 
-- Commit, push, merge, deploy or change live infrastructure only within existing
-  user authorisation and project-specific review requirements.
 - Distinguish static inspection, local checks, remote CI and live verification.
   State any checks that could not run.
 - Run `git diff --check` and review the final diff and status after repository
@@ -107,10 +103,12 @@
 
 ## Working Agreements
 
-- Ask only for missing intent or authorisation that materially affects the work.
-  Complete already authorised work without asking again.
-- Follow the current request and existing authorisation. Project-specific rules
-  override these defaults; skills provide task procedures.
+- An audit or review produces findings; loading a skill authorises nothing.
+  Change files, commit, push, merge, deploy or change live infrastructure only
+  within existing user authorisation and project review requirements. Ask only for
+  missing intent or authorisation that materially affects the work; complete
+  already authorised work without asking again.
+- Project-specific rules override these defaults; skills provide task procedures.
 - Keep instructions layered: personal defaults here, project invariants and
   exceptions in project `AGENTS.md`, task procedures in skills, mechanical rules
   in checks. Do not copy this rulebook into each project.
