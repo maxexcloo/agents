@@ -42,7 +42,7 @@ rules stay here so installed upstream packages can remain unmodified.
 | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------- |
 | [build-mini-app](skills/build-mini-app/SKILL.md)                   | Build and publish browser tools and apps with optional backends, persistence and access controls. |
 | [maintain-home-assistant](skills/maintain-home-assistant/SKILL.md) | Audit and maintain Home Assistant configuration, updates and organisation.                        |
-| [maintain-projects](skills/maintain-projects/SKILL.md)             | Finish a bounded batch of issues, PRs, CI failures, updates and conformance checks.               |
+| [maintain-projects](skills/maintain-projects/SKILL.md)             | Finish a bounded batch of issues, PRs, CI failures and updates.                                   |
 | [maintain-systems](skills/maintain-systems/SKILL.md)               | Check and maintain live hosts, services, storage, backups and synchronisation.                    |
 | [maintain-unifi](skills/maintain-unifi/SKILL.md)                   | Review UniFi device health, client naming, network settings and authorised cleanup.               |
 | [standardise-1password](skills/standardise-1password/SKILL.md)     | Reconcile vaults, naming, fields and credential consumers without exposing values.                |
