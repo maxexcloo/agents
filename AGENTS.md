@@ -80,11 +80,10 @@
 - Keep comments local and specific to non-obvious behaviour.
 - Use `.yaml`, never `.yml`, for project-owned YAML unless an external tool requires
   a fixed filename.
-- Use Australian English for authored prose and every project-owned name,
-  including identifiers, configuration keys, environment variables, paths, CLI
-  commands and options. Update producers and consumers together; add compatibility
-  aliases only when requested. Preserve externally defined names and terminology,
-  protocol and schema fields, standard filenames and legal text.
+- Use Australian English for authored prose and new names the owner controls.
+  Keep ecosystem names as upstream defines them, such as environment variables,
+  CLI options like `color`, protocol and schema fields, standard filenames and
+  legal text. Rename owned names in producers and consumers together.
 - Use Title Case for user-facing headings, labels and actions, with `&` instead of
   `And`. Keep explanatory prose in sentence case.
 - When presenting substantial findings, recommendations or options, label items
