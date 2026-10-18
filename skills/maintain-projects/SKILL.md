@@ -11,10 +11,15 @@ Read open issues, PRs, recent CI failures and pending dependency updates when
 GitHub is in scope. Check existing PRs before duplicating a fix. Include convention
 conformance in the requested maintenance pass.
 
-Use the repository's local `mise run dependencies:check` task when present. Review
-its Updatecli preview during an audit. When fixes are authorised, apply the
-selected policies and run the project checks. Keep updates local until delivery
-is authorised; review major upgrades separately.
+Review native dependency previews and selected Updatecli groups during maintenance.
+Use `mise run dependencies:mise:check` for tool pins, honouring project compatibility
+exclusions. Where configured, `mise run dependencies:check --labels group:actions`
+previews one Updatecli group; select other groups for the requested scope rather
+than applying every policy together. When fixes are authorised, apply reviewed
+groups, refresh affected lockfiles with the project's native tasks, and run project
+checks. AI provides `dependencies:python:check` and `dependencies:python:update`
+for its hashed requirements and lockfile. Keep updates local until delivery is
+authorised; review major upgrades separately.
 
 Inventory dependency and lockfile updates, runtime/tool pins, Actions, images and
 versions embedded in scripts or templates. Review compatibility, migrations and

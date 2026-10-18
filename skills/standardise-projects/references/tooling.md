@@ -43,8 +43,9 @@ consistent.
 - Keep a single-command task's `run` value inline. For tasks that run multiple
   commands, use a multiline string with one command per line instead of chaining
   commands with `&&` or `;`.
-- Keep pins with the configuration that owns the tool; let Updatecli preview
-  updates locally. Recheck old pins against their original reason.
+- Keep pins with the configuration that owns the tool. Use native Mise commands
+  to preview and upgrade tool pins, preserving compatibility exclusions. Recheck
+  old pins against their original reason.
 - Sort dependency tasks with the other tasks in their lifecycle section.
 - Prefer a small common task vocabulary such as `check`, `fmt`, and `setup`.
   Add cleanup, deploy, plan, or apply tasks only where the project needs them.
@@ -66,13 +67,15 @@ consistent.
 
 ## Updatecli
 
-- Prefer native autodiscovery across each supported dependency format. Avoid
-  enumerating tools, packages, actions or paths unless compatibility or ownership
-  requires it. Verify coverage before adding explicit policies.
-- For unsupported formats such as Mise, prefer one policy covering all tool
-  declarations over a fixed tool list. Include versions embedded in tool options
-  where needed. Keep specific compatibility exceptions separate and named for
-  their scope; do not hide them in a general development-tools policy.
+- Use Updatecli where its discovery or coordination saves concrete maintenance
+  work. Prefer compact native crawlers for supported formats; complete coverage
+  of every pin is not a requirement.
+- Put native Mise upgrades, Python compilation and lockfile refreshes directly in
+  Mise tasks rather than shell-based Updatecli policies. Preserve compatibility
+  exclusions and review previews before applying upgrades.
+- Keep explicit policies for embedded pins, paired revisions and versions that
+  must change together. Keep discovery generators only where unsupported metadata
+  or compatibility rules justify them; avoid building a general updater framework.
 - Read versions, branches and endpoints from their owning configuration where
   possible. Update linked producers, consumers and lockfiles together.
 - Preserve compatibility limits, source variants and release-age policies.
