@@ -1,6 +1,6 @@
 ---
 name: maintain-home-assistant
-description: Audit or complete a requested Home Assistant maintenance pass covering configuration correctness, behavioural risk, updates, organisation and cleanup. Exclude individual automation edits and targeted troubleshooting.
+description: Audit or complete a requested Home Assistant maintenance pass covering configuration correctness, behavioural risk, updates, organisation and cleanup. Exclude individual automation edits, targeted troubleshooting and custom integration development.
 ---
 
 # Maintain Home Assistant
