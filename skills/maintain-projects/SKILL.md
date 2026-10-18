@@ -1,6 +1,6 @@
 ---
 name: maintain-projects
-description: Audit or complete a requested software repository maintenance pass covering issues, PRs, CI, updates and conformance. Exclude individual bug fixes, targeted CI repairs and feature development.
+description: Audit or complete a requested software repository maintenance pass covering issues, PRs, CI and updates. Exclude individual bug fixes, targeted CI repairs and feature development.
 ---
 
 # Maintain Projects
@@ -8,18 +8,15 @@ description: Audit or complete a requested software repository maintenance pass 
 ## Inventory the Work
 
 Read open issues, PRs, recent CI failures and pending dependency updates when
-GitHub is in scope. Check existing PRs before duplicating a fix. Include convention
-conformance in the requested maintenance pass.
+GitHub is in scope. Check existing PRs before duplicating a fix.
 
 Review native dependency previews and selected Updatecli groups during maintenance.
 Use `mise run dependencies:mise:check` for tool pins, honouring project compatibility
 exclusions. Where configured, `mise run dependencies:check --labels group:actions`
 previews one Updatecli group; select other groups for the requested scope rather
-than applying every policy together. When fixes are authorised, apply reviewed
-groups, refresh affected lockfiles with the project's native tasks, and run project
-checks. AI provides `dependencies:python:check` and `dependencies:python:update`
-for its hashed requirements and lockfile. Keep updates local until delivery is
-authorised; review major upgrades separately.
+than applying every policy together. Apply reviewed groups, refresh affected
+lockfiles with the project's native tasks, and run project checks. Review major
+upgrades separately.
 
 Inventory dependency and lockfile updates, runtime/tool pins, Actions, images and
 versions embedded in scripts or templates. Review compatibility, migrations and
@@ -31,8 +28,8 @@ For requested fork maintenance or upstream contributions, read
 
 ## Verify & Deliver
 
-Remove the retired feature's configuration, consumers and generated outputs.
-Check affected behaviour as well as conventions. Use proportional local checks
+Check affected behaviour. When a pass retires a feature, remove its
+configuration, consumers and generated outputs. Use proportional local checks
 and existing CI for expensive builds; required CI must pass for the current
 revision.
 
