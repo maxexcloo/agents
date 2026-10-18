@@ -109,3 +109,19 @@ consistent.
 - When removing a tool, remove its complete footprint: dependency declarations,
   lockfiles, configuration, bootstrap steps, CI setup, maintenance rules, and
   documented commands.
+
+## Containers
+
+- Start Dockerfiles with `# syntax=docker/dockerfile:1` and pin base images as
+  `tag@digest`.
+- Set standard OCI labels (`org.opencontainers.image.source`, `revision` from
+  `github.sha` and `version`) in one place.
+- Add a `.dockerignore` alongside each Dockerfile.
+
+## GitHub Actions
+
+- Pin third-party actions by commit SHA in jobs that hold secrets or an
+  `id-token` permission; other jobs may use major tags. The owner-controlled
+  `maxexcloo/dotfiles` action may use `@main`.
+- Scope secrets to the steps that need them and set `persist-credentials: false`
+  on checkout.
