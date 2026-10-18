@@ -16,8 +16,8 @@
 - Complete the agreed scope, verify it and finish authorised delivery; fix
   regressions the work causes. For broad maintenance, fix one batch of findings at
   the start; later unrelated findings belong to the next batch. Do not invent work.
-- Run one final review after the last change. Repeat checks only for new changes,
-  failures or unresolved evidence; do not restart a full audit.
+- Run one final review after the last change; repeat checks only for new changes,
+  failures or unresolved evidence.
 - Keep the final report short: status, material changes, verification, blockers
   and delivery state. Report material exceptions once; omit unsolicited next steps.
 - Use **Done** when required work and verification are complete, **Waiting** when
@@ -63,6 +63,10 @@
 - Use major tags for GitHub Actions, `latest` for CI/Mise tools unless one must be
   held back, and exact versions for deployed images, charts and providers. Never
   pin digests or SHAs; keep lockfiles.
+- Define names, domains, hostnames, versions, accounts and shared settings once,
+  near their owner, and derive them elsewhere so a rename is a one-place edit. Add
+  no indirection harder to follow than the duplication it removes. Split
+  mixed-concern files and organise directories predictably.
 - Keep check orchestration single-layered; avoid running a validator both directly
   and through a nested task in the same check path.
 - Prefer maintained Markdown documentation in the project root. Use subdirectories
@@ -93,14 +97,12 @@
   workflow path that was not exercised.
 - Run `git diff --check` and review the final diff and status after repository
   edits. Keep validation proportional to the change.
-- Use the project's verification commands. Where a Mise `check` task exists, run
-  `mise run check` after code or configuration changes, unless project rules specify
-  narrower verification. For prose-only changes, check formatting, affected links
-  and instruction consistency; project-specific requirements still apply.
-- For site or app review, prefer a running local preview that the user can explore.
-  Reuse the project's development command and distinguish sample data or simulated
-  operations from live behaviour. Screenshots support the preview. Leave it running
-  for review and report its reachable URL unless running it is impractical.
+- Use the project's verification commands, such as `mise run check` after code or
+  configuration changes unless project rules specify narrower checks. For prose,
+  check formatting, affected links and instruction consistency.
+- For site or app review, leave a local preview running from the project's
+  development command and report its URL unless impractical; screenshots support
+  it. Distinguish sample data or simulated operations from live behaviour.
 
 ## Working Agreements
 
@@ -112,15 +114,12 @@
 - Project-specific rules override these defaults; skills provide task procedures.
 - Keep instructions layered: personal defaults here, project invariants and
   exceptions in project `AGENTS.md`, task procedures in skills, mechanical rules
-  in checks. A project needs an `AGENTS.md` only for invariants an agent would
-  otherwise get wrong; keep it to scope, invariants and verification, never copied
-  global rules.
+  in checks. A project `AGENTS.md` holds only scope, verification and invariants
+  an agent would otherwise get wrong, never copied global rules.
 - Keep it simple. Prefer native features, standard tools and direct code. Add a
   dependency, abstraction or automation only for a concrete need.
 - Number findings, recommendations and options so the user can select them.
   Group audit findings by project, host or topic with evidence, impact and the
   proposed change; keep applied fixes distinct from suggestions.
-- Preserve intended behaviour and unrelated user changes. Define shared settings
-  once, near their owner, and derive repeated information where practical.
-- When sessions overlap, keep one owner for each change and coordinate edits to
-  shared files.
+- Preserve intended behaviour and unrelated user changes. When sessions overlap,
+  keep one owner for each change and coordinate edits to shared files.
