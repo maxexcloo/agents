@@ -64,34 +64,26 @@ consistent.
 - Use repository hygiene steps, schema validation, formatting, and language
   linters only where relevant.
 
-## Updatecli
+## Renovate
 
-- Use Updatecli only for exact pins: deployed images, Helm charts, providers and
-  held-back tools. Prefer compact native crawlers for supported formats; complete
-  coverage of every pin is not a requirement.
-- Put native Mise upgrades, Python compilation and lockfile refreshes directly in
-  Mise tasks rather than shell-based Updatecli policies. Preserve compatibility
-  exclusions and review previews before applying upgrades.
-- Keep explicit policies for embedded pins, paired revisions and versions that
-  must change together. Keep discovery generators only where unsupported metadata
-  or compatibility rules justify them; avoid building a general updater framework.
+- Give each repository a `renovate.json5` that extends
+  `github>maxexcloo/dotfiles//renovate/default.json5` and adds only its own
+  exceptions, such as compatibility holds, ignored paths or datasource overrides.
+- Rely on native managers and the shared generic managers. Mark any other pin
+  with a `# renovate: datasource=… depName=…` comment on the line above rather
+  than adding a per-file manager, generator or script.
+- Let Renovate refresh lockfiles and compiled requirements through its native
+  managers; do not add refresh hooks.
 - Read versions, branches and endpoints from their owning configuration where
-  possible. Update linked producers, consumers and lockfiles together.
+  possible. Group producers, consumers and pins that must change together.
 - Preserve compatibility limits, source variants and release-age policies.
   Review major upgrades separately from routine updates.
-- Keep workflows local and manual. Configure no SCM commits, pull requests,
-  schedules or deployments unless explicitly requested.
-- Keep hosted updater integrations disconnected to prevent duplicate changes.
-- Resolve credentials inside the Updatecli-consuming process; never print
-  authenticated generated manifests or place tokens in configuration files.
-- Validate manifests in the existing check path with `updatecli manifest validate`,
-  passing `--config .updatecli.d --strict` with placeholder credentials. Keep
-  templating enabled: disabling it can skip manifest parsing. Schema validation
-  does not prove discovery or update behaviour; verify previews and lockfile
-  handling for the affected dependency formats.
-- Run `updatecli diff` and confirm each autodiscovery policy detects at least one
-  manifest. Anchor tag version filters to the current scheme and check the
-  version each preview resolves.
+- Run Renovate locally: `dependencies:check` previews through the local platform
+  and `dependencies:update` opens pull requests for review. Configure no hosted
+  app, schedule, automerge or deployment unless explicitly requested.
+- Validate with `check:updates`. Validation does not prove discovery; confirm in
+  the preview that each affected dependency is extracted and resolves the
+  expected version.
 
 ## Tests & Dependencies
 

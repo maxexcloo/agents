@@ -10,13 +10,10 @@ description: Audit or complete a requested software repository maintenance pass 
 Read open issues, PRs, recent CI failures and pending dependency updates when
 GitHub is in scope. Check existing PRs before duplicating a fix.
 
-Review native dependency previews and selected Updatecli groups during maintenance.
-Use `mise run dependencies:mise:check` for tool pins, honouring project compatibility
-exclusions. Where configured, `mise run dependencies:check --labels group:actions`
-previews one Updatecli group; select other groups for the requested scope rather
-than applying every policy together. Apply reviewed groups, refresh affected
-lockfiles with the project's native tasks, and run project checks. Review major
-upgrades separately.
+Preview dependency updates with `mise run dependencies:check`, which runs Renovate
+locally without writing files. Open reviewed updates as pull requests with
+`mise run dependencies:update`, honouring project compatibility rules, and run
+project checks on each. Review major upgrades separately.
 
 Inventory dependency and lockfile updates, runtime/tool pins, Actions, images and
 versions embedded in scripts or templates. Review compatibility, migrations and

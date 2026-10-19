@@ -17,7 +17,7 @@ use in CI, deployment, generated artefacts and documented operations. Retain it
 when use remains uncertain.
 
 For versions, containers, GitHub Actions, Mise, Hk/pre-commit, tests,
-dependencies, Updatecli or ignore rules, read only the relevant sections of
+dependencies, Renovate or ignore rules, read only the relevant sections of
 [Tooling Review](references/tooling.md).
 
 ## Align Producers & Consumers
