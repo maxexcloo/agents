@@ -74,6 +74,8 @@
   name or title, never by generated IDs.
 - Keep check orchestration single-layered; avoid running a validator both directly
   and through a nested task in the same check path.
+- Keep checks fast: run independent jobs, shards and test modules in parallel,
+  cancel superseded runs and gate only publication on the full set of checks.
 - Prefer maintained Markdown documentation in the project root. Use subdirectories
   when the volume of documentation or established project conventions warrant them.
 - Keep `README.md` focused on purpose and actual usage. Use Git history as the

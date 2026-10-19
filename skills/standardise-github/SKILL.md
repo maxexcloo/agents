@@ -23,7 +23,8 @@ may depend on it.
 
 ## Align & Read Back
 
-Identify required checks before proposing automerge. Treat visibility, access and
+Keep CodeQL default setup disabled unless requested; it costs runner time on every
+push without gating merges. Identify required checks before proposing automerge. Treat visibility, access and
 hosting changes as explicit decisions. Preserve intended merge and branch policy.
 
 Reread affected settings before patching and verify the result through fresh API

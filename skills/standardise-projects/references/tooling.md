@@ -120,3 +120,15 @@ consistent.
   `maxexcloo/dotfiles` action may use `@main`.
 - Scope secrets to the steps that need them and set `persist-credentials: false`
   on checkout.
+- Group runs by workflow and ref and cancel superseded runs, except release tags.
+  Queue instead only when change detection diffs against the previous push; prefer
+  diffing against the last successful run so cancelling stays safe.
+- Run checks, long test suites and image builds as parallel jobs, and make only the
+  publishing job wait for all of them. Shard browser or integration suites across
+  a matrix once they take more than a few minutes.
+- Build multi-architecture images without QEMU: cross-compile from
+  `--platform=$BUILDPLATFORM`, or build each architecture on a native runner.
+- Key caches on the version that determines their contents rather than a whole
+  configuration file. Save large incremental caches only from the default branch.
+- Do not add CodeQL or other scanners that run on every push unless requested; they
+  occupy runner slots without gating merges.
