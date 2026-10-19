@@ -62,11 +62,16 @@
   Inherit global Mise tools; declare only project-specific tools or overrides.
 - Use major tags for GitHub Actions, `latest` for CI/Mise tools unless one must be
   held back, and exact versions for deployed images, charts and providers. Never
-  pin digests or SHAs; keep lockfiles.
+  pin digests or SHAs, except `latest@sha256:` for an image that publishes only
+  `latest`; keep lockfiles. Keep pins discoverable by Renovate's native managers.
 - Define names, domains, hostnames, versions, accounts and shared settings once,
   near their owner, and derive them elsewhere so a rename is a one-place edit. Add
   no indirection harder to follow than the duplication it removes. Split
   mixed-concern files and organise directories predictably.
+- Read required settings without defaults or fallbacks so a missing value fails
+  with its name; keep defaults only for genuinely optional settings.
+- Reference external records, such as 1Password items and vaults, by their stable
+  name or title, never by generated IDs.
 - Keep check orchestration single-layered; avoid running a validator both directly
   and through a nested task in the same check path.
 - Prefer maintained Markdown documentation in the project root. Use subdirectories

@@ -67,7 +67,7 @@ and launch URLs derived from the route; verify the supported access policy. The
 current integration can create public PKCE clients; confidential clients and their
 secret lifecycle require the existing credential process. Do not assume declaring
 a client creates its client secret. Use ExternalSecret and the existing 1Password
-store for credentials, referencing items by UUID; do not embed secret values in
+store for credentials, referencing items by title; do not embed secret values in
 Git or tool output.
 
 For secret-link apps, expose only a safe landing page to Homepage and monitors.

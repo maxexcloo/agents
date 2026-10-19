@@ -20,6 +20,9 @@ versions embedded in scripts or templates. Review compatibility, migrations and
 obsolete workarounds before adopting newer stable releases. Update supported
 version declarations, CI matrices and runtime setup together.
 
+Report literals that duplicate an owner's value, required settings with defaults
+or fallbacks, and references to generated IDs as findings.
+
 For requested fork maintenance or upstream contributions, read
 [Fork Maintenance](references/forks.md).
 

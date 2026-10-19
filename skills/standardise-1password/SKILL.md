@@ -16,7 +16,9 @@ to repair the other.
 
 Trace item references and field labels through applications, deployments and CI,
 including shared-account consumers. Absence from one repository does not prove
-an item has no external consumer. Compare duplicates through metadata and
+an item has no external consumer. Consumers reference items and vaults by
+title, never by ID, so renaming an item renames its references together. Compare
+duplicates through metadata and
 lineage; examine historical credentials only within the requested scope.
 
 ## Name & Group Fields
