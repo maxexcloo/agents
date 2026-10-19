@@ -42,9 +42,9 @@ consistent.
 - Keep a single-command task's `run` value inline. For tasks that run multiple
   commands, use a multiline string with one command per line instead of chaining
   commands with `&&` or `;`.
-- Use `latest` for CI and Mise tools. Hold a tool back only when it must be,
-  with a one-line comment giving the reason, in the configuration that owns it;
-  recheck held-back versions against that reason.
+- Hold a tool back from `latest` only when it must be, with a one-line comment
+  giving the reason, in the configuration that owns it; recheck held-back
+  versions against that reason.
 - Sort dependency tasks with the other tasks in their lifecycle section.
 - Prefer a small common task vocabulary such as `check`, `fmt`, and `setup`.
   Add cleanup, deploy, plan, or apply tasks only where the project needs them.
@@ -112,11 +112,8 @@ consistent.
 
 ## Versions
 
-- Use major tags for GitHub Actions everywhere, without SHA pins.
-- Use plain tags for Dockerfile base images, without digests.
-- Use exact versions without digests for deployed images, Helm charts and
-  providers.
-- Keep lockfiles; they pin what the declarations leave open.
+- Beyond the global version rules, use plain tags for Dockerfile base images,
+  without digests.
 
 ## Containers
 
