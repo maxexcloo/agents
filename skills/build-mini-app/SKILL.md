@@ -6,7 +6,7 @@ description: Build and publish small self-hosted apps through Kubelab, from Simo
 # Build Mini Apps
 
 Turn a requested tool into a working application and, when authorised, a verified
-URL, for new or existing apps. Read `mini-apps/AGENTS.md` and `kubelab/AGENTS.md`
+URL, for new or existing apps. Read `minilab/AGENTS.md` and `kubelab/AGENTS.md`
 first: they own app layout, identity, routing, UI defaults, storage rules and
 delivery. Locate both repositories from the workspace and read the owning
 configuration before editing.
@@ -21,9 +21,9 @@ work entirely in the browser. Plain HTML/CSS/JavaScript is a good default for
 converters, calculators and visualisers. Related static tools can share a site;
 separate apps with independent data or access boundaries.
 
-For browser-only apps, copy `mini-apps/templates/static` and rename it
+For browser-only apps, copy `minilab/templates/static` and rename it
 consistently; do not publish the starter as a separate app. For a backend, start
-from the closest existing app under `mini-apps/apps`, copying only the runtime
+from the closest existing app under `minilab/apps`, copying only the runtime
 source the app needs. Avoid dependencies, build scripts and task wrappers that add
 no runtime capability, and keep meaningful data tests separate from the editable
 app. Preserve existing licences; new projects use canonical AGPL-3.0.

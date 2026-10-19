@@ -2,7 +2,7 @@
 
 ## Read the Current Configuration
 
-Read `mini-apps/AGENTS.md`, `kubelab/AGENTS.md`, the selected cluster's Flux
+Read `minilab/AGENTS.md`, `kubelab/AGENTS.md`, the selected cluster's Flux
 entry points, gateway listeners, certificate and storage configuration. Confirm
 the app's container port, bind address, health endpoint, environment, writable
 paths, architecture and data migration behaviour from its actual source and
