@@ -4,7 +4,8 @@
 
 For every proposed edit:
 
-1. Fetch current config and `config_hash`.
+1. Fetch current config and use `config_hash` wherever the API supports it.
+   Registry edits have no hash: save the inverse and edit narrowly.
 2. Identify exact behaviour being changed.
 3. Search references.
 4. Check relevant state/trace/log evidence.
@@ -15,12 +16,14 @@ For every proposed edit:
 
 ## 2. After Changes
 
-Validate configuration and references, then verify the affected behavioural
-scenarios against the baseline. A successful configuration check or template
-render does not exercise a trigger, controller gesture or delayed reset.
+Read back saved changes. For configuration changes, validate configuration and
+references, then verify the affected behavioural scenarios against the baseline.
+Metadata-only edits do not require restarts or unrelated validation. A successful
+configuration check or template render does not exercise a trigger, controller
+gesture or delayed reset.
 
-For automations/scripts with changed references, search affected consumers for
-the old reference using entity boundaries.
+For changed or removed references, search affected consumers for the old reference
+using entity boundaries, not substring matches.
 
 Exercise only relevant scenarios:
 
@@ -48,7 +51,6 @@ Verify:
 - Dashboards still load.
 - Expected entities exist.
 - No new or affected active Repairs.
-- No broken references in affected consumers.
 - Removed entity no longer appears.
 - Voice exposure did not accidentally change.
 
@@ -68,12 +70,8 @@ Do not bury important findings in a long inventory dump.
 
 ## Tool Patterns
 
-- Prefer native triggers, conditions, helpers, and service calls over
-  templates.
 - Search stored dashboards separately with `ha_config_get_dashboard(mode="search",
   query="...")`; inspect scenes, helper options and area sensor references too.
-- Use `ha_config_get_*` before editing config.
-- Use `ha_config_set_*` with `config_hash` for edits.
 - Use `ha_get_automation_traces` for runtime behaviour.
 - Use `ha_get_entity` for registry metadata.
 - Use `ha_get_history` when behaviour depends on timing or stale state.
@@ -82,5 +80,3 @@ Do not bury important findings in a long inventory dump.
 - Use `ha_search` for broad discovery and automation/script references.
 - Use `ha_set_entity` for metadata: area, hidden, icon, labels, categories,
   display name, entity ID rename, and voice exposure.
-- Use templates deliberately in shared generic scripts, message text, and
-  dynamic service data.

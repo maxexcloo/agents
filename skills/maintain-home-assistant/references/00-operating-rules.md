@@ -15,7 +15,6 @@ Before deleting anything:
    Entry relationships.
 4. Check external risk: Node-RED, app widgets, voice assistants, external
    dashboards, manual UI use, and recorder/history value.
-5. After deletion, validate config and search the removed concept again.
 
 ## Finding Classification
 
@@ -58,18 +57,9 @@ Before any `ha_set_entity(..., new_entity_id=...)`:
 4. Confirm the available tools can update every consumer before renaming.
    Save before-values and a rollback plan. Missing tool fields are capability
    limitations, not proof that the reference updates automatically.
-5. Rename, update consumers, validate, and search the old ID again using
-   entity boundaries (not substring matches). If a consumer cannot be updated,
-   restore the old ID and any already changed references.
+5. Rename and update consumers. If a consumer cannot be updated, restore the old
+   ID and any already changed references.
 
-## Safety Rules
-
-- Never rename entities without impact analysis.
-- Preserve user intent. If a pattern is deliberate, record it as policy and do
-  not fight it.
-- Use `config_hash` wherever the configuration API supports it. Registry edits
-  have no hash: read current values, save the inverse, edit narrowly, and read back.
-- Use targeted reads before conclusions.
-- Verify each batch with the narrowest relevant read-back, state or trace check.
-  Run config validation for configuration changes; metadata-only edits do not
-  require restarts or unrelated validation.
+After either workflow, use
+[Verification & Delivery](04-verification-delivery.md#2-after-changes) to check
+the result.
