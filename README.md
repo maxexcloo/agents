@@ -1,13 +1,14 @@
 # Agents
 
-Shared agent guidance and self-written skills.
+Shared agent guidance and the skills I've written myself.
 
 ## Choose a Skill
 
-Follow [Skill Selection](AGENTS.md#skill-selection) for shared activation boundaries
-across all agents. The skills below support requested maintenance, alignment, mini
-app and Home Assistant integration development. Ordinary feature development,
-targeted fixes and research do not require a broad audit skill. Specialised tool skills retain their own domain-specific triggers.
+[Skill Selection](AGENTS.md#skill-selection) sets when each agent should use a
+skill. The skills below cover requested maintenance and alignment passes, mini
+apps and Home Assistant integration development. Ordinary feature work, targeted
+fixes and research don't need a broad audit skill. Specialised tool skills keep
+their own triggers.
 
 ## Contents
 
@@ -23,17 +24,18 @@ Guidance and skills use AGPL-3.0.
 
 ## Maintenance
 
-Edit the files here; the application paths resolve through symlinks. Check
-Markdown formatting, relative links and instruction consistency after prose
-changes. Validate changed skills with the available skill validator.
+Edit the files here, as the application paths are symlinks to them. After prose
+changes, check Markdown formatting, relative links and that the instructions
+still agree with each other. Validate changed skills with the available skill
+validator.
 
 ## Setup
 
-Workstation setup, application links, skill discovery and pinned upstream skill
-installation are managed in
-[Dotfiles](https://github.com/maxexcloo/dotfiles). Keep those definitions there;
-this repository owns shared guidance and self-written task procedures. Personal
-rules stay here so installed upstream packages can remain unmodified.
+[Dotfiles](https://github.com/maxexcloo/dotfiles) handles workstation setup,
+application links, skill discovery and installing pinned upstream skills, so keep
+those definitions there. This repository holds the shared guidance and my own
+task procedures. Personal rules live here so installed upstream packages can stay
+unmodified.
 
 ## Skills
 
