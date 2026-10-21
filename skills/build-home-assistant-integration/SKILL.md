@@ -51,10 +51,12 @@ check deprecations in its release notes before adopting or removing a pattern.
 
 ## Pins & Checks
 
-- Keep the minimum Home Assistant version in `hacs.json`, the
-  `pytest-homeassistant-custom-component` pin in test requirements, the Python
-  version used by tests and `manifest.json` requirements consistent; update them
-  together.
+- Keep the minimum Home Assistant version in `hacs.json` and the README's
+  `Requires Home Assistant` line, the `pytest-homeassistant-custom-component` pin
+  in test requirements, the Python version used by tests and `manifest.json`
+  requirements consistent; update them together. The shared
+  `renovate/home-assistant.json5` preset raises the version pins in one grouped
+  update.
 - Run `mise run check`. CI also runs HACS and Hassfest validation; required CI
   must pass for the release revision.
 
