@@ -23,8 +23,10 @@ dependencies, Renovate or ignore rules, read only the relevant sections of
 ## Align Producers & Consumers
 
 Trace inventories, names, endpoints and settings from their owning source through
-generated outputs to consumers. Update both sides of a change rather than adding
-another manual copy. Before removing a port or changing an endpoint, trace and
+generated outputs to consumers. Check how consumers handle missing or unsupported
+values rather than assuming a successful render proves the contract. Update both
+sides of a change rather than adding another manual copy. Before removing a port
+or changing an endpoint, trace and
 update its consumers. Preserve generated inputs and meaningful interface order.
 
 Remove verified stale files after their workflow disappears. Omit explicit

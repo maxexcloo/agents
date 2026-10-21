@@ -67,8 +67,11 @@
   Inherit global Mise tools; declare only project-specific tools or overrides.
 - Use major tags for GitHub Actions, `latest` for CI/Mise tools unless one must be
   held back, and exact versions for deployed images, charts and providers. Never
-  pin digests or SHAs, except `latest@sha256:` for an image that publishes only
-  `latest`; keep lockfiles. Keep pins discoverable by Renovate's native managers.
+  pin image digests or Action SHAs, except `latest@sha256:` for an image that
+  publishes only `latest`. Pin fetched source to an immutable release revision
+  when no suitable release exists or reproducible source builds require it;
+  keep its update ownership explicit. Keep lockfiles and prefer Renovate's native
+  managers for discoverable pins.
 - Define names, domains, hostnames, versions, accounts and shared settings once,
   near their owner, and derive them elsewhere so a rename is a one-place edit. Add
   no indirection harder to follow than the duplication it removes. Split

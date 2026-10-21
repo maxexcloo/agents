@@ -28,7 +28,9 @@ For requested fork maintenance or upstream contributions, read
 
 ## Verify & Deliver
 
-Check affected behaviour. When a pass retires a feature, remove its
+Check affected behaviour using the actual producer payload and consumer path.
+Exercise the failure case behind each fix; use clean build state when cached
+outputs could hide missing dependencies. When a pass retires a feature, remove its
 configuration, consumers and generated outputs. Use proportional local checks
 and existing CI for expensive builds; required CI must pass for the current
 revision.
