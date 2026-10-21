@@ -18,6 +18,11 @@
   the start; later unrelated findings belong to the next batch. Do not invent work.
 - Run one final review after the last change; repeat checks only for new changes,
   failures or unresolved evidence.
+- Finish delivery by returning the primary checkout to `main`, removing the
+  task's merged local and remote branches and temporary worktrees, and pruning
+  stale remote-tracking references. Check for active sessions and uncommitted
+  work first; reconcile task-owned stashes and scratch files, and never discard
+  unrelated or unmerged work without authorisation.
 - Keep the final report short: status, material changes, verification, blockers
   and delivery state. Report material exceptions once; omit unsolicited next steps.
 - Use **Done** when required work and verification are complete, **Waiting** when
@@ -105,8 +110,18 @@
 - Run `git diff --check` and review the final diff and status after repository
   edits. Keep validation proportional to the change.
 - Use the project's verification commands, such as `mise run check` after code or
-  configuration changes unless project rules specify narrower checks. For prose,
-  check formatting, affected links and instruction consistency.
+  configuration changes unless project rules specify narrower checks. Run long
+  suites asynchronously alongside delivery. For prose, check formatting,
+  affected links and instruction consistency.
+- For ordinary changes, review the diff, run focused fast checks and merge to
+  `main` as soon as ready without waiting for the full test suite or remote CI.
+  Use a PR where the project requires one; enable auto-merge when required GitHub
+  checks prevent immediate merging, without bypassing those checks. Keep image
+  publication gated on its required checks, report pending verification honestly
+  and fix failures caused by the change. Pause for review before merging a large
+  or complex change.
+- For routine GitOps delivery, verify the changed workload and revision rather
+  than waiting for unrelated workloads or a whole-cluster reconciliation.
 - For site or app review, leave a local preview running from the project's
   development command and report its URL unless impractical; screenshots support
   it. Distinguish sample data or simulated operations from live behaviour.
