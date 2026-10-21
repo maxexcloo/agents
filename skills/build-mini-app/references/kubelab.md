@@ -63,12 +63,12 @@ pattern.
 
 Public reachability can use accounts, secret links or anonymous access. It is
 independent of authentication. For Pocket ID, use `PocketIDClient` with callback
-and launch URLs derived from the route; verify the supported access policy. The
-current integration can create public PKCE clients; confidential clients and their
-secret lifecycle require the existing credential process. Do not assume declaring
-a client creates its client secret. Use ExternalSecret and the existing 1Password
-store for credentials, referencing items by title; do not embed secret values in
-Git or tool output.
+and launch URLs derived from the route; verify the supported access policy against
+the current resource schema. Public PKCE clients use the public-client composition.
+For confidential clients, declare the receiving 1Password item title so the
+integration publishes the generated `oidc-client-secret` through its PushSecret.
+Consume it through ExternalSecret and the existing 1Password store; do not copy
+secret values into Git or tool output.
 
 For secret-link apps, expose only a safe landing page to Homepage and monitors.
 Check Traefik, Cloudflare, observability and application request logging before

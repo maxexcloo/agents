@@ -102,11 +102,6 @@ consistent.
   lockfiles, configuration, bootstrap steps, CI setup, maintenance rules, and
   documented commands.
 
-## Versions
-
-- Beyond the global version rules, use plain tags for Dockerfile base images,
-  without digests.
-
 ## Containers
 
 - Start Dockerfiles with `# syntax=docker/dockerfile:1`.
@@ -116,8 +111,7 @@ consistent.
 
 ## GitHub Actions
 
-- Use major tags for actions (see [Versions](#versions)). The owner-controlled
-  `maxexcloo/dotfiles` action may use `@main`.
+- The owner-controlled `maxexcloo/dotfiles` action may use `@main`.
 - Scope secrets to the steps that need them and set `persist-credentials: false`
   on checkout.
 - Group runs by workflow and ref and cancel superseded runs, except release tags.
