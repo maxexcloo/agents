@@ -35,6 +35,8 @@
 - Look for complexity to remove: needless layers, wrappers and indirection,
   duplication, custom code where a native feature fits, and hard-coded values
   that could be derived or discovered. The fix should leave less behind.
+- Flag things that do the same job differently within a project or across its
+  siblings, and converge them on the established pattern.
 - Judge everything against the project's established conventions so a fix stays
   fixed. Do not reopen settled choices, invent new conventions or flip earlier
   fixes; say so explicitly if a convention itself should change.
@@ -163,4 +165,5 @@ findings.
   actions, and sentence case for prose.
 - Comment only non-obvious behaviour, locally.
 - In unordered peer groups, put simple values before structured ones and sort
-  alphabetically; directories before files. Preserve meaningful order.
+  alphabetically; directories before files. Preserve meaningful order, with a
+  comment only where it may look accidental.
