@@ -3,18 +3,19 @@
 ## Containers
 
 - Start Dockerfiles with `# syntax=docker/dockerfile:1`.
-- Set the standard OCI labels (`org.opencontainers.image.source`, `revision` from
-  `github.sha` and `version`) in one place.
+- Set the standard OCI labels (`org.opencontainers.image.source`, `revision`
+  from `github.sha` and `version`) in one place.
 - Keep a `.dockerignore` beside each Dockerfile; keep every file the Dockerfile
   copies and exclude development-only file classes by wildcard.
 
 ## GitHub Actions
 
-- Use the owner's `maxexcloo/dotfiles` action at `@main`.
+- The owner's `maxexcloo/dotfiles` action may use `@main`.
 - Scope secrets to the steps that need them and set `persist-credentials: false`
   on checkout.
-- Group runs by workflow and ref and cancel superseded runs, except release tags.
-  Queue instead only when change detection diffs against the previous push.
+- Group runs by workflow and ref and cancel superseded runs, except release
+  tags. Queue instead only when change detection diffs against the previous
+  push; prefer diffing against the last successful run so cancelling stays safe.
 - Run checks, long suites and image builds as parallel jobs; only publication
   waits for all of them. Shard suites that take more than a few minutes.
 - Build multi-architecture images without QEMU, by cross-compiling from
@@ -22,24 +23,25 @@
 - Key caches on the version that determines their contents. Save large
   incremental caches only from the default branch.
 - Add no CodeQL default setup or other per-push scanners unless requested; they
-  use runner time without gating merges. Identify required checks before enabling
-  auto-merge.
+  use runner time without gating merges. Identify required checks before
+  enabling auto-merge.
 
 ## Hk
 
-- Use Hk for Git hooks in `hk.pkl`, with builtins where they exist; Mise provides
-  the tools they run. Skip hooks in small static repositories.
+- Use Hk for Git hooks in `hk.pkl`, with builtins where they exist; Mise
+  provides the tools they run. Skip hooks in small static repositories unless
+  they prevent a realistic error.
 - Match step file patterns to formatter coverage, checking ignore files first.
-- Run each validator once per check path; do not also run it through a nested
-  task. Schema validators and semantic linters complement each other.
+- Schema validators and semantic linters complement each other.
 
 ## Ignore Rules
 
 - Ignore only generated, secret, cache, state or local-configuration paths the
   project actually produces, with narrow patterns and trailing slashes for
   directories. Skip anything global excludes already cover.
-- Do not ignore an artefact just to hide it, and remove entries when their tool
-  goes.
+- Do not ignore an artefact just to hide it: leave `.venv` visible where a
+  project should use temporary environments instead. Remove entries when their
+  tool goes.
 
 ## Mise
 

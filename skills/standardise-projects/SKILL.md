@@ -5,8 +5,9 @@ description: Audit or align software repositories with the owner's standards for
 
 # Standardise Projects
 
-Align repositories with the standards in the global `AGENTS.md` and
-[Tooling Standards](references/tooling.md). Deviations are alignment items, not
+Align repositories with the standards in the global `AGENTS.md`,
+[Tooling Standards](references/tooling.md) and their sibling projects in
+`~/Projects`. Deviations are alignment items, not
 defects: list them briefly, grouped by repository, and leave a deviation alone
 when it has a reason or changing it would only churn.
 
@@ -15,8 +16,8 @@ when it has a reason or changing it would only churn.
 - Inventory with `git ls-files --cached --exclude-standard --others`, including
   manifests, CI, generated inputs and documented operations.
 - For each change, name the need, the owner and the consumers; keep a tool when
-  its use is uncertain. Check the current tree before dismissing an alert about a
-  deleted manifest as stale.
+  its use is uncertain. Check the current tree before dismissing an alert about
+  a deleted manifest as stale.
 - Trace names, endpoints and settings from their owner to their consumers and
   update both sides together. Patches and overrides must fail clearly when
   upstream assumptions stop matching.

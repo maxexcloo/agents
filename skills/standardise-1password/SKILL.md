@@ -14,25 +14,29 @@ description: Audit or reconcile 1Password vault organisation, item naming, field
 - Trace each item through applications, deployments, CI and shared accounts. Not
   being found in one repository does not mean an item is unused. Consumers use
   titles and field labels, so a rename updates every reference together.
+- Compare duplicates through metadata and lineage; examine historical
+  credentials only within the requested scope.
 
 ## Naming
 
 - Upstream API keys: `provider-<provider>[-<number>]-api-key`; access tokens:
-  `provider-<provider>[-<number>]-<token-type>-token`. Keep them in the consuming
-  application's item.
+  `provider-<provider>[-<number>]-<token-type>-token`. Keep them in the
+  consuming application's item.
 - Gateway-issued client keys: `virtual-key-<consumer>`; administration keys:
   `master-key`. Keep them in the gateway's item.
 - Keep descriptive names for application, database and sign-in secrets.
-- Group custom fields by purpose, with OAuth and OIDC under `Authentication`, and
-  remove empty groups. Keep standard username, password and URL fields, website
-  URLs, labels and primary flags.
+- Group custom fields by purpose, with OAuth and OIDC under `Authentication`,
+  and remove empty groups. Keep standard username, password and URL fields,
+  website URLs, labels and primary flags.
 - Do not repeat in a title or tag the scope the vault already gives.
 
 ## Reconcile & Verify
 
-- Reread metadata before editing and verify the saved item and its consumers.
-- Login tests are only for verifying reconciliation: use bounded attempts with a
-  known candidate, stop on lockout or rate limits, and verify an authenticated
-  operation, not just the login. Password login does not verify SSO.
+- Compare required fields and access scopes with each consumer's schema. Reread
+  metadata before editing and verify the saved item and its consumers.
+- Run authorised login tests only to verify reconciliation: use bounded attempts
+  with a known candidate, stop on lockout or rate limits, and verify an
+  authenticated operation against the intended endpoint, not just the login.
+  Password login does not verify SSO.
 - Verify a replacement and its consumers before deleting an authorised legacy
   item.

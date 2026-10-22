@@ -17,8 +17,8 @@ have to pick a framework, database or packaging. Keep working code in an
 existing app unless a change materially simplifies the request. Do not add a
 backend to a tool that works in the browser.
 
-- Browser-only: copy `minilab/templates/static`. Related static tools can share a
-  site; apps with separate data or access stay separate.
+- Browser-only: copy `minilab/templates/static`. Related static tools can share
+  a site; apps with separate data or access stay separate.
 - Backend: start from the closest app in `minilab/apps`, copying only the source
   it needs, with no build scripts or wrappers that add no runtime capability.
 
@@ -48,19 +48,21 @@ data before publishing.
 - **Public:** anonymous access is deliberate; define what is public. Public DNS
   does not imply anonymous data access.
 - **Secret Link:** a random editing URL grants access; keep this model where it
-  exists, without adding an account gate. Use high-entropy links, isolate records
-  by link and never list them. Keep real links out of logs, monitoring,
-  screenshots and reports, suppress referrers and caching, and use dummy links in
-  tests.
+  exists, without adding an account gate. Use high-entropy links, isolate
+  records by link and never list them. Keep real links out of logs, monitoring,
+  screenshots and reports, suppress referrers and caching, and use dummy links
+  in tests. If request logs cannot exclude link paths, carry the link in a URL
+  fragment sent as a redacted header or body. Note rotation behaviour beside the
+  app.
 
 ## Verify & Deliver
 
 - Exercise the requested behaviour, including denied access for the chosen
-  model. For persistent apps, check two clients, data isolation, concurrent edits
-  and persistence across a restart.
+  model. For persistent apps, check two clients, data isolation, concurrent
+  edits and persistence across a restart.
 - Render changed Kustomizations and Helm releases and inspect routes, storage,
   probes and secret references.
 - Do not report a local app as deployed. After merge, check DNS, TLS, Flux,
-  workload health and the main workflow from the intended network, including that
-  public access is gone when moving an app to private. Report only the landing
-  URL, never an editing link.
+  workload health and the main workflow from the intended network, including
+  that public access is gone when moving an app to private. Report only the
+  landing URL, never an editing link.

@@ -7,8 +7,8 @@ description: Audit or complete a requested maintenance pass for live hosts, serv
 
 ## Inventory
 
-1. Current failures: services, storage, backups and sync jobs. Separate them from
-   historical errors and devices that are expected to be offline.
+1. Current failures: services, storage, backups and sync jobs. Separate them
+   from historical errors and devices that are expected to be offline.
 2. Requested updates: compare installed versions with release notes for
    migrations and restarts.
 
@@ -22,10 +22,13 @@ description: Audit or complete a requested maintenance pass for live hosts, serv
   removing anything. Keep shared model weights, caches and runtime data outside
   repositories, and never let repository defaults overwrite live runtime data.
 - Preserve administrative access through network or authentication changes, and
-  keep downtime proportional. Do not add unsolicited backup layers or automation.
+  keep downtime proportional. Do not add unsolicited backup layers, automatic
+  model switching, GPU scheduling or shared data directories as incidental
+  cleanup.
 
 ## Verify
 
-Check the affected workflow from its client: a sync completes, a backup restores,
-a model generates. Then remove the authorised legacy copy and its leftovers
-(launch jobs, shortcuts, caches).
+Check the affected workflow from its client, such as a sync completing or a
+model generating. When a legacy copy's removal is authorised, verify the
+replacement first, then remove the copy and its leftovers (launch jobs,
+shortcuts, caches).

@@ -38,10 +38,11 @@ Entity search alone misses stored helpers and consumers. Collect:
 Judge against this home's own policy, discovered from the system, never another
 home's taxonomy. A policy choice is not a bug; say so. Classify each finding:
 
-- **Correctness:** broken references, runtime failures, invalid services, missing
-  helpers, dead triggers or active Repairs.
+- **Correctness:** broken references, runtime failures, invalid services,
+  missing helpers, dead triggers or active Repairs.
 - **Behavioural Risk:** working config that can act wrongly or conflict.
-- **Maintenance:** duplicated patterns, stale names or hard-to-maintain structure.
+- **Maintenance:** duplicated patterns, stale names or hard-to-maintain
+  structure.
 - **Cosmetic:** metadata, ordering, redundant defaults, noisy entities.
 
 Grade severity by consequence:
@@ -55,8 +56,5 @@ Grade severity by consequence:
 4. **Low:** cosmetic naming, icons, metadata, ordering or redundant config.
 
 An active Repair, missing entity or unusual mode is evidence to investigate, not
-a severity. Report Cosmetic and Low items after the rest. Fixes should hold, so
-judge each item against the home's established convention: never propose
-something that undoes an earlier fix or changes the convention itself without
-saying so. Name the entity and cite the config field, trace, state,
-Repair or log.
+a severity. Report Cosmetic and Low items after the rest. Name the entity and
+cite the config field, trace, state, Repair or log.
