@@ -32,6 +32,9 @@
 
 - Lead with what is broken or risky, then list minor findings (naming, metadata,
   consistency, tidiness) briefly after it. Minor findings are welcome.
+- Look for complexity to remove: needless layers, wrappers and indirection,
+  duplication, custom code where a native feature fits, and hard-coded values
+  that could be derived or discovered. The fix should leave less behind.
 - Judge everything against the project's established conventions so a fix stays
   fixed. Do not reopen settled choices, invent new conventions or flip earlier
   fixes; say so explicitly if a convention itself should change.
@@ -84,7 +87,8 @@
   a rough ETA.
 - Keep the final report short: status, material changes, verification, blockers
   and delivery state. Report material exceptions once. Use **Done**, **Waiting**
-  or **Blocked**; checks that could not run prevent an unqualified Done.
+  or **Blocked**; checks that could not run prevent an unqualified Done. End
+  with numbered next steps when real ones remain; when nothing is left, say so.
 - For site or app work, leave a local preview running and report its URL unless
   impractical. Distinguish sample data from live behaviour.
 

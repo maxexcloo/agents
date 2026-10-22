@@ -5,8 +5,8 @@ description: Audit or complete a requested software repository maintenance pass 
 
 # Maintain Projects
 
-Find what is broken or pending and fix it; do not restructure working code or
-apply standards here (that is `standardise-projects`).
+Find what is broken, pending or needlessly complex and fix it. Deliberate
+alignment with the standards is `standardise-projects`.
 
 ## Inventory
 
@@ -16,7 +16,10 @@ apply standards here (that is `standardise-projects`).
    with `mise run dependencies:update`, including versions embedded in scripts
    or templates. Review major upgrades separately, and update version
    declarations, CI matrices and runtime setup together.
-4. Minor findings: literals that duplicate an owner's value, required settings
+4. Complexity to remove: needless layers, wrappers and scripts, custom code a
+   native feature replaces, and hard-coded values that could be derived or
+   discovered.
+5. Minor findings: literals that duplicate an owner's value, required settings
    with defaults or fallbacks, and references to generated IDs.
 
 ## Fix & Verify
