@@ -244,3 +244,29 @@ From the homeassistant-beszel-integration KISS audit (2026-10-22).
 - [ ] Confirms the rarely-relevant-sections item: maintain-projects Fix &
       Verify and fork alignment, standardise-projects GitHub Settings and the
       global Addresses, local preview and parallel-agent rules did not apply.
+
+From the homelab KISS audit (2026-10-22).
+
+- [ ] Confirms the flylab required-settings item: homelab's SSH and client sync
+      scripts gained hand-written "required and must be a non-empty string"
+      checks and a unittest asserting their messages, though `yq -e` already
+      fails naming the path.
+- [ ] Confirms the "derived or discovered" item: homelab's published host
+      address chains five fallbacks for one cluster, and one step could never
+      return a value.
+- [ ] Global audit rules say not to report optional hardening, but nothing says
+      to remove guards that duplicate the provider or API. homelab carries 32
+      OpenTofu preconditions and validations (Tailscale tags, CNAME conflicts,
+      OCI shape limits, one-time adoption checks). Add "Prefer deleting
+      validation the provider or API already performs." The auto mode
+      classifier blocked removing them, and even read-only greps for them, as
+      "Security Weaken", so these removals need explicit owner approval.
+- [ ] homelab `AGENTS.md` "prefer write-only arguments" plus "automatic tracking"
+      of 1Password versions produced 20+ timestamp `terraform_data` resources
+      and a `pow(2, 61)` offset, though most values are already in state.
+      Switching to plain values was blocked as security weakening, so the owner
+      must choose: keep the rule, or accept the secrets in state and cut it.
+      The TrueNAS adoption paragraph and Control D exception there are change
+      history, and the Style ordering rules are cosmetic; trim them.
+- [ ] Confirms the `dependencies:update` and rarely-relevant-sections items:
+      GitHub Settings and tooling.md Containers did not apply to homelab.
