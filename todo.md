@@ -75,3 +75,14 @@ From the tofusort KISS audit (2026-10-22).
 - [ ] Global "update existing documentation the change affects" plus a project
       rule to update the README and `docs/architecture.md` kept the same
       behaviour in three files. Say behaviour is documented once.
+
+From the local-services KISS audit (2026-10-22).
+
+- [ ] Global Audits "hard-coded values that could be derived or discovered"
+      invites indirection in tiny repositories, such as variables for a single
+      image version. Limit it to values duplicated across files.
+- [ ] Project `AGENTS.md` files copy global rules despite the global ban
+      (local-services repeated Renovate, image pinning, README and validation
+      rules). Have standardise-projects check for and delete such copies.
+- [ ] Confirms the minor-findings and duplicated "complexity to remove" items
+      above: local-services had about 15 simplify commits in a week on six files.
