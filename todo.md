@@ -100,3 +100,20 @@ From the minilab KISS audit (2026-10-22).
 - [ ] Moving project rules out of global guidance put Kubelab-owned rules (DNS
       targets, wildcard certificate depth) into minilab's `AGENTS.md`. Move
       platform rules to the repository that owns the platform.
+
+From the bluemax KISS audit (2026-10-22).
+
+- [ ] tooling.md "Queue instead only when change detection diffs against the
+      previous push; prefer diffing against the last successful run" treats
+      custom change detection as normal. bluemax carried 22 lines of diff logic,
+      a queue, a skip-list rule and a README paragraph to skip docs builds. Say
+      "Cancel superseded runs; prefer always building or `paths-ignore` over
+      custom change detection." Once no workflow uses `queue`, drop the
+      actionlint ignore in the shared `check:actions`.
+- [ ] Global "sort alphabetically" in peer groups put bluemax's README Licence
+      section between Installation and Streaming. Exempt document sections and
+      other prose order.
+- [ ] Confirms the AGENTS.md copy, duplicated "complexity to remove" and
+      rarely-relevant-sections items above: bluemax's `AGENTS.md` repeated the
+      README and the global check rule, and maintain-projects fork alignment and
+      tooling.md Containers, Hk, Mise and Tests did not apply.
