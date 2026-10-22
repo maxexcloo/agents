@@ -42,3 +42,17 @@ From the maxexcloo KISS audit (2026-10-22).
 - [ ] Global Verification and Delivery assume code projects (`mise run check`,
       previews, branch cleanup). Keep principles globally and move commands into
       the skills.
+
+From the signtools-builder KISS audit (2026-10-22).
+
+- [ ] Agents record each fix as code, a test, a project `AGENTS.md` rule, a
+      README paragraph and an inline comment (signtools-builder stated its
+      upstream re-review rule three times). Add "State each invariant once, in
+      `AGENTS.md` or a local comment; the README does not repeat it."
+- [ ] Shared Mise `check` omits `test:python` and there is no shared `fmt`
+      aggregate, so every repository with tests copies the check list and drifts
+      (signtools-builder silently dropped `check:shell`). Add `test:python`,
+      skipped without `tests/`, and a shared `fmt` so most project
+      `.mise.toml` files can go.
+- [ ] standardise-projects "name the need, the owner and the consumers" for each
+      change pushes toward write-ups over deletions; limit it to removals.
