@@ -182,3 +182,20 @@ From the esphome KISS audit (2026-10-22).
 - [ ] Bulk reads with a shell glob (`cat *.yaml`) pulled a gitignored secrets
       file into context; the secret-guard hook reported a redaction but the
       persisted output kept the values. Say to inventory with `git ls-files`.
+
+From the homeassistant-energy-locals-integration KISS audit (2026-10-22).
+
+- [ ] build-home-assistant-integration "Test every flow step end to end: success,
+      each error, duplicate abort, unique ID mismatch …" contradicts the global
+      "few, simple tests" (tests had reached 335 and 615 lines). Limit it to
+      paths that risk data loss or block reauthentication.
+- [ ] Project invariants such as "never overwrite statistics with incomplete
+      history" each drew another safety layer (#19, #29, `62a2368`), ending in
+      a persisted reset state machine with rollback. Add "Meet an invariant
+      with the smallest mechanism; add no recovery path for a state the user
+      can fix with an existing action."
+- [ ] Confirms the Actions major-tag item above: with no major tag published, a
+      session pinned HACS and Hassfest to SHAs, breaking the global no-SHA rule.
+- [ ] Confirms the shared `check` item above: both Home Assistant integrations
+      copy the shared check list to add `test:python`, and a `check:*` wildcard
+      is no substitute because it also runs checks the shared `check` omits.
