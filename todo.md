@@ -199,3 +199,23 @@ From the homeassistant-energy-locals-integration KISS audit (2026-10-22).
 - [ ] Confirms the shared `check` item above: both Home Assistant integrations
       copy the shared check list to add `test:python`, and a `check:*` wildcard
       is no substitute because it also runs checks the shared `check` omits.
+
+From the dotfiles KISS audit (2026-10-22).
+
+- [ ] Global "Pin fetched source … to an immutable revision" produced checksums
+      and a documented manual update process for the chezmoi skill externals,
+      which kept Renovate out. Say a `# renovate:` comment on an immutable
+      revision is enough; checksums are not needed.
+- [ ] tooling.md Hk "Skip hooks in small static repositories" would drop the
+      only ShellCheck coverage of the extensionless secret-guard hook, which
+      the shared `check:shell` (`*.sh` only) misses. Note the exception, or let
+      `check:shell` find scripts by shebang.
+- [ ] Confirms the shared `check` item: the dotfiles audit found the aggregate
+      unused and proposed deleting it and its input guards, the opposite of
+      extending it. Extending it won (dotfiles `simplify-tooling`); say shared
+      task changes go through the dotfiles owner so parallel audits converge.
+- [ ] Confirms the rarely-relevant-sections and Verification/Delivery items:
+      GitHub Settings, Delivery and Addresses did not apply to the dotfiles
+      audit.
+- [ ] Global "Use Australian English … keep upstream names" adds noise to every
+      session for little effect; fold it into one Style line.
