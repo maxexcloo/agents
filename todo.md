@@ -56,3 +56,22 @@ From the signtools-builder KISS audit (2026-10-22).
       `.mise.toml` files can go.
 - [ ] standardise-projects "name the need, the owner and the consumers" for each
       change pushes toward write-ups over deletions; limit it to removals.
+
+From the tofusort KISS audit (2026-10-22).
+
+- [ ] tooling.md "Run checks, long suites and image builds as parallel jobs;
+      only publication waits" would split a two-job, two-minute pipeline into
+      three. Limit it to suites slow enough for parallelism to matter.
+- [ ] tooling.md "Keep a `.dockerignore` beside each Dockerfile … exclude
+      development-only file classes by wildcard" invites churn on multi-stage
+      scratch images (tofusort #35 and #36 share one title). Require it only
+      where context size or cache busting matters.
+- [ ] tooling.md "Set the standard OCI labels … in one place" reads as a to-do
+      though `docker/metadata-action` already sets them. Cut it or say the
+      action's labels suffice.
+- [ ] tooling.md "adding others only when needed" did not stop one-line wrapper
+      tasks (`install`, `cleanup`, `lint`). Say "add a task only for more than
+      one command or a command the shared tasks lack".
+- [ ] Global "update existing documentation the change affects" plus a project
+      rule to update the README and `docs/architecture.md` kept the same
+      behaviour in three files. Say behaviour is documented once.
