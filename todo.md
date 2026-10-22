@@ -162,3 +162,23 @@ From the images KISS audit (2026-10-22).
       the owner's artefact.
 - [ ] Confirms the fork-alignment, `dependencies:update` and Hk
       rarely-relevant items: none applied to images.
+
+From the esphome KISS audit (2026-10-22).
+
+- [ ] tooling.md "Key caches on the version that determines their contents.
+      Save large incremental caches only from the default branch" produced a
+      version-reading step, two caches and a main-only save for one compile.
+      Limit it to caches that measurably shorten runs.
+- [ ] Confirms the `dependencies:update` and fork-alignment items: neither
+      applied to esphome.
+- [ ] Confirms the project `AGENTS.md` item: esphome's restated global rules
+      (meaningful order, omit defaults, verification) and README commands.
+- [ ] The shared Mise action runs `jq` in its `project-tools` step, so every
+      caller must list `jq` in `tools`. The action should provide its own
+      dependency.
+- [ ] tooling.md says to mark pins with `# renovate:` comments, but esphome
+      grew a local regex manager duplicating the shared `git-refs` comment
+      manager. Name the shared managers so agents reuse them.
+- [ ] Bulk reads with a shell glob (`cat *.yaml`) pulled a gitignored secrets
+      file into context; the secret-guard hook reported a redaction but the
+      persisted output kept the values. Say to inventory with `git ls-files`.
