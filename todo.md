@@ -219,3 +219,28 @@ From the dotfiles KISS audit (2026-10-22).
       audit.
 - [ ] Global "Use Australian English … keep upstream names" adds noise to every
       session for little effect; fold it into one Style line.
+
+From the homeassistant-beszel-integration KISS audit (2026-10-22).
+
+- [ ] Global "Never pin … Action SHAs" contradicts "Pin fetched source without
+      a suitable release to an immutable revision"; the second rule produced
+      the HACS and Hassfest SHA pins. Exempt GitHub Actions from it (confirms
+      the Actions major-tag item).
+- [ ] Global "Do not keep legacy compatibility … or migration shims unless
+      asked" pulls against build-home-assistant-integration ("Changing an ID
+      requires a registry migration") and project stable-name rules; agents
+      resolved it by adding migrations plus README migration notes. Say that
+      published integrations migrate in code and describe upgrades only in
+      release notes.
+- [ ] build-home-assistant-integration pushes beyond what small integrations
+      need: "Test every flow step end to end: success, each error, duplicate
+      abort, unique ID mismatch…" contradicts "prefer few, simple tests";
+      "typed through a `ConfigEntry[...]` alias" invites a typing layer in
+      untyped code; `_abort_if_unique_id_mismatch` in reconfigure is wrong
+      where reconfigure deliberately changes host or username. Cut or soften.
+- [ ] build-home-assistant-integration Pins & Checks repeats what project
+      `AGENTS.md` files and the shared Renovate preset say; keep it in the
+      skill only (confirms the project `AGENTS.md` item).
+- [ ] Confirms the rarely-relevant-sections item: maintain-projects Fix &
+      Verify and fork alignment, standardise-projects GitHub Settings and the
+      global Addresses, local preview and parallel-agent rules did not apply.
