@@ -10,8 +10,8 @@ triggers and helpers, templates, automation modes, `device_id`, backups and the
 generic rename workflow. This skill adds the audit and this home's policy.
 
 1. Check correctness first, then behaviour, then organisation, using
-   [Audit Checks](references/checks.md). Organisation checks run only when the user
-   asks for organisation or a check has a functional consequence.
+   [Audit Checks](references/checks.md). Run every section, including minor
+   organisation checks.
 2. Before any change, rename or deletion, follow
    [Changes & Verification](references/changes.md).
 3. For requested updates, compare installed versions with official release notes
@@ -55,6 +55,8 @@ Grade severity by consequence:
 4. **Low:** cosmetic naming, icons, metadata, ordering or redundant config.
 
 An active Repair, missing entity or unusual mode is evidence to investigate, not
-a severity. Report Cosmetic and Low items only when the user asks for an
-organisation review. Name the entity and cite the config field, trace, state,
+a severity. Report Cosmetic and Low items after the rest. Fixes should hold, so
+judge each item against the home's established convention: never propose
+something that undoes an earlier fix or changes the convention itself without
+saying so. Name the entity and cite the config field, trace, state,
 Repair or log.

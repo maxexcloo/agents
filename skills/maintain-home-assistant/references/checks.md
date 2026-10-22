@@ -72,8 +72,7 @@ failure.
 
 ## Organisation
 
-Only when the user asks for organisation or a check has a functional
-consequence, and only against the home's own policy.
+Judge against the home's own established policy, so a fixed item stays fixed.
 
 - **Areas and floors:** room-scoped objects need areas only when the home uses
   area targeting or filtering. Functional areas (Home, Network, Homelab,
