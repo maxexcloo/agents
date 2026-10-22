@@ -2,18 +2,10 @@
 
 Shared agent guidance and the skills I've written myself.
 
-## Choose a Skill
-
-[Skill Selection](AGENTS.md#skill-selection) sets when each agent should use a
-skill. The skills below cover requested maintenance and alignment passes, mini
-apps and Home Assistant integration development. Ordinary feature work, targeted
-fixes and research don't need a broad audit skill. Specialised tool skills keep
-their own triggers.
-
 ## Contents
 
 - [skills/](skills/): task procedures and their supporting references.
-- [AGENTS.md](AGENTS.md): personal defaults, structure, sorting and completion rules.
+- [AGENTS.md](AGENTS.md): personal defaults, audit, verification and delivery rules and standards.
 
 Project-specific invariants and exceptions stay in each project's `AGENTS.md`.
 Codex's system skills and vendor plugins stay in their application-managed locations.
@@ -28,6 +20,11 @@ Edit the files here, as the application paths are symlinks to them. After prose
 changes, check Markdown formatting, relative links and that the instructions
 still agree with each other. Validate changed skills with the available skill
 validator.
+
+Keep the rules few. Fix a one-off mistake where it happened; add a rule only when
+the same mistake recurs, written as the general principle rather than the
+incident, and remove or merge an older rule when adding one. Each rule lives in
+one place.
 
 ## Setup
 
@@ -54,5 +51,4 @@ from this checkout, prefixed `agents:`.
 | [maintain-systems](skills/maintain-systems/SKILL.md)                                 | Check and maintain live hosts, services, storage, backups and synchronisation.                    |
 | [maintain-unifi](skills/maintain-unifi/SKILL.md)                                     | Review UniFi device health, client naming, network settings and authorised cleanup.               |
 | [standardise-1password](skills/standardise-1password/SKILL.md)                       | Reconcile vaults, naming, fields and credential consumers without exposing values.                |
-| [standardise-github](skills/standardise-github/SKILL.md)                             | Review and align GitHub repository metadata and settings.                                         |
-| [standardise-projects](skills/standardise-projects/SKILL.md)                         | Simplify project structure, tooling, data ownership and instruction layers.                       |
+| [standardise-projects](skills/standardise-projects/SKILL.md)                         | Align repositories and GitHub settings with the standards.                                        |

@@ -5,49 +5,34 @@ description: Audit or reconcile 1Password vault organisation, item naming, field
 
 # Standardise 1Password
 
-## Trace Ownership & Consumers
+## Discover
 
-Use metadata-only discovery and inspect item-detail schemas before reading:
-responses may include credentials even when only names are needed.
+- Use metadata only. Check an item-detail response's schema before reading it;
+  it may contain credentials even when you need only names.
+- Separate repository-generated fields, which you fix at their source, from
+  manually supplied credentials.
+- Trace each item through applications, deployments, CI and shared accounts. Not
+  being found in one repository does not mean an item is unused. Consumers use
+  titles and field labels, so a rename updates every reference together.
 
-Distinguish repository-generated fields from manually supplied credentials.
-Update generated metadata in its source; do not overwrite one ownership class
-to repair the other.
+## Naming
 
-Trace item references and field labels through applications, deployments and CI,
-including shared-account consumers. Absence from one repository does not prove
-an item has no external consumer. Consumers reference items and vaults by
-title, never by ID, so renaming an item renames its references together. Compare
-duplicates through metadata and
-lineage; examine historical credentials only within the requested scope.
-
-## Name & Group Fields
-
-Name upstream API keys `provider-<provider>[-<number>]-api-key` and access tokens
-`provider-<provider>[-<number>]-<token-type>-token`; keep them in the consuming
-application's item. Name gateway-issued client keys `virtual-key-<consumer>` and
-administration keys `master-key`; keep them in the issuing gateway's item.
-Preserve descriptive names for application, database and sign-in secrets.
-
-Group custom fields by purpose, with OAuth and OIDC fields under `Authentication`,
-and remove empty groups. Update field references and generation declarations
-together. Preserve existing website URLs, labels and primary flags.
+- Upstream API keys: `provider-<provider>[-<number>]-api-key`; access tokens:
+  `provider-<provider>[-<number>]-<token-type>-token`. Keep them in the consuming
+  application's item.
+- Gateway-issued client keys: `virtual-key-<consumer>`; administration keys:
+  `master-key`. Keep them in the gateway's item.
+- Keep descriptive names for application, database and sign-in secrets.
+- Group custom fields by purpose, with OAuth and OIDC under `Authentication`, and
+  remove empty groups. Keep standard username, password and URL fields, website
+  URLs, labels and primary flags.
+- Do not repeat in a title or tag the scope the vault already gives.
 
 ## Reconcile & Verify
 
-Apply the user's vault conventions without repeating scope already carried by
-the vault. Preserve standard username, password and URL fields and required
-consumer metadata. Update references and consumers together.
-
-Compare required fields and access scopes with the consumer's schema. Reread
-affected metadata before editing and verify the saved item and its consumers.
-
-For authorised login tests needed to verify reconciliation, distinguish password,
-token and SSO methods. Use bounded attempts with a known candidate; stop on
-lockout, rate limiting or unexpected account behaviour.
-Verify the intended endpoint and an authenticated operation with the required
-permissions; a successful login alone does not establish consumer access.
-
-Verify a replacement and its consumers before deleting an authorised legacy
-item. Password login does not verify SSO or every integration. Separate verified
-logins from metadata corrections and unverified consumers.
+- Reread metadata before editing and verify the saved item and its consumers.
+- Login tests are only for verifying reconciliation: use bounded attempts with a
+  known candidate, stop on lockout or rate limits, and verify an authenticated
+  operation, not just the login. Password login does not verify SSO.
+- Verify a replacement and its consumers before deleting an authorised legacy
+  item.

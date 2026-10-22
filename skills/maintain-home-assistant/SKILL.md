@@ -5,28 +5,56 @@ description: Audit or complete a requested Home Assistant maintenance pass cover
 
 # Maintain Home Assistant
 
-Read [Operating Rules](references/00-operating-rules.md) for finding classification
-and rename/deletion safeguards.
+Load the ha-mcp `home-assistant-best-practices` skill first; it covers native
+triggers and helpers, templates, automation modes, `device_id`, backups and the
+generic rename workflow. This skill adds the audit and this home's policy.
 
-## Load the Relevant Checks
+1. Check correctness first, then behaviour, then organisation, using
+   [Audit Checks](references/checks.md). Organisation checks run only when the user
+   asks for organisation or a check has a functional consequence.
+2. Before any change, rename or deletion, follow
+   [Changes & Verification](references/changes.md).
+3. For requested updates, compare installed versions with official release notes
+   for core, apps, integrations, HACS, blueprints and firmware in scope, and
+   identify reloads and affected automations. ESPHome firmware follows the
+   `esphome` repository's `AGENTS.md`.
 
-1. [Scope & Correctness](references/01-scope-correctness.md): inventory, Repairs,
-   references, helpers, traces and startup recovery. Check correctness first.
-2. [Behaviour & Implementation](references/02-behaviour-implementation.md):
-   conflicting writers, controllers, overrides, modes, capabilities and timing.
-3. [Organisation & Hygiene](references/03-organisation-hygiene.md): local taxonomy,
-   metadata, exposure, integration health and bloat.
+## Inventory
 
-Discover current schemas, follow pagination and inspect partial results. Entity
-search alone does not cover every configuration or consumer. Judge metadata
-against this home's policy rather than assuming labels or floors are required.
+Tool fields depend on the installed version: discover current schemas, follow
+`has_more`/`next_offset` pagination and treat errors or partial results as gaps.
+Entity search alone misses stored helpers and consumers. Collect:
 
-For requested release reviews or updates, compare installed versions and
-compatibility with official notes. Include core, apps/add-ons, integrations,
-HACS, blueprints and firmware only within scope; identify necessary reloads and
-verify affected automations. ESPHome firmware work follows the `esphome`
-repository's `AGENTS.md`.
+- Entities, areas, floors, categories, labels, dashboards and integrations.
+- Helpers with `ha_config_list_helpers(helper_type="all", limit=200)` where
+  supported, otherwise storage and Config Entry helpers separately: counter,
+  input helpers, person, schedule, tag, timer, zone, groups, min/max, templates,
+  thresholds, time-of-day, switch-as-X and utility meters.
+- Repairs with `ha_get_system_health(include="repairs")`, before and after the
+  fix batch.
 
-For changes, read [Verification & Delivery](references/04-verification-delivery.md)
-and compare the affected workflow's behaviour before and after. Configuration
-validation alone does not establish that its triggers or controller events work.
+## Findings
+
+Judge against this home's own policy, discovered from the system, never another
+home's taxonomy. A policy choice is not a bug; say so. Classify each finding:
+
+- **Correctness:** broken references, runtime failures, invalid services, missing
+  helpers, dead triggers or active Repairs.
+- **Behavioural Risk:** working config that can act wrongly or conflict.
+- **Maintenance:** duplicated patterns, stale names or hard-to-maintain structure.
+- **Cosmetic:** metadata, ordering, redundant defaults, noisy entities.
+
+Grade severity by consequence:
+
+1. **Critical:** safety, security, leak detection, locks, alarms, critical
+   presence, backups or critical notifications.
+2. **High:** broken room workflows or routines, or conflicts and misleading
+   descriptions likely to cause wrong behaviour.
+3. **Medium:** non-critical dashboard or optional-target failures, or limited
+   maintenance and behavioural risk.
+4. **Low:** cosmetic naming, icons, metadata, ordering or redundant config.
+
+An active Repair, missing entity or unusual mode is evidence to investigate, not
+a severity. Report Cosmetic and Low items only when the user asks for an
+organisation review. Name the entity and cite the config field, trace, state,
+Repair or log.

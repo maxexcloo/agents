@@ -5,97 +5,62 @@ description: Build and publish small self-hosted apps through Kubelab, from Simo
 
 # Build Mini Apps
 
-Turn a requested tool into a working application and, when authorised, a verified
-URL, for new or existing apps. Read `minilab/AGENTS.md` and `kubelab/AGENTS.md`
-first: they own app layout, identity, routing, UI defaults, storage rules and
-delivery. Locate both repositories from the workspace and read the owning
-configuration before editing.
+Turn a requested tool into a working app and, when authorised, a verified URL.
+`minilab/AGENTS.md` and `kubelab/AGENTS.md` own app layout, routing, storage,
+secrets and delivery; read them first and follow them rather than this skill
+where they differ.
 
-## Decide the Stack
+## Stack
 
-Start with the behaviour and audience. Choose the simplest suitable stack; the
-user should not have to choose a framework, database or packaging. For an existing
-app, retain working code unless a change materially simplifies the requested work.
-Honour explicit technical constraints. Do not add a backend to a tool that can
-work entirely in the browser. Plain HTML/CSS/JavaScript is a good default for
-converters, calculators and visualisers. Related static tools can share a site;
-separate apps with independent data or access boundaries.
+Choose the simplest stack for the behaviour and audience; the user should not
+have to pick a framework, database or packaging. Keep working code in an
+existing app unless a change materially simplifies the request. Do not add a
+backend to a tool that works in the browser.
 
-For browser-only apps, copy `minilab/templates/static` and rename it
-consistently; do not publish the starter as a separate app. For a backend, start
-from the closest existing app under `minilab/apps`, copying only the runtime
-source the app needs. Avoid dependencies, build scripts and task wrappers that add
-no runtime capability, and keep meaningful data tests separate from the editable
-app. Preserve existing licences; new projects use canonical AGPL-3.0.
+- Browser-only: copy `minilab/templates/static`. Related static tools can share a
+  site; apps with separate data or access stay separate.
+- Backend: start from the closest app in `minilab/apps`, copying only the source
+  it needs, with no build scripts or wrappers that add no runtime capability.
 
-Choose the combination that removes the most app code and operational work. These
-are examples, not an approved stack list:
+| Recipe          | Useful When                                                                    |
+| --------------- | ------------------------------------------------------------------------------ |
+| Browser storage | Data can stay on one device.                                                   |
+| PocketBase      | Built-in accounts, collection APIs, uploads, realtime or admin replace code.   |
+| PostgreSQL      | Several replicas or concurrent writers; use the existing CloudNativePG setup.  |
+| Small server    | Custom validation, integrations or transformations; Node.js, Go or Python fit. |
+| SQLite          | One instance needs transactional persistence.                                  |
 
-| Recipe          | Useful When                                                                                                                                       |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Browser storage | Data can stay on one device; no server or shared persistence is needed.                                                                           |
-| PocketBase      | Built-in accounts, collection APIs, uploads, realtime updates or an admin UI replace custom code.                                                 |
-| PostgreSQL      | Relational data needs multiple app replicas, concurrent writers or capabilities beyond an embedded store; use the existing CloudNativePG pattern. |
-| Small server    | Custom validation, integrations or transformations need a backend; omit storage for stateless work. Node.js, Go or Python can all fit.            |
-| SQLite          | A single app instance needs transactional persistence with little operational overhead.                                                           |
+These are examples, not an approved list. Keep UI and API on one origin and
+credentials server-side. For PocketBase, use an app-scoped instance, commit
+migrations, keep administration private and define collection rules: sign-in
+alone does not restrict record access. Services with substantial dependencies or
+operations belong in their own repositories, not here.
 
-Keep UI and API on the same origin where practical; credentials stay server-side.
-Other datastores and object storage are reasonable for a concrete need; derive
-endpoints and credentials from their owning integrations rather than adding a
-parallel platform.
+## Access
 
-For PocketBase, use an app-scoped instance and volume, commit collection migrations,
-keep administration private and define collection rules for the intended users
-and data ownership. Its built-in authentication can be the app's account system.
-Test unauthenticated and other-user access because authentication alone does not
-establish record access. Check the current
-[authentication](https://pocketbase.io/docs/authentication/),
-[API rules](https://pocketbase.io/docs/api-rules-and-filters/) and
-[production guidance](https://pocketbase.io/docs/going-to-production/) before
-choosing it.
+Reachability and authorisation are separate decisions. Keep the user's existing
+choices; otherwise default to private. Decide who can read and change sensitive
+data before publishing.
 
-Keep this workflow to small browser tools and simple backends. A custom container
-being technically possible does not make an existing service a good migration
-candidate; services with substantial dependencies or operations keep their own
-repositories.
-
-## Decide Access & Publication
-
-Treat reachability and application authorisation as separate decisions. Carry
-forward the user's existing choices; otherwise default to internal reachability.
-For sensitive stored data, establish who can read and change it before publishing.
-Derive hostnames and URLs from app identity; keep app-specific gateway, Homepage,
-storage, resource limits and credential references beside the workload.
-
-- **Account:** use the backend's built-in authentication when it meets the app's
-  needs, or the established Pocket ID/OIDC integration for shared sign-in. Verify
-  provider compatibility before choosing a library or backend. Apply authorisation
-  to API routes as well as pages; decide whether data is per-user or shared. Do not
-  substitute trusted-header authentication without a verified authenticating proxy.
-- **Public:** anonymous access is intentional; define which reads and writes are
-  public. Public DNS does not imply anonymous data access.
-- **Secret Link:** possession of a randomly generated editing URL grants access.
-  Preserve this model where an app already uses it; do not add an account gate.
-  Use high-entropy generated capabilities for new links, isolate records by their
-  capability and avoid listing them. Keep real capability URLs out of logs,
-  monitoring, dashboards, screenshots and reports. Use dummy capabilities in tests.
-  Suppress referrer leakage and caching. Rotation/revocation is app-specific.
-
-Read [references/kubelab.md](references/kubelab.md) for workload, routing, DNS,
-identity, persistence, image handoff and live verification. Existing Kubelab and
-mini-app resources are authoritative; do not define a new application schema,
-manifest generator, operator or deployment platform.
+- **Account:** the backend's built-in auth, or Pocket ID for shared sign-in.
+  Protect API routes as well as pages. Never trust headers without a verified
+  authenticating proxy.
+- **Public:** anonymous access is deliberate; define what is public. Public DNS
+  does not imply anonymous data access.
+- **Secret Link:** a random editing URL grants access; keep this model where it
+  exists, without adding an account gate. Use high-entropy links, isolate records
+  by link and never list them. Keep real links out of logs, monitoring,
+  screenshots and reports, suppress referrers and caching, and use dummy links in
+  tests.
 
 ## Verify & Deliver
 
-Use the app's own checks and exercise its important behaviour. For a persistent
-app, verify two independent clients, data isolation, concurrent edit handling and
-restart persistence. Exercise the chosen authorisation model, including negative
-cases. Test the requested functionality, not a framework or the starter's example.
-
-Build a custom image only when the app needs one. Render changed Kustomizations
-and Helm releases; inspect the rendered route, service, storage, probes and secret
-references. Do not report a locally working app as deployed. After merge, verify
-DNS, TLS, Flux, workload health and the app's important workflow from the intended
-access boundary. Report the public entry URL only; never return an editing
-capability as a deployment URL.
+- Exercise the requested behaviour, including denied access for the chosen
+  model. For persistent apps, check two clients, data isolation, concurrent edits
+  and persistence across a restart.
+- Render changed Kustomizations and Helm releases and inspect routes, storage,
+  probes and secret references.
+- Do not report a local app as deployed. After merge, check DNS, TLS, Flux,
+  workload health and the main workflow from the intended network, including that
+  public access is gone when moving an app to private. Report only the landing
+  URL, never an editing link.

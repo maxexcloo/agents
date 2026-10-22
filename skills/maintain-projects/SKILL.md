@@ -5,40 +5,26 @@ description: Audit or complete a requested software repository maintenance pass 
 
 # Maintain Projects
 
-## Inventory the Work
+Find what is broken or pending and fix it; do not restructure working code or
+apply standards here (that is `standardise-projects`).
 
-Read open issues, PRs, recent CI failures and pending dependency updates when
-GitHub is in scope. Check existing PRs before duplicating a fix.
+## Inventory
 
-Preview dependency updates with `mise run dependencies:check`, which runs Renovate
-locally without writing files. Open reviewed updates as pull requests with
-`mise run dependencies:update`, honouring project compatibility rules, and run
-project checks on each. Review major upgrades separately.
+1. Open issues and PRs; check existing PRs before duplicating a fix.
+2. Recent CI failures on the default branch.
+3. Pending updates: preview with `mise run dependencies:check` and open them with
+   `mise run dependencies:update`. Review major upgrades separately, and update
+   version declarations, CI matrices and runtime setup together.
 
-Inventory dependency and lockfile updates, runtime/tool pins, Actions, images and
-versions embedded in scripts or templates. Review compatibility, migrations and
-obsolete workarounds before adopting newer stable releases. Update supported
-version declarations, CI matrices and runtime setup together.
+## Fix & Verify
 
-Report literals that duplicate an owner's value, required settings with defaults
-or fallbacks, and references to generated IDs as findings.
-
-For requested fork maintenance or upstream contributions, read
-[Fork Maintenance](references/forks.md).
-
-## Verify & Deliver
-
-Check affected behaviour using the actual producer payload and consumer path.
-Exercise the failure case behind each fix; use clean build state when cached
-outputs could hide missing dependencies. When a pass retires a feature, remove its
-configuration, consumers and generated outputs. Use proportional local checks
-and existing CI for expensive builds; required CI must pass for the current
-revision.
-
-When checks depend on shared configuration or Actions, verify consumers against
-the committed provider revision used by CI, rather than only the locally
-installed configuration.
-
-Passing CI alone does not prove an issue is resolved. Verify the reported failure
-before closing it. After an authorised deployment, check the affected workload or
-reconciliation state and refresh requested exports through existing project tasks.
+- Reproduce the reported failure and verify the fix against it; passing CI alone
+  does not close an issue.
+- When checks use shared configuration or Actions, verify against the revision
+  CI uses, not only the local copy.
+- When a fix retires a feature, remove its configuration, consumers and outputs.
+- For fork alignment, identify the upstream and target branch from remotes and
+  owning configuration, not a remote name or default branch. Keep portable fixes
+  separate from local configuration so each can go upstream, and afterwards check
+  for accidental upstream reverts and lost local behaviour. Rewriting history needs authorisation; when authorised,
+  push with `--force-with-lease=<ref>:<expected-commit>` and stop if it fails.

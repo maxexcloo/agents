@@ -1,41 +1,38 @@
 ---
 name: standardise-projects
-description: Audit or align software repository structure, tooling and instruction layers when a structure review or deliberate alignment is requested. Exclude ordinary project setup, feature development, targeted fixes, routine maintenance and GitHub settings work.
+description: Audit or align software repositories with the owner's standards for structure, tooling, instruction layers and GitHub settings when a standards review or alignment pass is requested. Exclude ordinary project setup, feature development, targeted fixes, routine maintenance and issue, PR or CI work.
 ---
 
 # Standardise Projects
 
-## Assess Actual Use
+Align repositories with the standards in the global `AGENTS.md` and
+[Tooling Standards](references/tooling.md). Deviations are alignment items, not
+defects: list them briefly, grouped by repository, and leave a deviation alone
+when it has a reason or changing it would only churn.
 
-Discover Git roots and inventory tracked and relevant untracked files with
-`git ls-files --cached --exclude-standard --others`. Include manifests, tooling,
-CI, generated inputs and operational workflows.
+## Repository
 
-For each proposed change, identify the concrete need, existing owner and effect
-on consumers. Do not declare a tool unused from text search alone: check indirect
-use in CI, deployment, generated artefacts and documented operations. Retain it
-when use remains uncertain.
+- Inventory with `git ls-files --cached --exclude-standard --others`, including
+  manifests, CI, generated inputs and documented operations.
+- For each change, name the need, the owner and the consumers; keep a tool when
+  its use is uncertain. Check the current tree before dismissing an alert about a
+  deleted manifest as stale.
+- Trace names, endpoints and settings from their owner to their consumers and
+  update both sides together. Patches and overrides must fail clearly when
+  upstream assumptions stop matching.
+- Remove explicit defaults only after checking effective behaviour; keep values
+  that state policy or platform differences.
+- Read only the tooling sections relevant to the project.
 
-For versions, containers, GitHub Actions, Mise, Hk/pre-commit, tests,
-dependencies, Renovate or ignore rules, read only the relevant sections of
-[Tooling Review](references/tooling.md).
+## GitHub Settings
 
-## Align Producers & Consumers
-
-Trace inventories, names, endpoints and settings from their owning source through
-generated outputs to consumers. Check how consumers handle missing or unsupported
-values rather than assuming a successful render proves the contract. Update both
-sides of a change rather than adding another manual copy. Before removing a port
-or changing an endpoint, trace and
-update its consumers. Preserve generated inputs and meaningful interface order.
-
-Remove verified stale files after their workflow disappears. Omit explicit
-configuration defaults only after checking effective behaviour; retain values
-that communicate policy or encode platform differences.
-
-Required patches and overrides must fail clearly when upstream assumptions stop
-matching. Keep deliberately optional behaviour optional.
-
-After dependency or test-tool changes, inspect the resolved graph to verify that
-removed packages are absent. Check the current tree before dismissing an alert
-about a deleted manifest as stale.
+- Cover descriptions and topics, merge and branch policy, security controls and
+  hosting within the requested scope.
+- Read each repository's detail endpoint, with pagination; skip archives and
+  forks unless asked. Null fields, plan limits and missing permissions are
+  evidence gaps, not disabled features.
+- Check consumers, such as integration manifests, before disabling Issues,
+  Discussions, Pages, Projects or Wiki.
+- Treat visibility, access and hosting changes as explicit decisions. Reread
+  settings before patching; topic updates replace the whole set. Read settings
+  back after changing them.

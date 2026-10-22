@@ -5,37 +5,27 @@ description: Audit or complete a requested maintenance pass for live hosts, serv
 
 # Maintain Systems
 
-## Compare Ownership & Live State
+## Inventory
 
-Identify whether configuration belongs to a repository, platform, package or
-application, then compare it with the running system. Repair it through its
-existing delivery path so the next deployment will not overwrite the fix.
+1. Current failures: services, storage, backups and sync jobs. Separate them from
+   historical errors and devices that are expected to be offline.
+2. Requested updates: compare installed versions with release notes for
+   migrations and restarts.
 
-Distinguish expected offline devices and historical errors from current failures.
-Check executable paths and runtime ownership before removing software; on macOS,
-reconcile Homebrew, Mise, uv, casks and App Store installs without introducing a
-second installation owner or polluting system interpreters.
+## Fix
 
-For requested updates, compare installed versions with official release notes
-and check compatibility, migrations and required restarts before changing them.
+- Find the owner of each setting (repository, platform, package or application)
+  and fix it there, so the next deployment does not undo the fix.
+- Keep one installation owner per tool. On macOS, reconcile Homebrew, Mise, uv,
+  casks and App Store installs without polluting system interpreters.
+- Trace data, mounts, snapshots, backups and sync consumers before moving or
+  removing anything. Keep shared model weights, caches and runtime data outside
+  repositories, and never let repository defaults overwrite live runtime data.
+- Preserve administrative access through network or authentication changes, and
+  keep downtime proportional. Do not add unsolicited backup layers or automation.
 
-For requested catalogue or profile reconciliation, read
-[Model & Runtime Reconciliation](references/model-runtimes.md).
+## Verify
 
-## Reconcile State & Consumers
-
-Trace persistent data, mounts, snapshots, backup jobs and sync consumers before
-renaming, migrating or removing components. Age, inactivity, an empty directory
-or absence from one catalogue does not establish that state is disposable.
-
-Preserve administrative access through network or authentication changes. Keep
-service downtime proportional to the affected workflow. Honour explicit cleanup
-and recovery instructions; do not add unsolicited backup layers. Verify a
-replacement before retiring its authorised legacy copy, including leftover
-configuration, launch jobs, shortcuts and caches.
-
-## Verify the Result
-
-Check affected clients, data or sync results and service recovery. A healthy
-process or HTTP response does not prove the application's important workflow
-works. Distinguish validated source, saved configuration and observed behaviour.
+Check the affected workflow from its client: a sync completes, a backup restores,
+a model generates. Then remove the authorised legacy copy and its leftovers
+(launch jobs, shortcuts, caches).

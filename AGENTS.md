@@ -1,150 +1,129 @@
 # Global Agent Guidance
 
-## Addresses & URLs
+## Working Agreements
 
-- Derive service links and host addresses from their owning inventory or provider
-  configuration. Preserve the intended private or public access boundary.
-- Keep host fields in their required format; construct absolute URLs where a
-  browser or credential field needs them.
-- Prefer configured service DNS, then Tailscale IP, then local hostname/DNS, then
-  raw IP. Honour explicitly supplied endpoints and the client's reachability.
-- Preserve the actual scheme, port and path. Prefer HTTPS when supported; use
-  HTTP for services that require it rather than inventing an HTTPS endpoint.
+- Keep it simple. Prefer native features, standard tools, direct code and
+  deleting things over adding them. Add a dependency, abstraction, layer or
+  automation only for a concrete, current need.
+- Project-specific rules override these defaults; skills provide task procedures.
+  Project `AGENTS.md` files hold only scope, verification and invariants an agent
+  would otherwise get wrong, never copies of these rules.
+- An audit or review produces findings; loading a skill authorises nothing.
+  Change files, commit, push, merge, deploy or change live infrastructure only
+  within existing authorisation and project review requirements. Ask only for
+  missing intent or authorisation that materially affects the work.
+- Preserve intended behaviour and unrelated user changes. When sessions overlap,
+  keep one owner for each change. Fix regressions your work causes, and update
+  existing documentation the change affects.
 
-## Completion
+## Audits & Reviews
 
-- Complete the agreed scope, verify it and finish authorised delivery; fix
-  regressions the work causes. For broad maintenance, fix one batch of findings at
-  the start; later unrelated findings belong to the next batch. Do not invent work.
-- Run one final review after the last change; repeat checks only for new changes,
-  failures or unresolved evidence.
-- Finish delivery by returning the primary checkout to `main`, removing the
-  task's merged local and remote branches and temporary worktrees, and pruning
-  stale remote-tracking references. Check for active sessions and uncommitted
-  work first; reconcile task-owned stashes and scratch files, and never discard
-  unrelated or unmerged work without authorisation.
+- Report only problems with a concrete consequence: something broken, a real
+  risk, wasted cost or effort, or a requested deviation. "Nothing needs changing"
+  is a good result; do not pad it.
+- Lead with at most about ten findings, most important first. Number them, give
+  evidence and impact, and keep applied fixes distinct from suggestions.
+- Do not report style preferences, hypotheticals, optional hardening or "could be
+  tidier" items unless asked. Mark uncertain findings as questions.
+- Standards below apply when writing or changing code. Report deviations from them
+  only in a requested standardise pass, as alignment items, not defects.
+- Never propose new tools, frameworks, layers or process as a fix when a smaller
+  change or a deletion would do.
+- In a maintenance pass, fix the batch found at the start; later unrelated
+  findings belong to the next pass. Do not invent work.
+
+## Verification
+
+- Verify the outcome the user cares about, not a proxy for it: a saved setting,
+  a successful API response, a healthy process or passing CI does not show the
+  workflow works. Keep validation proportional to the change.
+- Before removing, renaming or replacing something, trace its consumers and verify
+  any replacement first. Absence from one search, age or inactivity does not make
+  something unused.
+- When tools or views disagree, report the discrepancy instead of acting further
+  to make them agree.
+- Run `git diff --check` and review the diff and status after repository edits.
+  Use the project's checks, such as `mise run check`; run long suites
+  asynchronously. For prose, check formatting, links and instruction consistency.
+- Run one final review after the last change; repeat checks only for new
+  changes, failures or unresolved evidence.
+- State what was checked statically, locally, in CI and live, and any path that
+  was not exercised.
+
+## Delivery
+
+- For ordinary changes, review the diff, run focused checks and merge to `main`
+  without waiting for the full suite or remote CI. Use a PR where the project
+  requires one; enable auto-merge when required checks block an immediate merge.
+  Pause for review before merging a large or complex change.
+- Finish by returning the checkout to `main`, removing the task's merged branches
+  and worktrees and pruning stale remote-tracking references. Check for active
+  sessions and uncommitted work first, reconcile the task's own stashes and
+  scratch files, and never discard unrelated or unmerged work.
+- Number recommendations and options so the user can select them.
 - Keep the final report short: status, material changes, verification, blockers
-  and delivery state. Report material exceptions once; omit unsolicited next steps.
-- Use **Done** when required work and verification are complete, **Waiting** when
-  an external result or decision is pending, and **Blocked** when required work
-  cannot proceed. Required checks that could not run prevent an unqualified Done.
+  and delivery state. Report material exceptions once; omit unsolicited next
+  steps. Use **Done**, **Waiting** or **Blocked**; checks that could
+  not run prevent an unqualified Done.
+- For site or app work, leave a local preview running and report its URL unless
+  impractical. Distinguish sample data from live behaviour.
 
 ## Secret Values
 
-- Prefer metadata-only discovery. Keep secret values out of model context, tool
-  output, screenshots, logs, diffs and reports.
-- Resolve secret values inside credential-consuming local processes using the
-  existing credential tools. Do not embed values in command arguments or shell
-  tracing. Report item references and redacted results.
-- If a tool cannot keep secret values out of context, use a suitable local path
-  or request the missing capability.
+- Keep secret values out of model context, tool output, logs, screenshots, diffs
+  and reports. Prefer metadata-only discovery.
+- Resolve secrets inside the consuming local process with the existing credential
+  tools, never in command arguments or shell tracing. If a tool cannot keep values
+  out of context, use a local path or ask for the missing capability. Reference 1Password items and other external
+  records by title, never by generated ID.
 
-## Skill Selection
+## Skills
 
-- Choose a skill by the requested outcome. Broad maintenance and standardisation
-  skills require a requested pass, audit or reconciliation, or an explicit skill
-  mention. A technology mention, individual command, targeted fix or ordinary
-  feature request is insufficient.
-- Use `maintain-*` for audits and upkeep, `standardise-*` for deliberate alignment
-  of organisation, structure or settings. Preserve upstream skill names.
-- Use Orca skills for explicit Orca requests or existing Orca-owned state.
-  Generic delegation uses the session's native tools; honour the chosen runtime.
-- Use TerraShark only for Terraform/OpenTofu work. Generic CI or delivery/testing
-  pipeline work does not activate it.
-- Use Web Awesome skills when requested or already used by the project. Generic
-  UI work does not establish a new component-library choice.
+- Use broad `maintain-*` and `standardise-*` skills only when a pass, audit or
+  alignment is requested or the skill is named; never for a targeted fix or
+  feature. `maintain-*` finds what is broken; `standardise-*` aligns with the
+  standards.
+- Use technology-specific skills (Orca, TerraShark, Web Awesome and the like) only
+  when that technology is requested or already in use, not because a task is
+  loosely related.
 
-## Sorting
+## Standards
 
-- In unordered peer groups, put simple values before structured or multi-line
-  values and sort alphabetically within each group; list directories before files.
-- Preserve meaningful order, such as procedural, dependency, precedence, priority,
-  schema or UI order. Comment only where it may look accidental.
+### Structure
 
-## Structure
-
-- Prefer Mise for task orchestration and npm for package-specific operations.
-  Inherit global Mise tools; declare only project-specific tools or overrides.
-- Use major tags for GitHub Actions, `latest` for CI/Mise tools unless one must be
-  held back, and exact versions for deployed images, charts and providers. Never
-  pin image digests or Action SHAs, except `latest@sha256:` for an image that
-  publishes only `latest`. Pin fetched source to an immutable release revision
-  when no suitable release exists or reproducible source builds require it;
-  keep its update ownership explicit. Keep lockfiles and prefer Renovate's native
-  managers for discoverable pins.
-- Define names, domains, hostnames, versions, accounts and shared settings once,
-  near their owner, and derive them elsewhere so a rename is a one-place edit. Add
-  no indirection harder to follow than the duplication it removes. Split
-  mixed-concern files and organise directories predictably.
+- Define names, domains, versions and shared settings once, near their owner, and
+  derive them elsewhere. Add no indirection harder to follow than the duplication
+  it removes. Split mixed-concern files and organise directories predictably.
 - Read required settings without defaults or fallbacks so a missing value fails
-  with its name; keep defaults only for genuinely optional settings.
-- Reference external records, such as 1Password items and vaults, by their stable
-  name or title, never by generated IDs.
-- Keep check orchestration single-layered; avoid running a validator both directly
-  and through a nested task in the same check path.
-- Keep checks fast: run independent jobs, shards and test modules in parallel,
-  cancel superseded runs and gate only publication on the full set of checks.
-- Prefer maintained Markdown documentation in the project root. Use subdirectories
-  when the volume of documentation or established project conventions warrant them.
-- Keep `README.md` focused on purpose and actual usage. Use Git history as the
-  work log; keep one coherent outcome per commit with an imperative subject.
-- Preserve licences and legal text. For a new project without an overriding
-  requirement, use canonical AGPL-3.0 text.
-- Update existing documentation when necessary. Create no unsolicited reports,
-  migration notes, work logs, placeholders or speculative directories.
+  with its name.
+- Prefer Mise for tasks and npm for package-specific operations. Declare only
+  project-specific Mise tools.
+- Use major tags for GitHub Actions, `latest` for CI and Mise tools unless one
+  must be held back (say why in a one-line comment), and exact versions for deployed images, charts and providers.
+  Never pin digests or Action SHAs, except `latest@sha256:` for an image that
+  publishes only `latest`. Pin fetched source without a suitable release to an
+  immutable revision. Keep lockfiles and let Renovate's native managers update
+  pins.
+- Keep `README.md` to purpose and usage, other docs in the project root, and Git
+  history as the work log, with one outcome per imperative commit. Create no
+  unsolicited reports, migration notes or placeholders.
+- Preserve licences. New projects use canonical AGPL-3.0.
 
-## Style
+### Addresses
 
-- Keep comments local and specific to non-obvious behaviour.
-- Use `.yaml`, never `.yml`, for project-owned YAML unless an external tool requires
-  a fixed filename.
-- Use Australian English for authored prose and new names the owner controls.
-  Keep ecosystem names as upstream defines them, such as environment variables,
-  CLI options like `color`, protocol and schema fields, standard filenames and
-  legal text. Rename owned names in producers and consumers together.
-- Use Title Case for user-facing headings, labels and actions, with `&` instead of
-  `And`. Keep explanatory prose in sentence case.
+- Derive links and hosts from their owning configuration and keep the intended
+  private or public boundary. Prefer configured DNS, then Tailscale IP, then local
+  hostname, then raw IP, honouring explicitly supplied endpoints and what the
+  client can reach. Keep the real scheme, port and path; prefer HTTPS only where
+  it is supported. Use absolute URLs where a browser or credential field needs
+  them and keep host fields in their required format.
 
-## Verification & Delivery
+### Style & Sorting
 
-- Distinguish static inspection, local checks, remote CI and live verification.
-  State any checks that could not run and any live or externally triggered
-  workflow path that was not exercised.
-- Run `git diff --check` and review the final diff and status after repository
-  edits. Keep validation proportional to the change.
-- Use the project's verification commands, such as `mise run check` after code or
-  configuration changes unless project rules specify narrower checks. Run long
-  suites asynchronously alongside delivery. For prose, check formatting,
-  affected links and instruction consistency.
-- For ordinary changes, review the diff, run focused fast checks and merge to
-  `main` as soon as ready without waiting for the full test suite or remote CI.
-  Use a PR where the project requires one; enable auto-merge when required GitHub
-  checks prevent immediate merging, without bypassing those checks. Keep image
-  publication gated on its required checks, report pending verification honestly
-  and fix failures caused by the change. Pause for review before merging a large
-  or complex change.
-- For routine GitOps delivery, verify the changed workload and revision rather
-  than waiting for unrelated workloads or a whole-cluster reconciliation.
-- For site or app review, leave a local preview running from the project's
-  development command and report its URL unless impractical; screenshots support
-  it. Distinguish sample data or simulated operations from live behaviour.
-
-## Working Agreements
-
-- An audit or review produces findings; loading a skill authorises nothing.
-  Change files, commit, push, merge, deploy or change live infrastructure only
-  within existing user authorisation and project review requirements. Ask only for
-  missing intent or authorisation that materially affects the work; complete
-  already authorised work without asking again.
-- Project-specific rules override these defaults; skills provide task procedures.
-- Keep instructions layered: personal defaults here, project invariants and
-  exceptions in project `AGENTS.md`, task procedures in skills, mechanical rules
-  in checks. A project `AGENTS.md` holds only scope, verification and invariants
-  an agent would otherwise get wrong, never copied global rules.
-- Keep it simple. Prefer native features, standard tools and direct code. Add a
-  dependency, abstraction or automation only for a concrete need.
-- Number findings, recommendations and options so the user can select them.
-  Group audit findings by project, host or topic with evidence, impact and the
-  proposed change; keep applied fixes distinct from suggestions.
-- Preserve intended behaviour and unrelated user changes. When sessions overlap,
-  keep one owner for each change and coordinate edits to shared files.
+- Use `.yaml`, not `.yml`, unless a tool fixes the filename.
+- Use Australian English for prose and owned names; keep upstream names as
+  defined. Use Title Case with `&` for headings, labels and actions, and
+  sentence case for prose.
+- Comment only non-obvious behaviour, locally.
+- In unordered peer groups, put simple values before structured ones and sort
+  alphabetically; directories before files. Preserve meaningful order.
