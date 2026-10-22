@@ -117,3 +117,28 @@ From the bluemax KISS audit (2026-10-22).
       rarely-relevant-sections items above: bluemax's `AGENTS.md` repeated the
       README and the global check rule, and maintain-projects fork alignment and
       tooling.md Containers, Hk, Mise and Tests did not apply.
+
+From the flylab KISS audit (2026-10-22).
+
+- [ ] Confirms the "derived or discovered" item above: flylab derived route
+      node placement from rendered manifests (about 90 lines) only for a
+      display suffix Homepage already gets from live pods. Say hard-coding
+      cosmetic or rarely changing values is fine.
+- [ ] Global "Reference 1Password items by title, never by generated ID" plus
+      the vault title `Cluster: SYD` produced flylab's title-to-ID lookup code.
+      Add "Keep vault and item titles reference-safe" or allow IDs where titles
+      cannot be expressed.
+- [ ] Global "Read required settings without defaults so a missing value fails
+      with its name" invites hand-written type checks on trusted inputs (flylab
+      duplicated Kubelab's metadata validation). Say a native `KeyError`
+      satisfies it.
+- [ ] standardise-projects GitHub Settings (pagination, plan limits, topic
+      replacement) is written for an organisation-wide sweep; for one
+      repository a one-line settings check would do.
+- [ ] Confirms the tofusort Containers items, the maintain-projects "and fix it"
+      and `dependencies:update` items and the rarely-relevant-sections item:
+      flylab deploys to Fly without publishing an image, and fork alignment
+      did not apply.
+- [ ] The secret-guard hook blocks any command that names the secrets env file,
+      even when it holds only 1Password references or the command only hashes
+      it. Match secret values, not filenames.
