@@ -27,3 +27,18 @@ From the trmnl-builds KISS audit (2026-10-22).
       comments, and agents follow stale rules (trmnl-builds had a platform-bump
       rule contradicting its Renovate hold). Remind that project rules stay
       minimal and are updated with the code they describe.
+
+From the maxexcloo KISS audit (2026-10-22).
+
+- [ ] standardise-projects has no exit for docs-only repositories, so agents
+      read tooling.md and GitHub Settings for a three-file README repo. Add "For
+      repositories without tooling, check content and links and stop."
+- [ ] maintain-projects opens with "and fix it", which contradicts the global
+      "An audit produces findings", and its inventory assumes Mise and CI. Drop
+      "and fix it" and add "Skip steps whose tooling is absent."
+- [ ] Global "Minor findings are welcome" and "report deviations as minor
+      findings" push agents to always find something; maxexcloo has 52 commits
+      on three files. Report minor findings only when they prevent churn.
+- [ ] Global Verification and Delivery assume code projects (`mise run check`,
+      previews, branch cleanup). Keep principles globally and move commands into
+      the skills.
