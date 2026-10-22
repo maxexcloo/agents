@@ -39,9 +39,8 @@
 - Ignore only generated, secret, cache, state or local-configuration paths the
   project actually produces, with narrow patterns and trailing slashes for
   directories. Skip anything global excludes already cover.
-- Do not ignore an artefact just to hide it: leave `.venv` visible where a
-  project should use temporary environments instead. Remove entries when their
-  tool goes.
+- Do not ignore an artefact the project should not produce; leaving it visible
+  exposes the problem. Remove entries when their tool goes.
 
 ## Mise
 

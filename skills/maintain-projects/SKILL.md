@@ -19,8 +19,6 @@ alignment with the standards is `standardise-projects`.
 4. Complexity to remove: needless layers, wrappers and scripts, custom code a
    native feature replaces, and hard-coded values that could be derived or
    discovered.
-5. Minor findings: literals that duplicate an owner's value, required settings
-   with defaults or fallbacks, and references to generated IDs.
 
 ## Fix & Verify
 
