@@ -86,3 +86,17 @@ From the local-services KISS audit (2026-10-22).
       rules). Have standardise-projects check for and delete such copies.
 - [ ] Confirms the minor-findings and duplicated "complexity to remove" items
       above: local-services had about 15 simplify commits in a week on six files.
+
+From the minilab KISS audit (2026-10-22).
+
+- [ ] Confirms the "derived or discovered" item above: minilab derived a port
+      and data path through placeholders (`port: 0`, `/placeholder`) and
+      replacements, backed by a project rule. Apply the same limit to
+      maintain-projects Inventory step 4, which repeats the phrase.
+- [ ] build-mini-app's secret-link lines ("carry the link in a URL fragment"
+      when logs record paths, "note rotation behaviour beside the app") conflict
+      with minilab's accepted Traefik logging, so audits re-raise it. Scope them
+      to new apps or cut them.
+- [ ] Moving project rules out of global guidance put Kubelab-owned rules (DNS
+      targets, wildcard certificate depth) into minilab's `AGENTS.md`. Move
+      platform rules to the repository that owns the platform.
