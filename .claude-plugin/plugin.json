@@ -1,0 +1,7 @@
+{
+  "name": "agents",
+  "description": "Shared agent guidance and self-written task skills.",
+  "author": { "name": "Max Schaefer", "email": "max@excloo.com" },
+  "repository": "https://github.com/maxexcloo/agents",
+  "license": "AGPL-3.0"
+}

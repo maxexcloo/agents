@@ -1,0 +1,14 @@
+{
+  "name": "maxexcloo",
+  "description": "Max Schaefer's agent plugins.",
+  "owner": {
+    "name": "Max Schaefer",
+    "email": "max@excloo.com"
+  },
+  "plugins": [
+    {
+      "name": "agents",
+      "source": "./"
+    }
+  ]
+}

@@ -37,6 +37,12 @@ those definitions there. This repository holds the shared guidance and my own
 task procedures. Personal rules live here so installed upstream packages can stay
 unmodified.
 
+## Claude Code
+
+Claude Code doesn't read `~/.agents/skills`, so this repository is also a local
+plugin marketplace. Dotfiles registers and enables it; Claude reads the skills
+from this checkout, prefixed `agents:`.
+
 ## Skills
 
 | Skill                                                                                | Use                                                                                               |
