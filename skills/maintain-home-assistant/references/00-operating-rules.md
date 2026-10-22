@@ -60,6 +60,11 @@ Before any `ha_set_entity(..., new_entity_id=...)`:
 5. Rename and update consumers. If a consumer cannot be updated, restore the old
    ID and any already changed references.
 
+Display-name and helper `name` changes can regenerate entity IDs (for example an
+area-prefixed `home_home_*`). Treat them as entity ID renames and read back the
+entity_id. A rename passes through `unavailable`, so state triggers without
+`from:` fire on it; check consumers for non-idempotent actions first.
+
 After either workflow, use
 [Verification & Delivery](04-verification-delivery.md#2-after-changes) to check
 the result.
