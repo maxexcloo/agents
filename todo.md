@@ -142,3 +142,23 @@ From the flylab KISS audit (2026-10-22).
 - [ ] The secret-guard hook blocks any command that names the secrets env file,
       even when it holds only 1Password references or the command only hashes
       it. Match secret values, not filenames.
+
+From the images KISS audit (2026-10-22).
+
+- [ ] Confirms the bluemax change-detection item: images carried a last-success
+      baseline lookup, a "main has advanced" API guard, an ancestry check, their
+      tests and two README paragraphs, all following tooling.md's "prefer
+      diffing against the last successful run".
+- [ ] Confirms the trmnl-builds patch item: "fail clearly" produced a MiniMax
+      patch with a hash check, a count check, reverse patching and a legacy
+      variant, kept after the patch moved from container start to build time.
+- [ ] maintain-projects "When a fix retires a feature, remove its configuration,
+      consumers and outputs" misses tests and docs: images kept tests and a
+      README paragraph asserting a removed recipe stayed removed. Add "tests and
+      documentation".
+- [ ] Global "Define … once, near their owner" is read per repository: the GPU
+      lease helper and its tests were copied byte-for-byte between ai-control
+      and images. Say it applies across repositories; consumers mount or copy
+      the owner's artefact.
+- [ ] Confirms the fork-alignment, `dependencies:update` and Hk
+      rarely-relevant items: none applied to images.
