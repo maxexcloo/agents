@@ -111,7 +111,7 @@
   alignment is requested or the skill is named; never for a targeted fix or
   feature. `maintain-*` finds what is broken; `standardise-*` aligns with the
   standards.
-- Use technology-specific skills (Orca, TerraShark, Web Awesome and the like)
+- Use technology-specific skills (Orca, TerraShark and the like)
   only when that technology is requested or already in use, not because a task
   is loosely related. Preserve upstream skill names.
 
