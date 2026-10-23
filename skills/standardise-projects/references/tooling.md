@@ -14,8 +14,9 @@
 - Group runs by workflow and ref and cancel superseded runs, except release
   tags. Prefer always building or `paths-ignore` over custom change detection.
 - Split jobs or shard suites only when they take more than a few minutes.
-- Gate image publication by building with `load`, smoke-testing and scanning,
-  then pushing from the builder cache; push no candidate tags.
+- Gate image publication by building with `load` and smoke-testing, then
+  pushing from the builder cache; push no candidate tags and add no image
+  vulnerability scan.
 - Build multi-architecture images without QEMU, by cross-compiling from
   `--platform=$BUILDPLATFORM` or using native runners.
 - Add caches only where they measurably shorten runs, keyed on the version that
