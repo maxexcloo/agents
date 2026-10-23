@@ -53,9 +53,7 @@ data before publishing.
   exists, without adding an account gate. Use high-entropy links, isolate
   records by link and never list them. Keep real links out of logs, monitoring,
   screenshots and reports, suppress referrers and caching, and use dummy links
-  in tests. If request logs cannot exclude link paths, carry the link in a URL
-  fragment sent as a redacted header or body. Note rotation behaviour beside the
-  app.
+  in tests.
 
 ## Verify & Deliver
 

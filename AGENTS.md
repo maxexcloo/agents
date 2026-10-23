@@ -33,8 +33,8 @@
 - Lead with what is broken or risky, then list minor findings (naming, metadata,
   consistency, tidiness) briefly after it. Minor findings are welcome.
 - Look for complexity to remove: needless layers, wrappers and indirection,
-  duplication, custom code where a native feature fits, and hard-coded values
-  that could be derived or discovered. The fix should leave less behind.
+  duplication, custom code where a native feature fits, and values duplicated
+  across files. Every fix should leave less behind.
 - Flag things that do the same job differently within a project or across its
   siblings, and converge them on the established pattern.
 - Judge everything against the project's established conventions so a fix stays
@@ -55,7 +55,8 @@
   a successful API response, a healthy process or passing CI does not show the
   workflow works. Keep validation proportional to the change.
 - Add tests only where they protect behaviour that matters; prefer few, simple
-  tests over broad suites.
+  tests over broad suites. Do not add a test per fix, test that removed things
+  stay absent or assert exact timing.
 - Before removing, renaming or replacing something, trace its consumers and
   verify any replacement first. Absence from one search, age or inactivity does
   not make something unused.
@@ -104,6 +105,8 @@
   capability.
 - Reference 1Password items and other external records by title, never by
   generated ID.
+- Inventory files with `git ls-files`, not shell globs, so ignored secret files
+  stay out of context.
 
 ## Skills
 
@@ -125,22 +128,29 @@ findings.
 - When unsure how to structure something, match the sibling projects in
   `~/Projects` rather than inventing a new pattern.
 - Define names, domains, versions and shared settings once, near their owner,
-  and derive or discover them elsewhere rather than hard-coding them. Add no
-  indirection harder to follow than the duplication it removes. Split
-  mixed-concern files and organise directories predictably.
+  including across repositories, where consumers use the owner's artefact.
+  Derive values duplicated across files; hard-coding a cosmetic or single-use
+  value is fine. Add no indirection harder to follow than the duplication it
+  removes. Split mixed-concern files and organise directories predictably.
 - Read required settings without defaults or fallbacks so a missing value fails
-  with its name.
+  with its name; a native lookup error is enough. Add no defensive validation
+  of trusted inputs, and prefer deleting validation the provider or API already
+  performs.
+- State each invariant and behaviour once, in project `AGENTS.md`, a local
+  comment or the docs, not several.
 - Prefer Mise for tasks and npm for package-specific operations. Inherit global
   Mise tools and declare only project-specific ones.
 - Keep checks fast and single-layered: run independent jobs in parallel, cancel
   superseded runs, and never run a validator both directly and through a nested
   task.
-- Use major tags for GitHub Actions, `latest` for CI and Mise tools unless one
-  must be held back (say why in a one-line comment), and exact versions for
-  deployed images, charts and providers. Never pin digests or Action SHAs,
-  except `latest@sha256:` for an image that publishes only `latest`. Pin fetched
-  source without a suitable release to an immutable revision. Keep lockfiles and
-  let Renovate's native managers update pins.
+- Use major tags for GitHub Actions (the default branch where none is
+  published), `latest` for CI and Mise tools unless one must be held back (say
+  why in a one-line comment), and exact versions for deployed images, charts
+  and providers. Never pin digests or Action SHAs, except `latest@sha256:` for
+  an image that publishes only `latest`. Pin other fetched source without a
+  suitable release to an immutable revision with a `# renovate:` comment,
+  without checksums. Keep lockfiles and let Renovate's native managers update
+  pins.
 - Keep `README.md` to purpose and usage and other docs in the project root,
   using subdirectories only when volume or project convention warrants. Use Git
   history as the work log, with one outcome per imperative commit. Create no
@@ -165,5 +175,5 @@ findings.
   actions, and sentence case for prose.
 - Comment only non-obvious behaviour, locally.
 - In unordered peer groups, put simple values before structured ones and sort
-  alphabetically; directories before files. Preserve meaningful order, with a
-  comment only where it may look accidental.
+  alphabetically; directories before files. Preserve meaningful order, such as
+  document sections, with a comment only where it may look accidental.

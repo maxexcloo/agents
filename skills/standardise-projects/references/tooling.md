@@ -3,10 +3,8 @@
 ## Containers
 
 - Start Dockerfiles with `# syntax=docker/dockerfile:1`.
-- Set the standard OCI labels (`org.opencontainers.image.source`, `revision`
-  from `github.sha` and `version`) in one place.
-- Keep a `.dockerignore` beside each Dockerfile; keep every file the Dockerfile
-  copies and exclude development-only file classes by wildcard.
+- Take OCI labels from `docker/metadata-action`.
+- Add a `.dockerignore` only where context size or cache busting matters.
 
 ## GitHub Actions
 
@@ -14,14 +12,14 @@
 - Scope secrets to the steps that need them and set `persist-credentials: false`
   on checkout.
 - Group runs by workflow and ref and cancel superseded runs, except release
-  tags. Queue instead only when change detection diffs against the previous
-  push; prefer diffing against the last successful run so cancelling stays safe.
-- Run checks, long suites and image builds as parallel jobs; only publication
-  waits for all of them. Shard suites that take more than a few minutes.
+  tags. Prefer always building or `paths-ignore` over custom change detection.
+- Split jobs or shard suites only when they take more than a few minutes.
+- Gate image publication by building with `load`, smoke-testing and scanning,
+  then pushing from the builder cache; push no candidate tags.
 - Build multi-architecture images without QEMU, by cross-compiling from
   `--platform=$BUILDPLATFORM` or using native runners.
-- Key caches on the version that determines their contents. Save large
-  incremental caches only from the default branch.
+- Add caches only where they measurably shorten runs, keyed on the version that
+  determines their contents.
 - Add no CodeQL default setup or other per-push scanners unless requested; they
   use runner time without gating merges. Identify required checks before
   enabling auto-merge.
@@ -50,8 +48,9 @@
   such as ignoring generated files.
 - Keep single-command `run` values inline; write several commands as a multiline
   string, one per line, not chained with `&&` or `;`.
-- Use a small task vocabulary such as `check`, `fmt` and `setup`, adding others
-  only when needed. Sort dependency tasks within their lifecycle section.
+- Use a small task vocabulary such as `check`, `fmt` and `setup`. Add a task
+  only for several commands or one the shared tasks lack. Sort dependency tasks
+  within their lifecycle section.
 
 ## Renovate
 
@@ -59,7 +58,8 @@
   `github>maxexcloo/dotfiles//renovate/default.json5` and adds only its own
   exceptions.
 - Rely on native and shared managers; mark other pins with a
-  `# renovate: datasource=… depName=…` comment on the line above. Let Renovate
+  `# renovate: datasource=… depName=…` comment on the line above, which the
+  shared preset reads, and add no local regex managers. Let Renovate
   refresh lockfiles. Group pins that must change together and keep compatibility
   holds and release-age policies.
 - Run it locally: `dependencies:check` previews and `dependencies:update` opens

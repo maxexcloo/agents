@@ -11,22 +11,22 @@ check deprecations in its release notes before adopting or removing a pattern.
 
 ## Setup & Coordinator
 
-- Store per-entry objects in `entry.runtime_data`, typed through a
-  `ConfigEntry[...]` alias, rather than `hass.data`.
+- Store per-entry objects in `entry.runtime_data` rather than `hass.data`.
 - Pass `config_entry=entry` to `DataUpdateCoordinator`.
 - Derive config entry, device and entity unique IDs from stable source
   identifiers through one shared helper. Never use display names, hosts that can
-  change or list positions. Changing an ID requires a registry migration.
+  change or list positions. Changing an ID requires a registry migration in
+  code; describe upgrades only in release notes.
 
 ## Config Flows
 
 - Set the unique ID with `async_set_unique_id` and abort duplicates with
-  `_abort_if_unique_id_configured`. In reauthentication and reconfigure steps,
-  use `_abort_if_unique_id_mismatch` and `async_update_reload_and_abort`.
+  `_abort_if_unique_id_configured`. Finish reauthentication and reconfigure
+  steps with `async_update_reload_and_abort`, checking
+  `_abort_if_unique_id_mismatch` unless the step deliberately changes identity.
 - Share connection validation between user, reauthentication, reconfigure and
   options steps.
-- Test every flow step end to end: success, each error, duplicate abort, unique
-  ID mismatch and resulting entry data or options.
+- Test flow paths that risk data loss or block reauthentication.
 
 ## Entities
 
@@ -47,6 +47,8 @@ check deprecations in its release notes before adopting or removing a pattern.
   metadata fields the pinned version requires.
 - Continue sums from `get_last_statistics` run through the recorder executor.
   Never replace existing history with incomplete or failed replacement data.
+- Meet such invariants with the smallest mechanism; add no recovery path for a
+  state the user can fix with an existing action.
 - Test rebuilds and partial failures against recorder fixtures.
 
 ## Pins & Checks

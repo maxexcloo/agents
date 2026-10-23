@@ -14,13 +14,17 @@ when it has a reason or changing it would only churn.
 ## Repository
 
 - Inventory with `git ls-files --cached --exclude-standard --others`, including
-  manifests, CI, generated inputs and documented operations.
-- For each change, name the need, the owner and the consumers; keep a tool when
-  its use is uncertain. Check the current tree before dismissing an alert about
-  a deleted manifest as stale.
+  manifests, CI, generated inputs and documented operations. For repositories
+  without tooling, check content and links and stop.
+- Before removing something, name its owner and consumers; keep a tool when its
+  use is uncertain. Check the current tree before dismissing an alert about a
+  deleted manifest as stale.
 - Trace names, endpoints and settings from their owner to their consumers and
-  update both sides together. Patches and overrides must fail clearly when
-  upstream assumptions stop matching.
+  update both sides together. Patches and overrides must fail when upstream
+  assumptions stop matching; a native failure, such as `git apply`'s, is
+  enough.
+- Delete project `AGENTS.md` and README text that repeats global rules or
+  another file.
 - Remove explicit defaults only after checking effective behaviour; keep values
   that state policy or platform differences.
 - Read only the tooling sections relevant to the project.
