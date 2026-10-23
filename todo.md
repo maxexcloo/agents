@@ -270,3 +270,28 @@ From the homelab KISS audit (2026-10-22).
       history, and the Style ordering rules are cosmetic; trim them.
 - [ ] Confirms the `dependencies:update` and rarely-relevant-sections items:
       GitHub Settings and tooling.md Containers did not apply to homelab.
+
+From the actual-up KISS audit (2026-10-23).
+
+- [ ] tooling.md "only publication waits for all of them" plus global "Keep
+      image publication gated on its required checks" produced a push-candidate,
+      pull, scan and re-tag flow (also in studio and ai-control) that repeated
+      its publish condition 8 times and leaves `candidate-*` tags in GHCR.
+      Name "build with `load`, smoke-test, scan, then push from the builder
+      cache" as the default gate.
+- [ ] Confirms the change-detection and cache items: actual-up carried a
+      `gh api` last-successful-run diff and a main-only cache save, and its
+      last five commits were rule-driven CI tweaks. Replaced with
+      `paths-ignore`.
+- [ ] The user's audit rule "Every suggestion should leave less behind" was the
+      most useful constraint; global Audits & Reviews only says the fix "should
+      leave less behind" for complexity findings. Apply it to every finding.
+- [ ] Shared `check:updates` and `dependencies:*` pin `node = "24"`, so every
+      Node project's CI installs two Nodes (`node@24 node@26`) only for
+      Renovate. Note the reason beside the pin and drop it when Renovate
+      supports the current Node.
+- [ ] The secret-guard hook blocked an edit script because source code named
+      credential fields, and flagged a test-fixture key as a secret to rotate.
+      Confirms the "match secret values, not filenames" item.
+- [ ] Confirms the `dependencies:update`, fork-alignment, Hk, multi-arch and
+      GitHub Settings rarely-relevant items: none applied to actual-up.
