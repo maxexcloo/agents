@@ -25,6 +25,8 @@ when it has a reason or changing it would only churn.
   enough.
 - Delete project `AGENTS.md` and README text that repeats global rules or
   another file.
+- Replace vendored third-party copies with their package; where upstream
+  publishes none, report the copy as a question.
 - Remove explicit defaults only after checking effective behaviour; keep values
   that state policy or platform differences.
 - Read only the tooling sections relevant to the project.
