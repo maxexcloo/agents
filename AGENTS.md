@@ -151,6 +151,8 @@ findings.
   suitable release to an immutable revision with a `# renovate:` comment,
   without checksums. Keep lockfiles and let Renovate's native managers update
   pins.
+- Do not vendor third-party code; consume it as a package or a pinned
+  dependency.
 - Keep `README.md` to purpose and usage and other docs in the project root,
   using subdirectories only when volume or project convention warrants. Use Git
   history as the work log, with one outcome per imperative commit. Create no
