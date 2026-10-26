@@ -13,10 +13,11 @@ the standards is `standardise-projects`. Skip steps whose tooling is absent.
 1. Open issues and PRs; check existing PRs before duplicating a fix. Pass
    `-R owner/repo` to `gh` in forks, which otherwise resolve to the parent.
 2. Recent CI failures on the default branch.
-3. Pending updates: preview with `mise run dependencies:check`, including
-   versions embedded in scripts or templates. In a fix pass, open them with
-   `mise run dependencies:update`; review major upgrades separately, and update
-   version declarations, CI matrices and runtime setup together.
+3. Pending updates: the Renovate PRs and each repository's Dependency Dashboard
+   issue, including versions embedded in scripts or templates that Renovate
+   misses. In a fix pass, review failed automerges and approve major upgrades
+   on the dashboard, updating version declarations, CI matrices and runtime
+   setup together.
 4. Complexity to remove, as the global Audits section describes.
 
 ## Fix & Verify
