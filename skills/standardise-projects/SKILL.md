@@ -7,9 +7,9 @@ description: Audit or align software repositories with the owner's standards for
 
 Align repositories with the standards in the global `AGENTS.md`,
 [Tooling Standards](references/tooling.md) and their sibling projects in
-`~/Projects`. Deviations are alignment items, not
-defects: list them briefly, grouped by repository, and leave a deviation alone
-when it has a reason or changing it would only churn.
+`~/Projects`. Deviations are alignment items, not defects: list them briefly,
+grouped by repository, and leave a deviation alone when it has a reason or
+changing it would only churn.
 
 ## Repository
 
