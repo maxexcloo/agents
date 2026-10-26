@@ -27,6 +27,10 @@
 - Split large independent work across parallel agents when it materially speeds
   things up.
 - Do not take control of the desktop or open the user's browser without asking.
+- Run commands yourself when permitted. A command for the user to paste must fit
+  on one line without wrapping, so move long values into a script you write and
+  have them run that; never split it or use backslash continuations, as a
+  wrapped paste runs each line as a separate command.
 
 ## Audits & Reviews
 
