@@ -63,10 +63,10 @@
   shared preset reads, and add no local regex managers. Let Renovate
   refresh lockfiles. Group pins that must change together and keep compatibility
   holds and release-age policies.
-- Run it locally: `dependencies:check` previews and `dependencies:update` opens
-  PRs. Configure no hosted app, schedule or automerge unless requested.
-- `check:updates` validates the configuration; confirm in the preview that each
-  dependency is detected and resolves the expected version.
+- The Mend Renovate app runs it on GitHub; the shared preset owns grouping,
+  automerge and major approval, so add no local Renovate or Mise update tasks.
+- `check:updates` validates the configuration; confirm on the Dependency
+  Dashboard that each dependency is detected and resolves the expected version.
 
 ## Tests & Dependencies
 
