@@ -51,7 +51,7 @@ proposals.
 
 ## Tools
 
-- `ha_config_get_dashboard(mode="search", query=...)` for stored dashboards;
+- `ha_config_get_dashboard(query=...)` for stored dashboards;
   check scenes, helper options and area sensor references too.
 - `ha_get_automation_traces` for runtime behaviour, `ha_get_history` for timing
   and stale state, `ha_get_state` for state and capabilities, `ha_get_entity`
