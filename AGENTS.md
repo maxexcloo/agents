@@ -27,11 +27,13 @@
 - Track work in `todo.md` at the root of the project's main checkout, or
   `todo-<topic>.md` for a separate stream. Git ignores both globally, so
   worktrees have no copy: use the first path from `git worktree list` and never
-  create one in a worktree. Use no other names, such as `plan.md`. Read it
-  before starting, add each request as an unchecked item when it arrives and
-  note its owner and state while working. When an item is done, tick it, add a
-  one-line outcome and move it under `## Done`; delete done items once their
-  outcome is merged and reported, as Git history is the lasting record.
+  create one in a worktree. Use no other names, such as `plan.md`. Keep
+  `todo.md` short: one line per item in priority order, with detail in
+  `todo-<topic>.md`. Read it before starting, add each request as an unchecked
+  item when it arrives and note its owner and state while working. When an item
+  is done, tick it, add a one-line outcome and move it under `## Done`; delete
+  stale items, and done items once their outcome is merged and reported, as Git
+  history is the lasting record.
 - Split large independent work across parallel agents when it materially speeds
   things up.
 - Do not take control of the desktop or open the user's browser without asking.
