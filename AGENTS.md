@@ -24,6 +24,12 @@
 - When other agents work in the same place, keep one owner for each change,
   coordinate edits to shared files and avoid running heavy tests or builds at
   the same time.
+- Track work in `todo.md` at the project root, or `todo-<topic>.md` for a
+  separate stream; Git ignores both globally. Read it before starting, add each
+  request as an unchecked item when it arrives and note its owner and state
+  while working. When an item is done, tick it, add a one-line outcome and move
+  it under `## Done`; delete done items once their outcome is merged and
+  reported, as Git history is the lasting record.
 - Split large independent work across parallel agents when it materially speeds
   things up.
 - Do not take control of the desktop or open the user's browser without asking.
