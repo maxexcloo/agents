@@ -1,6 +1,6 @@
 # Agents
 
-Shared agent guidance and the skills I've written myself.
+Shared agent guidance and self-written skills.
 
 ## Contents
 
