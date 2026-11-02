@@ -27,6 +27,5 @@ description: Audit or complete a requested maintenance pass for live hosts, serv
 
 ## Verify
 
-Check the affected workflow from its client. When a legacy copy's removal is
-authorised, verify the replacement first, then remove the copy and everything
-it left behind.
+Check the affected workflow from its client. When removing an authorised legacy
+copy, remove everything it left behind.
