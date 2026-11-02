@@ -16,9 +16,8 @@ changing it would only churn.
 - Inventory with `git ls-files --cached --exclude-standard --others`, including
   manifests, CI, generated inputs and documented operations. For repositories
   without tooling, check content and links and stop.
-- Before removing something, name its owner and consumers; keep a tool when its
-  use is uncertain. Check the current tree before dismissing an alert about a
-  deleted manifest as stale.
+- Keep a tool when its use is uncertain. Check the current tree before
+  dismissing an alert about a deleted manifest as stale.
 - Trace names, endpoints and settings from their owner to their consumers and
   update both sides together. Patches and overrides must fail when upstream
   assumptions stop matching; a native failure, such as `git apply`'s, is

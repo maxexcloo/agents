@@ -8,11 +8,10 @@
 
 ## GitHub Actions
 
-- The owner's `maxexcloo/dotfiles` action may use `@main`.
 - Scope secrets to the steps that need them and set `persist-credentials: false`
   on checkout.
-- Group runs by workflow and ref and cancel superseded runs, except release
-  tags. Prefer always building or `paths-ignore` over custom change detection.
+- Group concurrency by workflow and ref, and never cancel release tag runs.
+  Prefer always building or `paths-ignore` over custom change detection.
 - Split jobs or shard suites only when they take more than a few minutes.
 - Gate image publication by building with `load` and smoke-testing, then
   pushing from the builder cache; push no candidate tags and add no image
@@ -43,7 +42,7 @@
 
 ## Mise
 
-- Inherit global tools and tasks; declare only project-specific tools or real
+- Inherit global tasks. Beyond project-specific tools, declare only real
   compatibility overrides, and prefer a compatible system install (`system`).
 - Use Oxfmt with defaults for supported formats, configured only for a real need
   such as ignoring generated files.
@@ -60,9 +59,8 @@
   exceptions.
 - Rely on native and shared managers; mark other pins with a
   `# renovate: datasource=… depName=…` comment on the line above, which the
-  shared preset reads, and add no local regex managers. Let Renovate
-  refresh lockfiles. Group pins that must change together and keep compatibility
-  holds and release-age policies.
+  shared preset reads, and add no local regex managers. Group pins that must
+  change together and keep compatibility holds and release-age policies.
 - The Mend Renovate app runs it on GitHub; the shared preset owns grouping,
   automerge and major approval, so add no local Renovate or Mise update tasks.
 - `check:updates` validates the configuration; confirm on the Dependency

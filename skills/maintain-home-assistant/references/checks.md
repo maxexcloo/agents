@@ -79,8 +79,7 @@ Judge against the home's own established policy, so a fixed item stays fixed.
   match what regeneration produces. It derives them from the integration-side
   name, so fix names at their source.
 - **Ordering:** a maintenance preference, never correctness. Keep a consistent
-  order for triggers, branches and blueprint inputs. Values equal to defaults
-  can go unless they state local policy.
+  order for triggers, branches and blueprint inputs.
 - **Defaults:** check an option's real effect before calling it redundant; some
   apparent defaults change startup or restore behaviour.
 - **Bloat:** flag unused or duplicate entities, sensors, wrappers and

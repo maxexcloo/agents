@@ -45,9 +45,7 @@ After deletes or renames, confirm consumers still load, removed objects are
 gone and no new Repairs or exposure changes appeared.
 
 If a regression appears, restore or fix it before claiming success, and do not
-widen verification to unrelated rooms. Report which scenarios were observed,
-checked statically or left unverified, and keep applied changes separate from
-proposals.
+widen verification to unrelated rooms.
 
 ## Tools
 

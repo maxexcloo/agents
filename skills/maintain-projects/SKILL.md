@@ -23,8 +23,8 @@ the standards is `standardise-projects`. Skip steps whose tooling is absent.
 ## Fix & Verify
 
 - Reproduce the reported failure with the real producer payload and consumer
-  path, and verify the fix against it; passing CI alone does not close an issue.
-  Use a clean build when cached outputs could hide missing dependencies.
+  path, and verify the fix against it. Use a clean build when cached outputs
+  could hide missing dependencies.
 - When checks use shared configuration or Actions, verify against the revision
   CI uses, not only the local copy.
 - When a fix retires a feature, remove its configuration, consumers, outputs,
