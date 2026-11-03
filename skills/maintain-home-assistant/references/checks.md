@@ -54,8 +54,6 @@ Check in this order and grade with the skill's severity scale.
 
 ## Organisation
 
-Judge against the home's own established policy, so a fixed item stays fixed.
-
 - **Areas and floors:** assign what the home's area targeting, dashboards and
   floor policy rely on. Functional areas need no floor.
 - **Categories and labels:** where the home uses them, look for oversized or
