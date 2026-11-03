@@ -42,5 +42,4 @@ description: Audit or complete a requested UniFi Network maintenance pass coveri
   or history access. Do not turn device maintenance into MCP implementation
   work.
 - Read changes back from the view the user sees, against fresh active, saved and
-  offline-history inventories. Do not delete more records to make the UI and API
-  agree.
+  offline-history inventories.

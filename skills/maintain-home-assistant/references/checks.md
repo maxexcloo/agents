@@ -1,6 +1,6 @@
 # Audit Checks
 
-Check in this order and grade with the skill's severity scale.
+Grade findings with the skill's severity scale.
 
 ## Correctness
 
