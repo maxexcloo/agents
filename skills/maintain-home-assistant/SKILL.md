@@ -56,5 +56,5 @@ Grade severity by consequence:
 4. **Low:** cosmetic naming, icons, metadata, ordering or redundant config.
 
 An active Repair, missing entity or unusual mode is evidence to investigate, not
-a severity. Report Cosmetic and Low items after the rest. Name the entity and
-cite the config field, trace, state, Repair or log.
+a severity. Name the entity and cite the config field, trace, state, Repair or
+log.
