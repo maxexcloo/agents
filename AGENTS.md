@@ -168,9 +168,11 @@ findings.
 - Do not vendor third-party code; consume it as a package or a pinned
   dependency.
 - Keep `README.md` to purpose and usage and other docs in the project root,
-  using subdirectories only when volume or project convention warrants. Use Git
-  history as the work log, with one outcome per imperative commit. Create no
-  unsolicited reports, migration notes or placeholders.
+  using subdirectories only when volume or project convention warrants. Let
+  source, configuration and tests own changing inventories, settings and
+  implementation details. Use Git history as the work log, with one outcome per
+  imperative commit. Create no unsolicited reports, migration notes or
+  placeholders.
 - Preserve licences and legal text. New projects without an overriding
   requirement use canonical AGPL-3.0.
 

@@ -23,8 +23,7 @@ validator.
 
 Keep the rules few. Fix a one-off mistake where it happened; add a rule only when
 the same mistake recurs, written as the general principle rather than the
-incident, and remove or merge an older rule when adding one. Each rule lives in
-one place.
+incident, and remove or merge an older rule when adding one.
 
 ## Setup
 
