@@ -24,6 +24,10 @@
 - When other agents work in the same place, keep one owner for each change,
   coordinate edits to shared files and avoid running heavy tests or builds at
   the same time.
+- Sandboxed Orca workers use their brokered CLI for mailbox calls without
+  identity or routing overrides, including `--from` shown in generated
+  preambles. The launch binds the worker and coordinator; the coordinator owns
+  worktree and terminal control.
 - Track work in `todo.md` at the root of the project's main checkout, or
   `todo-<topic>.md` for a separate stream. Git ignores both globally, so
   worktrees have no copy: use the first path from `git worktree list` and never
