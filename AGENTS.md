@@ -3,8 +3,9 @@
 ## Working Agreements
 
 - Keep it simple. Prefer native features, standard tools, direct code and
-  deleting things over adding them. Add a dependency, abstraction, layer or
-  automation only for a concrete, current need.
+  deleting things over adding them. Add a dependency, abstraction, layer,
+  automation, comment or doc only for a concrete, current need. Make the
+  smallest diff that does the job.
 - Project-specific rules override these defaults; skills provide task
   procedures. Project `AGENTS.md` files hold only scope, verification and
   invariants an agent would otherwise get wrong, never copies of these rules.
@@ -20,7 +21,9 @@
 - Do not keep legacy compatibility, aliases or migration shims unless asked;
   change producers and consumers together and remove the old path.
 - Preserve intended behaviour and unrelated user changes. Fix regressions your
-  work causes, and update existing documentation the change affects.
+  work causes, and fix documentation the change makes wrong. Do not document
+  new features or changes; add docs only when someone needs them to set up,
+  run or operate the project.
 - When other agents work in the same place, keep one owner for each change,
   coordinate edits to shared files and avoid running heavy tests or builds at
   the same time.
@@ -167,7 +170,8 @@ findings.
   pins.
 - Do not vendor third-party code; consume it as a package or a pinned
   dependency.
-- Keep `README.md` to purpose and usage and other docs in the project root,
+- Keep `README.md` to purpose and short usage, never feature descriptions or
+  behaviour the code or UI already shows. Keep other docs in the project root,
   using subdirectories only when volume or project convention warrants. Let
   source, configuration and tests own changing inventories, settings and
   implementation details. Use Git history as the work log, with one outcome per
@@ -191,7 +195,8 @@ findings.
 - Use Australian English for prose and new names the owner controls; keep
   upstream names as defined. Use Title Case with `&` for headings, labels and
   actions, and sentence case for prose.
-- Comment only non-obvious behaviour, locally.
+- Comment only non-obvious behaviour, locally and briefly. Never narrate code
+  or record changes, history or rationale for a fix in comments.
 - In unordered peer groups, put simple values before structured ones and sort
   alphabetically; directories before files. Preserve meaningful order, such as
   document sections, with a comment only where it may look accidental.
