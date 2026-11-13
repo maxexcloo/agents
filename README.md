@@ -18,8 +18,8 @@ Guidance and skills use AGPL-3.0.
 
 Edit the files here, as the application paths are symlinks to them. After prose
 changes, check Markdown formatting, relative links and that the instructions
-still agree with each other. Validate changed skills with the available skill
-validator.
+still agree with each other. Validate changed skills with
+`claude plugin validate .`.
 
 Keep the rules few. Fix a one-off mistake where it happened; add a rule only when
 the same mistake recurs, written as the general principle rather than the
