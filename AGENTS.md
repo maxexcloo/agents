@@ -27,15 +27,15 @@
 - When other agents work in the same place, keep one owner for each change,
   coordinate edits to shared files and avoid running heavy tests or builds at
   the same time.
-- Track work in `todo.md` at the root of the project's main checkout, or
-  `todo-<topic>.md` for a separate stream. Git ignores both globally, so
+- Track work in one `todo.md` at the root of the project's main checkout,
+  with a `##` section per stream when needed. Git ignores it globally, so
   worktrees have no copy: use the first path from `git worktree list` and never
-  create one in a worktree. Use no other names, such as `plan.md`. Keep
-  `todo.md` short: one line per item in priority order, with detail in
-  `todo-<topic>.md`. Read it before starting, add each request as an unchecked
-  item when it arrives and note its owner and state while working. When an item
-  is done, tick it, add a one-line outcome and move it under `## Done`; delete
-  stale items, and done items once their outcome is merged and reported, as Git
+  create one in a worktree. Use no other files, such as `plan.md` or
+  `todo-<topic>.md`. Keep items to one line each in priority order, with brief
+  detail under them only where needed. Read it before starting, add each
+  request as an unchecked item when it arrives and note its owner and state
+  while working. Delete an item once it is done or stale, giving its outcome in
+  the report rather than the file, and delete `todo.md` once it is empty; Git
   history is the lasting record.
 - Split large independent work across parallel agents when it materially speeds
   things up.
@@ -99,10 +99,13 @@
   Pause for review before merging a large or complex change.
 - Commit as the user, without AI co-author or attribution trailers.
 - Finish by returning the checkout to `main`, removing the task's merged
-  branches and worktrees and pruning stale remote-tracking references. Check for
-  active sessions and uncommitted work first, reconcile the task's own stashes
-  and scratch files, and never discard unrelated or unmerged work without
-  authorisation.
+  branches and worktrees and pruning stale remote-tracking references; a task
+  is not done while they remain. Before starting in a repository, also remove
+  leftover branches and worktrees whose work is already on `main`, counting a
+  squash-merged branch whose upstream is gone as merged, and remove
+  Orca-managed worktrees with `orca worktree rm`. Check for active sessions and
+  uncommitted work first, reconcile the task's own stashes and scratch files,
+  and never discard unrelated or unmerged work without authorisation.
 - When asked for status mid-task, list what is done, what remains, blockers and
   a rough ETA.
 - Keep the final report short: status, material changes, verification, blockers
