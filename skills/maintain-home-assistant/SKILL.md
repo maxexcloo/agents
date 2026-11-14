@@ -5,9 +5,11 @@ description: Audit or complete a requested Home Assistant maintenance pass cover
 
 # Maintain Home Assistant
 
-Load the ha-mcp `home-assistant-best-practices` skill first; it covers native
-triggers and helpers, templates, automation modes, `device_id`, backups and the
-generic rename workflow. This skill adds the audit and this home's policy.
+Read the `home-assistant-best-practices` skill first; the Home Assistant MCP
+server serves it as the `skill://home-assistant-best-practices/SKILL.md`
+resource. It covers native triggers and helpers, templates, automation modes,
+`device_id`, backups and the generic rename workflow. This skill adds the audit
+and this home's policy.
 
 1. Check correctness first, then behaviour, then organisation, using
    [Audit Checks](references/checks.md). Run every section, including minor

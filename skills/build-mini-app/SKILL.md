@@ -17,8 +17,9 @@ have to pick a framework, database or packaging. Keep working code in an
 existing app unless a change materially simplifies the request. Do not add a
 backend to a tool that works in the browser.
 
-- Interface: build it from Mantine components with Minilab's shared theme and
-  Vite build, committing the bundle as `minilab/AGENTS.md` describes.
+- Interface: build it from Mantine components. In Minilab, use its shared theme
+  and Vite build as `minilab/AGENTS.md` describes; elsewhere use Mantine's
+  default theme rather than copying Minilab's.
 - Browser-only: copy `minilab/templates/static`. Related static tools can share
   a site; apps with separate data or access stay separate.
 - Backend: start from the closest app in `minilab/apps`, copying only the source
