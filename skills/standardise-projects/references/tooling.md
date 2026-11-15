@@ -47,7 +47,7 @@
   project actually produces, with narrow patterns and trailing slashes for
   directories. Skip anything global excludes already cover.
 - Do not ignore an artefact the project should not produce; leaving it visible
-  exposes the problem. Remove entries when their tool goes.
+  exposes the problem.
 
 ## Mise
 
@@ -63,15 +63,13 @@
 
 ## Renovate
 
-- Each repository's `renovate.json5` extends
-  `github>maxexcloo/dotfiles//renovate/default.json5` and adds only its own
-  exceptions.
+- `dotfiles/README.md` (Dependency Updates) owns the shared presets and the pin
+  comment format.
 - Pin fetched source without a suitable release to an immutable revision,
   without checksums.
-- Rely on native and shared managers; mark other pins with a
-  `# renovate: datasource=… depName=…` comment on the line above, which the
-  shared preset reads, and add no local regex managers. Group pins that must
-  change together and keep compatibility holds and release-age policies.
+- Rely on native and shared managers and add no local regex managers. Group
+  pins that must change together and keep compatibility holds and release-age
+  policies.
 - The Mend Renovate app runs it on GitHub; the shared preset owns grouping,
   automerge and major approval, so add no local Renovate or Mise update tasks.
 - `check:updates` validates the configuration; confirm on the Dependency

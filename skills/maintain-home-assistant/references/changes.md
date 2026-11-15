@@ -25,10 +25,9 @@ Follow the best-practices `references/safe-refactoring.md` workflow, plus:
   field is a limitation, not proof the reference updates itself.
 - Any name change can regenerate entity IDs: treat it as a rename and read back
   the ID.
-- Entity IDs must equal what Settings › Entities › Recreate Entity IDs would
-  generate, so its dialog shows no changes. Read that output with the
-  `config/entity_registry/get_automatic_entity_ids` WebSocket command rather
-  than composing IDs by hand.
+- Where IDs must match regeneration ([Audit Checks](checks.md)), read the
+  expected IDs with the `config/entity_registry/get_automatic_entity_ids`
+  WebSocket command rather than composing them by hand.
 - A rename briefly makes the entity unavailable, which fires loosely written
   state triggers; check consumers for actions that must not repeat.
 
@@ -42,14 +41,12 @@ not exercise a trigger, gesture or delayed reset.
 
 Exercise only the affected scenarios, through their real triggers and timing:
 every path into and out of the changed behaviour, with no duplicate actions.
-Running actions manually does not show a trigger fires. Never restart only for
-cosmetic changes.
+Running actions manually does not show a trigger fires.
 
 After deletes or renames, confirm consumers still load, removed objects are
 gone and no new Repairs or exposure changes appeared.
 
-If a regression appears, restore or fix it before claiming success, and do not
-widen verification to unrelated rooms.
+If a regression appears, restore or fix it before claiming success.
 
 ## Tools
 

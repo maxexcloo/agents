@@ -7,8 +7,6 @@ Shared agent guidance and self-written skills.
 - [global/AGENTS.md](global/AGENTS.md): personal defaults, audit, verification and delivery rules and standards.
 - [skills/](skills/): task procedures and their supporting references.
 
-Codex's system skills and vendor plugins stay in their application-managed locations.
-
 ## Licence
 
 Guidance and skills use AGPL-3.0.
