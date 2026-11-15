@@ -8,5 +8,4 @@
   remove or merge an older rule when adding one. Rules that only matter in some
   repositories belong there or in a skill.
 - Validate with `claude plugin validate .`; its warning about a missing
-  `/plugin install` line is expected. After prose changes, check Markdown
-  formatting, relative links and that the global rules and skills still agree.
+  `/plugin install` line is expected.
