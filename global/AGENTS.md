@@ -157,8 +157,9 @@ findings.
   task.
 - Use major tags for GitHub Actions, `latest` for CI and Mise tools unless one
   must be held back (say why in a one-line comment), and exact versions for
-  deployed images, charts and providers. Never pin digests or Action SHAs,
-  except `latest@sha256:` for an image that publishes only `latest`. Keep
+  deployed images, charts and providers. Provider compatibility ranges are fine
+  when a committed lockfile pins exact versions. Never pin digests or Action
+  SHAs, except `latest@sha256:` for an image that publishes only `latest`. Keep
   lockfiles and let Renovate update pins.
 - Do not vendor third-party code; consume it as a package or a pinned
   dependency.
