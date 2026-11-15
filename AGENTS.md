@@ -124,7 +124,8 @@
   cannot keep values out of context, use a local path or ask for the missing
   capability.
 - Reference 1Password items and other external records by title, never by
-  generated ID.
+  generated ID. Where a title cannot be expressed, such as a colon in an
+  `op://` reference, use the ID with a comment naming the title.
 - Inventory files with `git ls-files`, not shell globs, so ignored secret files
   stay out of context.
 
