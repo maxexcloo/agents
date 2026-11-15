@@ -17,7 +17,7 @@ dashboards, voice assistants, manual use and history.
 
 ## Renames
 
-Follow the best-practices safe-refactoring workflow, plus:
+Follow the best-practices `references/safe-refactoring.md` workflow, plus:
 
 - Include references held in registry settings, such as an area's chosen
   sensors.
