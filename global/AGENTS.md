@@ -28,12 +28,14 @@
 - Track work in one `todo.md` at the root of the project's main checkout, the
   first path from `git worktree list`; Git ignores it globally, so never create
   one in a worktree, and use no other planning files. Read it before starting
-  and add each request as it arrives, one line per item in priority order with
-  a `##` section per stream when needed, noting owner and state while working. Delete items once done or stale, giving outcomes in
-  the report, and delete the file once empty.
+  and add each request as it arrives, one line per item in priority order with a
+  `##` section per stream when needed, noting owner and state while working.
+  Delete items once done or stale, giving outcomes in the report, and delete the
+  file once empty.
 - Split large independent work across parallel agents when it materially speeds
-  things up. Where agents share a place, keep one owner per change, coordinate
-  edits to shared files and do not run heavy tests or builds at the same time.
+  things up. Where agents share a place, keep one owner per change, commit from
+  your own worktree, coordinate edits to shared files and do not run heavy tests
+  or builds at the same time.
 - Use agent-browser for browser checks; never install Playwright or other
   browsers for them. Do not take control of the desktop or open the user's
   browser without asking.
@@ -90,8 +92,9 @@
 - For ordinary changes, review the diff, run focused checks and merge to `main`
   without waiting for the full suite or remote CI. Use a PR where the project
   requires one; enable auto-merge when required checks block an immediate merge,
-  without bypassing them. Keep image publication gated on its required checks.
-  Pause for review before merging a large or complex change.
+  without bypassing them. An owner's direct push to a protected `main` lands by
+  bypassing its checks, so use a PR there. Keep image publication gated on its
+  required checks. Pause for review before merging a large or complex change.
 - Commit as the user, without AI co-author or attribution trailers.
 - Finish by returning the checkout to `main`, removing the task's merged
   branches and worktrees and pruning stale remote-tracking references; a task
@@ -121,6 +124,8 @@
 - Reference 1Password items and other external records by title, never by
   generated ID. Where a title cannot be expressed, such as a colon in an
   `op://` reference, use the ID with a comment naming the title.
+- Scan for secrets only through the scanner's own redaction, such as
+  `gitleaks --redact`; never filter matches with ad-hoc `grep` or `sed`.
 - Inventory files with `git ls-files`, not shell globs, so ignored secret files
   stay out of context.
 
