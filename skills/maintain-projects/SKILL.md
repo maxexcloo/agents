@@ -18,7 +18,7 @@ the standards is `standardise-projects`. Skip steps whose tooling is absent.
    misses. In a fix pass, review failed automerges and approve major upgrades
    on the dashboard, updating version declarations, CI matrices and runtime
    setup together.
-4. Complexity to remove, as the global Audits section describes.
+4. Complexity to remove, as the global Audits & Reviews section describes.
 
 ## Fix & Verify
 

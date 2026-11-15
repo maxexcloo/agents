@@ -7,8 +7,7 @@ description: Build and publish small self-hosted apps through Kubelab, from Simo
 
 Turn a requested tool into a working app and, when authorised, a verified URL.
 `minilab/AGENTS.md` and `kubelab/AGENTS.md` own app layout, routing, storage,
-secrets and delivery; read them first and follow them rather than this skill
-where they differ.
+secrets and delivery; read them first.
 
 ## Stack
 
@@ -36,8 +35,7 @@ backend to a tool that works in the browser.
 These are examples, not an approved list. Keep UI and API on one origin and
 credentials server-side. For PocketBase, use an app-scoped instance, commit
 migrations, keep administration private and define collection rules: sign-in
-alone does not restrict record access. Services with substantial dependencies or
-operations belong in their own repositories, not here.
+alone does not restrict record access.
 
 ## Access
 
