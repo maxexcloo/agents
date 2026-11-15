@@ -1,5 +1,13 @@
 # Tooling Standards
 
+## Addresses
+
+- Prefer configured DNS, then Tailscale IP, then local hostname, then raw IP,
+  honouring explicitly supplied endpoints and what the client can reach.
+- Keep the real scheme, port and path; prefer HTTPS only where it is supported.
+  Use absolute URLs where a browser or credential field needs them and keep
+  host fields in their required format.
+
 ## Containers
 
 - Start Dockerfiles with `# syntax=docker/dockerfile:1`.
@@ -8,6 +16,7 @@
 
 ## GitHub Actions
 
+- Use an Action's default branch where it publishes no major tag.
 - Scope secrets to the steps that need them and set `persist-credentials: false`
   on checkout.
 - Group concurrency by workflow and ref, and never cancel release tag runs.
@@ -57,6 +66,8 @@
 - Each repository's `renovate.json5` extends
   `github>maxexcloo/dotfiles//renovate/default.json5` and adds only its own
   exceptions.
+- Pin fetched source without a suitable release to an immutable revision,
+  without checksums.
 - Rely on native and shared managers; mark other pins with a
   `# renovate: datasource=… depName=…` comment on the line above, which the
   shared preset reads, and add no local regex managers. Group pins that must
