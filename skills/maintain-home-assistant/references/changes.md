@@ -25,6 +25,10 @@ Follow the best-practices `references/safe-refactoring.md` workflow, plus:
   field is a limitation, not proof the reference updates itself.
 - Any name change can regenerate entity IDs: treat it as a rename and read back
   the ID.
+- Entity IDs must equal what Settings › Entities › Recreate Entity IDs would
+  generate, so its dialog shows no changes. Read that output with the
+  `config/entity_registry/get_automatic_entity_ids` WebSocket command rather
+  than composing IDs by hand.
 - A rename briefly makes the entity unavailable, which fires loosely written
   state triggers; check consumers for actions that must not repeat.
 
