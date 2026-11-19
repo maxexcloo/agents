@@ -70,8 +70,8 @@
 - Rely on native and shared managers and add no local regex managers. Group
   pins that must change together and keep compatibility holds and release-age
   policies.
-- The Mend Renovate app runs it on GitHub; the shared preset owns grouping,
-  automerge and major approval, so add no local Renovate or Mise update tasks.
+- Use the hosted Renovate app and shared presets. Add no local Renovate or Mise
+  update tasks.
 - `check:updates` validates the configuration; confirm on the Dependency
   Dashboard that each dependency is detected and resolves the expected version.
 
