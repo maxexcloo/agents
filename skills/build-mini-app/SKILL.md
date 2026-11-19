@@ -18,8 +18,9 @@ backend to a tool that works in the browser.
 
 - Outside Minilab, build the interface with Mantine components using the
   default theme.
-- Browser-only: copy `minilab/templates/static`. Related static tools can share
-  a site; apps with separate data or access stay separate.
+- Browser-only: for Minilab, follow Add An App in `minilab/README.md`.
+  Related static tools can share a site; apps with separate data or access stay
+  separate.
 - Backend: start from the closest app in `minilab/apps`, copying only the source
   it needs, with no wrappers that add no runtime capability.
 
