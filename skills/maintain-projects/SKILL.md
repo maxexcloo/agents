@@ -15,9 +15,8 @@ the standards is `standardise-projects`. Skip steps whose tooling is absent.
 2. Recent CI failures on the default branch.
 3. Pending updates: the Renovate PRs and each repository's Dependency Dashboard
    issue, including versions embedded in scripts or templates that Renovate
-   misses. In a fix pass, review failed automerges and approve major upgrades
-   on the dashboard, updating version declarations, CI matrices and runtime
-   setup together.
+   misses. Review failed automerges and major upgrade PRs. For authorised
+   updates, keep version declarations, CI matrices and runtime setup consistent.
 4. Complexity to remove, as the global Audits & Reviews section describes.
 
 ## Fix & Verify
